@@ -1,0 +1,80 @@
+Equipo A 1 Equipo B 0
+ 01-01-2015 16:15
+______________________________________________________________________________
+Goles local:
+	 Nº 14 Min: 45:47  
+
+Tarjetas amarillas local:
+	 Nº 16 Min: 26:44  DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	 Nº 2 Min: 37:11  PLANCHA TEMERARIA A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	 Nº 10 Min: 76:42  DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	 Nº 5 Min: 84:34  PROTESTAR 
+	 Nº 3 Min: 89:28  SUJETA A UN ADVERSARIO DE FORMA OSTENSIBLE EN DISPUTA DE BALÓN.
+	 Nº 14 Min: 90+3:21  PROTESTAR AR1
+
+Tarjetas amarillas visitante:
+	 Nº 7 Min: 42:09  IMPACTO TEMERARIO CON EL BRAZO EN LA CARA DE UN ADVERSARIO EN DISPUTA DE BALÓN.
+	 Nº 27 Min: 67:03  DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	 Nº 4 Min: 81:59  ZANCADILLA IMPRUDENTE A UN ADVERSARIO EN DISPUTA DE BALÓN 
+
+Tarjetas rojas local:
+	 Nº 4 Min: 68:18  PISA CON LA PLANCHA POR DETRÁS. JUEGO BRUSCO GRAVE. 
+
+Tarjetas rojas visitante:
+
+Penalti local:
+26:44  NO HAY MANO PUNIBLE 
+83:46  3-ATM CAE EN EL ÁREA 
+
+Penalti visitante:
+44:21  NO HAY MANO PUNIBLE-ATM
+
+Cambios local:
+
+Cambios visitante:
+
+Falta local: 0
+
+Falta visitante: 0
+
+Ventaja: 	75:34  
+Aceleración: 
+Posición: 
+Otras: 
+	89:28  T EXTRA 6
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------LEER DESDE AQUÍ------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Eventos: 
+	03:07 CAR REC       DFK NC DFK NC ÁRBITRO + 2-ATM DERRIBO IMPRUDENTE A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	26:54 REC        DFK YC DFK YC ÁRBITRO + 16-ATM DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	26:44 PAI NHB   -VAR-CHECK-CP NF NC NF NC ÁRBITRO + NO HAY MANO PUNIBLE-SEV
+	37:11 REC        DFK YC DFK YC ÁRBITRO + 2-ATM PLANCHA TEMERARIA A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	42:09 REC CAR       DFK YC DFK YC ÁRBITRO + 7-SEV IMPACTO TEMERARIO CON EL BRAZO EN LA CARA DE UN ADVERSARIO EN DISPUTA DE BALÓN.
+	44:21 PAI NF   -VAR-CHECK-CP NF NC NF NC ÁRBITRO + NO HAY MANO PUNIBLE-ATM
+	45:41 NOIP GOAL   -VAR-CHECK-CP PLAY ON NC PLAY ON NC AR1 + PERMITE CONTINUAR EL JUEGO EN SITUACIÓN MUY AJUSTADA. ACABA EN GOL 14-ATM
+	60:29 CAR REC       DFK NC DFK NC ÁRBITRO + 15-SEV PISA IMPRUDENTE A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	67:03 REC CAR       DFK YC DFK YC ÁRBITRO + 27-SEV DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	68:38 SFP    -VAR-OFR-CD DFK YC DFK RC ÁRBITRO + 4-ATM PISA CON LA PLANCHA POR DETRÁS. JUEGO BRUSCO GRAVE. 
+	76:42 REC        DFK YC DFK YC ÁRBITRO + 10-ATM DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	81:59 CAR REC       DFK YC DFK NC ÁRBITRO + 4-SEV ZANCADILLA IMPRUDENTE A UN ADVERSARIO EN DISPUTA DE BALÓN 
+	83:46 PAI NF   -VAR-CHECK-CP NF YC NF NC ÁRBITRO + 3-ATM CAE EN EL ÁREA 
+	84:34 GM DIS       NF YC NF NC ÁRBITRO + 5-ATL PROTESTAR 
+	89:28 GM NF       NF YC NF NC ÁRBITRO + NO HAY CESIÓN-SEV
+	89:28 HOL        DFK YC DFK YC ÁRBITRO + 3-ATL SUJETA A UN ADVERSARIO DE FORMA OSTENSIBLE EN DISPUTA DE BALÓN.
+	90+3:21 GM DIS AR      NF YC NF YC ÁRBITRO + 14-ATL PROTESTAR AR1
+
+AAA1: 
+
+	Faltas: 
+	NO: 06:54-MA  44:21-MA  45:47-MA  ACABA EN GOL 14-ATM48:24-MA  64:51-MA  
+	FJ: 62:24-MA  
+AAA2:
+
+	Faltas: 
+	NO: 07:24-MA  09:24-MA  12:27-MA  15:09-MA  17:02-MA  25:58-MA  30:07-MA  50:05-MA  62:24-MA  76:11-MA  
+	FJ: ______________________________________________________________________________
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------LEER HASTA AQUÍ------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------

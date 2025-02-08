@@ -1,0 +1,18 @@
+Qué datos concretos se van a procesar
+Usar PyPDF2, pdfplumber o librerías similares para leer el texto PDF o pedir el software de lectura que mencionó en el email a Gregorio
+Utilizar un modelo preentrenado en generación de texto (Hugging Face) o crear uno desde cero (TensorFlow/Pytorch)
+Acceso a múltiples informes para crear datasets de entrenamiento y validación
+
+Se busca una herramienta que genere datos en un único informe al momento o se requiere de una BBDD de la que extraer la información de cada informe
+Idea: Crear una interfaz con Flask (mi TFG) o Streamlit (TFG recibido de Gregorio) para introducir un pdf o un fichero con datos y realizar la generación automática
+
+Proyecto:
+Identificar datos a utilizar como inputs
+Recopilación de datos (1 o varios PDFs?)
+Si sólo se procesa 1 a la vez:
+	Variables de programa en memoria
+Si son varios:
+	Considerar usar BBDD como MongoDB con datos parseados
+Realizar fine-tuning con los datos recopilados de varios informes (preguntar a Gregorio para obtener varios informes)
+Identificar sección del informe donde generar el texto
+Introducir el texto generado por el modelo en las sección/es correspondientes

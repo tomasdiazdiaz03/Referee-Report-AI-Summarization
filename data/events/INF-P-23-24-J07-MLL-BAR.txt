@@ -1,0 +1,84 @@
+Mallorca  2 Barcelona  2
+ 26-09-2023 21:30
+______________________________________________________________________________
+Goles local:
+	 Nº 7 Min: 07:31  
+	 Nº 9 Min: 45+2:53  
+
+Goles visitante:
+	 Nº 11 Min: 40:51  
+	 Nº 32 Min: 74:08  
+
+Tarjetas amarillas local:
+	 Nº 14 Min: 47:01  DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN. REITERACIÓN 
+	 Nº 2 Min: 59:58  DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN.
+
+Tarjetas amarillas visitante:
+	 Nº 18 Min: 35:14  IMPACTO TEMERARIO CON EL BRAZO EN LA CABEZA DE UN ADVERSARIO EN DISPUTA DE BALÓN.
+
+Tarjetas rojas local:
+
+Tarjetas rojas visitante:
+
+Penalti local:
+
+Penalti visitante:
+64:24  PENALTI ERRÓNEO POR DERRIBO IMPRUDENTE 
+
+Cambios local:
+	 Nº 11 x 15 Min: 34:13  
+	 Nº 10 x 9 Min: 59:58  
+	 Nº 17 x 8 Min: 59:58  
+	 Nº 4 x 20 Min: 83:10  
+	 Nº 8 x 14 Min: 83:10  
+
+Cambios visitante:
+	 Nº 9 x 7 Min: 57:10  
+	 Nº 32 x 18 Min: 63:23  
+	 Nº 27 x 14 Min: 63:23  
+	 Nº 23 x 5 Min: 77:06  
+
+Falta local: 0
+
+Falta visitante: 0
+
+Ventaja: 	00:58  	10:46  VER 	50:33  
+Aceleración: 
+Posición: 	69:27  LE DA EL BALÓN 	87:35  LE DA EL BALÓN 
+Otras: 
+	12:48  4-BAR SE TIRA AL SUELO Y RECIBE GOLPE FORTUITO
+	38:26  VER SI HAY FALTA PREVIA
+	39:03  EH EH EH PUTA BARCA FONDO Y PREFERENTE
+	40:51  T EXTRA 6
+	45+5:53  +1 EXTRA GOL
+	45+7:52  FINAL TRAS CORNER
+	87:35  T EXTRA 7
+
+Eventos: 
+	06:27 IUA CAR REC      DFK NC DFK NC ÁRBITRO + 20-MLL SUELTA EL BRAZO
+	11:57 CAR REC       DFK NC DFK NC ÁRBITRO + MLL DERRIBO IMPRUDENTE A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	16:17 CAR REC       DFK NC DFK NC ÁRBITRO + 20-MLLDERRIBO IMPRUDENTE A UN ADVERSARIO EN DISPUTA DE BALÓN. ADVIERTE
+	24:54 IUA CAR REC      DFK NC DFK NC ÁRBITRO + 18-BAR IMPACTO IMPRUDENTE CON EL BRAZO EN LA CABEZA DE UN ADVERSARIO EN DISPUTA DE BALÓN.
+	35:14 IUA REC       DFK YC DFK YC ÁRBITRO + 18-BAR IMPACTO TEMERARIO CON EL BRAZO EN LA CABEZA DE UN ADVERSARIO EN DISPUTA DE BALÓN.
+	45+2:53 NOIP GOAL   -VAR-CHECK-CP PLAY ON NC PLAY ON NC AR1 + PERMITE CONTINUAR EL JUEGO EN SITUACIÓN MUY AJUSTADA. ACABA EN GOL 9-MLL
+	45+5:02 HOL        DFK NC DFK NC ÁRBITRO + 3-BAR SUJETA A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	47:01 REC CAR       DFK YC DFK YC ÁRBITRO + 14-MLL DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN. REITERACIÓN 
+	51:51 CAR REC       DFK NC DFK NC ÁRBITRO + 4-BAR DERRIBO IMPRUDENTE A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	59:58 REC        DFK YC DFK YC ÁRBITRO + 2-MLL DERRIBO TEMERARIO A UN ADVERSARIO EN DISPUTA DE BALÓN.
+	64:24 PAI    -VAR-OFR-CD PK NC NF NC ÁRBITRO - PENALTI ERRÓNEO POR DERRIBO IMPRUDENTE 
+	69:27 PR ANT       PK NC NF NC ÁRBITRO + LE DA EL BALÓN 
+	87:35 PR ANT       PK NC NF NC ÁRBITRO + LE DA EL BALÓN 
+	90+0:59 GM DIS       NF YC NF YC ÁRBITRO + AMARILLA ENTRENADOR-MLL
+	90+3:45 GM        NF YC NF YC ÁRBITRO + DESCORDINACION ÁRBITRO CORNER AR1 SMETA
+	90+6:31 NF CAR       NF YC NF YC ÁRBITRO + BALÓN BANQUILLO-MLL 
+
+AAA1: 
+
+	Faltas: 45+5:53  
+	NO: 11:00-MA  45+2:53-MA gol  45+6:54-MA  93:31:NO 93:47: NO
+	FJ: 25:50-MA 7-mll en posición adelantada muy ajustada tras tiro libre centrado al área. DC 37:17-A 7-mll en posición adelantada ajustada tras tiro libre centrado al área DC 45+0:33-MA  9-mll en posición adelantada muy ajustada interfiere sobre el despeje de 4-bar
+AAA2:
+
+	Faltas: 11:57  45+4:42  85:06  
+	NO: 00:17-MA  02:08-MA  24:10-MA  38:26-Mm ocasión de gol-bar 45+1:19-MA  48:35-MA  80:06-MA  90+6:10-MA  
+	FJ: 31:40 7-bar procede de posición adelantada 68:03-MA 7-mll en posición adelantada muy ajustada 87:35-MA 4-mll procede de posición adelantada ajustada e interfiere sobre un def-bar 90+2:12-Mm 7-mll en posición milimétrica adelantada interfiere sobre un def-bar__________________________________________________________________

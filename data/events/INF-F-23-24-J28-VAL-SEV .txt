@@ -1,0 +1,79 @@
+Valencia  3 Sevilla 1
+ 26-05-2024 12:00
+______________________________________________________________________________
+Goles local:
+	 Nº 22 Min: 17:33  
+	 Nº 7 Min: 29:26  
+	 Nº 20 Min: 42:30  
+
+Goles visitante:
+	 Nº 19 Min: 80:53  
+
+Tarjetas amarillas local:
+
+Tarjetas amarillas visitante:
+
+Tarjetas rojas local:
+
+Tarjetas rojas visitante:
+	 Nº 6 Min: 67:12  JUEGO BRUSCO GRAVE
+
+Penalti local:
+04:38  16-VAL CAE EN EL ÁREA 
+21:53  MANO SUELO SEV EN ÁREA 
+
+Penalti visitante:
+49:41  POSIBLE MANO VAL
+89:43  18-SEV CAE EN EL ÁREA 
+
+Cambios local:
+	 Nº 7 x 20 Min: 49:09  
+	 Nº 22 x 10 Min: 69:35  
+
+Cambios visitante:
+	 Nº 18 x 8 Min: 58:28  
+	 Nº 9 x 21 Min: 58:28  
+	 Nº 4 x 17 Min: 66:13  
+	 Nº 17 x 5 Min: 80:53  
+	 Nº 21 x 20 Min: 80:53  
+
+Falta local: 0
+
+Falta visitante: 0
+
+Ventaja: 	16:18  	90+5:37  DA VENTAJA Y SE VUELVE ATRÁS FUERA DE TIMING
+Aceleración: 	33:04  	56:46  	75:29  	90+4:01  
+Posición: 
+Otras: 
+	25:32  PH
+	33:04  BANQUILLO VAL. ADVIERTE
+	42:30  T EXTRA 4
+	47:26  PITA FUERTE
+	68:32  PH
+	89:00  PITA FUERTE
+	90+0:34  T EXTRA 6
+
+Eventos: 
+	04:38 PAI NF       NF NC NF NC ÁRBITRO + 16-VAL CAE EN EL ÁREA 
+	13:30 NOIP NGOAL       PLAY ON NC PLAY ON NC AR2 + PERMITE CONTINUAR EL JUEGO EN SITUACIÓN MUY AJUSTADA. OCASIÓN DE GOL-VAL
+	21:53 PAI NHB       NF NC NF NC ÁRBITRO + MANO SUELO SEV EN ÁREA 
+	29:26 NOIP GOAL       PLAY ON NC PLAY ON NC AR2 + PERMITE CONTINUAR EL JUEGO EN SITUACIÓN MUY AJUSTADA. ACABA EN GOL-VAL
+	37:33 CAR NF       NF NC DFK NC ÁRBITRO - PITA FALTA DE ALGUIEN
+	42:30 NF GOAL       NF NC NF NC ÁRBITRO + POSIBLE FALTA ANTES DE GOL-VAL. PROTESTAS SEV
+	49:41 PAI NHB       NF NC NF NC ÁRBITRO + POSIBLE MANO VAL
+	67:12 SFP REC       DFK RC DFK RC ÁRBITRO + 6-SEV JUEGO BRUSCO GRAVE. IMPACTA TACOS POR ENCIMA DEL TOBILLO
+	80:53 GM MC       NF YC NF YC ÁRBITRO + 18-SEV COGER EL BALÓN TRAS GOL Y PROVOCAR UN CONFLICTO
+	89:43 PAI NF       NF NC NF NC ÁRBITRO + 18-SEV CAE EN EL ÁREA 
+	90+5:37 NOIP        PLAY ON NC PLAY ON NC AR1 + PERMITE CONTINUAR EL JUEGO EN SITUACIÓN MUY AJUSTADA. OCASIÓN DE GOL
+	90+5:37 PR ADV       NF NC NF NC ÁRBITRO + DA VENTAJA Y SE VUELVE ATRÁS FUERA DE TIMING
+
+AAA1: 
+
+	Faltas: 
+	NO: 03:11-MA  07:34-MA  15:56-MA  40:17-MA  46:02-MA  74:48-MA  85:43-MA  90+5:37-MA  OCASIÓN DE GOL
+	FJ: 
+AAA2:
+
+	Faltas: 50:44  
+	NO: 00:33-MA  07:17-MA  13:30-MA  OCASIÓN DE GOL-VAL29:26-MA  ACABA EN GOL-VAL50:44-MA  90+0:34-MA  
+	FJ: 06:19-MA  27:55-MA  53:23-MA  54:37-MA  ______________________________________________________________________________
