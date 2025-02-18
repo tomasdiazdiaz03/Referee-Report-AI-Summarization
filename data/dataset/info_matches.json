@@ -1,0 +1,617 @@
+{
+    "0": {
+        "match": "Celta_LasPalmas",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J32-CEL-LPA.txt"
+    },
+    "1": {
+        "match": "Ibiza_Malaga",
+        "pdf": "data/reports/UD Ibiza SAD - Málaga CF SAD.pdf",
+        "txt": null
+    },
+    "2": {
+        "match": "AtleticoMadrid_Sevilla",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J04-ATM-SEV.txt"
+    },
+    "3": {
+        "match": "Ibiza_Ponferradina",
+        "pdf": "data/reports/UD Ibiza SAD - SD Ponferradina SAD.pdf",
+        "txt": null
+    },
+    "4": {
+        "match": "Mallorca_Alaves",
+        "pdf": "data/reports/RCD Mallorca SAD - Deportivo Alavés SAD.pdf",
+        "txt": "data/events/INF-P-23-24-J15-MLL-ALA.txt"
+    },
+    "5": {
+        "match": "Levante_Sevilla",
+        "pdf": "data/reports/Levante UD SAD - Sevilla FC SAD.pdf",
+        "txt": "data/events/INF-F-23-24-J02-LEV-SEV.txt"
+    },
+    "6": {
+        "match": "Levante_Burgos",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J02-LEV-BUR.txt"
+    },
+    "7": {
+        "match": "Eldense_Zaragoza",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J22-ELD-ZAR.txt"
+    },
+    "8": {
+        "match": "Valencia_Villarreal",
+        "pdf": "data/reports/Valencia CF SAD - Villarreal CF SAD.pdf",
+        "txt": null
+    },
+    "9": {
+        "match": "Mirandes_Elche",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J40-MIR-ELC.txt"
+    },
+    "10": {
+        "match": "Ibiza_Lugo",
+        "pdf": "data/reports/UD Ibiza SAD - CD Lugo SAD (1).pdf",
+        "txt": null
+    },
+    "11": {
+        "match": "Cartagena_Amorebieta",
+        "pdf": "data/reports/FC Cartagena - SD Amorebieta.pdf",
+        "txt": "data/events/INF-S-23-24-J24-CAR-AMO.txt"
+    },
+    "12": {
+        "match": "Elche_Espanyol",
+        "pdf": "data/reports/Elche CF SAD - RCD Espanyol de Barcelona SAD.pdf",
+        "txt": null
+    },
+    "13": {
+        "match": "Oviedo_Espanyol",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J18-OVI-ESP.txt"
+    },
+    "14": {
+        "match": "Alhama_Levante",
+        "pdf": "data/reports/Alhama CF - Levante UD SAD.pdf",
+        "txt": null
+    },
+    "15": {
+        "match": "Cartagena_Tenerife",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J39-CAR-TEN.txt"
+    },
+    "16": {
+        "match": "LasPalmas_Mallorca",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J01-LPA-MLL.txt"
+    },
+    "17": {
+        "match": "Barcelona_Athletic",
+        "pdf": "data/reports/FC Barcelona - Athletic Club.pdf",
+        "txt": null
+    },
+    "18": {
+        "match": "Levante_Albacete",
+        "pdf": "data/reports/Levante UD SAD - Albacete Balompié SAD.pdf",
+        "txt": null
+    },
+    "19": {
+        "match": "Leganes_Eibar",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J29-LEG-EIB.txt"
+    },
+    "20": {
+        "match": "Espanyol_Tenerife",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J32-ESP-TEN.txt"
+    },
+    "21": {
+        "match": "Almeria_Alcorcon",
+        "pdf": "data/reports/UD Almería SAD - AD Alcorcón SAD.pdf",
+        "txt": null
+    },
+    "22": {
+        "match": "Alcorcon_Andorra",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J26-ALC-AND.txt"
+    },
+    "23": {
+        "match": "Valencia_Athletic",
+        "pdf": "data/reports/Valencia CF SAD - Athletic Club.pdf",
+        "txt": null
+    },
+    "24": {
+        "match": "Elche_Eldense",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J41-ELC-ELD.txt"
+    },
+    "25": {
+        "match": "Girona_Granada",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J38-GIR-GRA.txt"
+    },
+    "26": {
+        "match": "VillarrealB_Eibar",
+        "pdf": "data/reports/Villarreal CF _B_ - SD Eibar SAD.pdf",
+        "txt": null
+    },
+    "27": {
+        "match": "VillarrealB_Mirandes",
+        "pdf": "data/reports/Villarreal CF “B” SAD - CD Mirandés SAD.pdf",
+        "txt": "data/events/INF-S-23-24-J12-VIB-MIR.txt"
+    },
+    "28": {
+        "match": "Cadiz_Mallorca",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J33-CAD-MLL.txt"
+    },
+    "29": {
+        "match": "Cartagena_Girona",
+        "pdf": "data/reports/FC Cartagena SAD - Girona FC SAD.pdf",
+        "txt": null
+    },
+    "30": {
+        "match": "Levante_Rayo",
+        "pdf": "data/reports/Levante UD SAD - Rayo Vallecano de Madrid SAD.pdf",
+        "txt": null
+    },
+    "31": {
+        "match": "Girona_AtleticoMadrid",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J19-GIR-ATM.txt"
+    },
+    "32": {
+        "match": "Levante_Cartagena",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J37-LEV-CAR.txt"
+    },
+    "33": {
+        "match": "Elche_Levante",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J08-ELC-LEV.txt"
+    },
+    "34": {
+        "match": "Alhama_Betis",
+        "pdf": "data/reports/Alhama CF - Real Betis Balompié SAD.pdf",
+        "txt": null
+    },
+    "35": {
+        "match": "ValenciaF_SportingHuelva",
+        "pdf": "data/reports/Valencia Féminas CF - Sporting Club de Huelva.pdf",
+        "txt": null
+    },
+    "36": {
+        "match": "Valencia_RealMadrid",
+        "pdf": "data/reports/Valencia CF SAD - Real Madrid CF.pdf",
+        "txt": null
+    },
+    "37": {
+        "match": "Eldense_Elche",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J11-ELD-ELC.txt"
+    },
+    "38": {
+        "match": "Leganes_Ferrol",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J17-LEG-FER.txt"
+    },
+    "39": {
+        "match": "Eldense_VillarrealB",
+        "pdf": "data/reports/CD Eldense - Villarreal CF “B” SAD.pdf",
+        "txt": "data/events/INF-S-23-24-J29-ELD-VIB.txt"
+    },
+    "40": {
+        "match": "Espanyol_Eibar",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J14-ESP-EIB.txt"
+    },
+    "41": {
+        "match": "Alaves_Mallorca",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J26-ALA-MLL.txt"
+    },
+    "42": {
+        "match": "Cartagena_Eldense",
+        "pdf": "data/reports/FC Cartagena - CD Eldense.pdf",
+        "txt": "data/events/INF-S-23-24-J01-CAR-ELD.txt"
+    },
+    "43": {
+        "match": "ValenciaF_Leganes",
+        "pdf": "data/reports/Valencia Féminas CF - Levante UD SAD.pdf",
+        "txt": null
+    },
+    "44": {
+        "match": "Levante_Barcelona",
+        "pdf": "data/reports/Levante UD SAD - FC Barcelona.pdf",
+        "txt": null
+    },
+    "45": {
+        "match": "Albacete_Tenerife",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J35-ALB-TEN.txt"
+    },
+    "46": {
+        "match": "Espanyol_Amorebieta",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J04-ESP-AMO.txt"
+    },
+    "47": {
+        "match": "RealSociedad_Granada",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J04-RSO-GRA.txt"
+    },
+    "48": {
+        "match": "Almeria_Las Palmas",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J11-ALM-LPA.txt"
+    },
+    "49": {
+        "match": "Eldense_Eibar",
+        "pdf": "data/reports/CD Eldense - SD Éibar.pdf",
+        "txt": "data/events/INF-S-23-24-J03-ELD-EIB.txt"
+    },
+    "50": {
+        "match": "Sporting_Alcorcon",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J31-SPO-ALC.txt"
+    },
+    "51": {
+        "match": "Cartagena_Racing",
+        "pdf": "data/reports/FC Cartagena SAD - Real Racing Club de Santander SAD.pdf",
+        "txt": null
+    },
+    "52": {
+        "match": "Mallorca_Getafe",
+        "pdf": "data/reports/RCD Mallorca SAD - Getafe CF SAD.pdf",
+        "txt": null
+    },
+    "53": {
+        "match": "Villarreal_Cadiz",
+        "pdf": "data/reports/Villarreal CF SAD - Cádiz CF SAD.pdf",
+        "txt": "data/events/INF-P-23-24-J23-VIL-CAD.txt"
+    },
+    "54": {
+        "match": "Zaragoza_Alcorcon",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J10-ZAR-ALC.txt"
+    },
+    "55": {
+        "match": "Betis_RealSociedad",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J37-BET-RSO.txt"
+    },
+    "56": {
+        "match": "Granada_Mallorca",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J03-GRA-MLL.txt"
+    },
+    "57": {
+        "match": "Espanyol_Alcorcon",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J17-ESP-ALC.txt"
+    },
+    "58": {
+        "match": "Alcorcon_Burgos",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J42-ALC-BUR.txt"
+    },
+    "59": {
+        "match": "Barcelona_Mallorca",
+        "pdf": "data/reports/FC Barcelona - RCD Mallorca SAD.pdf",
+        "txt": "data/events/INF-P-23-24-J28-BAR-MLL.txt"
+    },
+    "60": {
+        "match": "Levante_Athletic",
+        "pdf": "data/reports/Levante UD SAD - Athletic Club.pdf",
+        "txt": "data/events/INF-F-23-24-J19-LEV-ATH.txt"
+    },
+    "61": {
+        "match": "Valencia_Sevilla",
+        "pdf": "data/reports/Valencia CF SAD - Sevilla FC SAD.pdf",
+        "txt": "data/events/INF-P-23-24-J25-VAL-SEV.txt"
+    },
+    "62": {
+        "match": "Albacete_VillarrealB",
+        "pdf": "data/reports/Albacete Balompié SAD - Villarreal CF “B” SAD.pdf",
+        "txt": "data/events/INF-S-23-24-J19-ALB-VIB.txt"
+    },
+    "63": {
+        "match": "Alcorcon_Eibar",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J20-ALC-EIB.txt"
+    },
+    "64": {
+        "match": "Cartagena_Malaga",
+        "pdf": "data/reports/FC Cartagena SAD - Málaga CF SAD.pdf",
+        "txt": null
+    },
+    "65": {
+        "match": "Real Sociedad_LasPalmas",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J34-RSO-LPA.txt"
+    },
+    "66": {
+        "match": "Cartagena_Zaragoza",
+        "pdf": "data/reports/FC Cartagena SAD - Real Zaragoza SAD.pdf",
+        "txt": null
+    },
+    "67": {
+        "match": "Barcelona_Celta",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J06-BAR-CEL.txt"
+    },
+    "68": {
+        "match": "Granada_Getafe",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J13-GRA-GET.txt"
+    },
+    "69": {
+        "match": "Espanyol_Sporting",
+        "pdf": "data/reports/RCD Espanyol de Barcelona SAD - Real Sporting de Gijón SAD.pdf",
+        "txt": "data/events/INF-S-23-24-J37-ESP-SPOm.txt"
+    },
+    "70": {
+        "match": "Celta_Getafe",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J09-CEL-GET.txt"
+    },
+    "71": {
+        "match": "Valencia_Cadiz",
+        "pdf": "data/reports/Valencia CF SAD - Cádiz CF SAD.pdf",
+        "txt": "data/events/INF-P-23-24-J10-VAL-CAD.txt"
+    },
+    "72": {
+        "match": "Cartagena_Burgos",
+        "pdf": "data/reports/FC Cartagena SAD - Burgos CF SAD.pdf",
+        "txt": "data/events/INF-S-23-24-J20-CAR-BUR.txt"
+    },
+    "73": {
+        "match": "Eldense_Andorra",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J34-ELD-AND.txt"
+    },
+    "74": {
+        "match": "Athletic_Cadiz",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J05-ATH-CAD.txt"
+    },
+    "75": {
+        "match": "Manacor_MallorcaB",
+        "pdf": null,
+        "txt": "data/events/INF-3M-23-24-J01-MAN-MLL.txt"
+    },
+    "76": {
+        "match": "Barcelona_LasPalmas",
+        "pdf": "data/reports/FC Barcelona - UD Las Palmas SAD.pdf",
+        "txt": "data/events/INF-P-23-24-J30-BAR-LPA.txt"
+    },
+    "77": {
+        "match": "Zaragoza_Racing",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J06-ZAR-RAC.txt"
+    },
+    "78": {
+        "match": "Betis_Valencia",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J08-BET-VAL.txt"
+    },
+    "79": {
+        "match": "Mallorca_RealSociedad",
+        "pdf": "data/reports/RCD Mallorca SAD - Real Sociedad de Fútbol SAD.pdf",
+        "txt": null
+    },
+    "80": {
+        "match": "VillarrealB_Gijon",
+        "pdf": "data/reports/Villarreal CF _B_ - Real Sporting de Gijón SAD.pdf",
+        "txt": null
+    },
+    "81": {
+        "match": "Oviedo_Ferrol",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J02-OVI-FER.txt"
+    },
+    "82": {
+        "match": "Villarreal_Elche",
+        "pdf": "data/reports/Villarreal CF SAD - Elche CF SAD.pdf",
+        "txt": null
+    },
+    "83": {
+        "match": "VillarrealB_Andorra",
+        "pdf": "data/reports/Villarreal CF “B” SAD - FC Andorra.pdf",
+        "txt": "data/events/INF-S-23-24-J16-VIB-AND.txt"
+    },
+    "84": {
+        "match": "Villarreal_Atletico",
+        "pdf": "data/reports/Villarreal CF SAD - Club Atlético de Madrid SAD.pdf",
+        "txt": null
+    },
+    "85": {
+        "match": "Villarreal_Girona",
+        "pdf": "data/reports/Villarreal CF SAD - Girona FC SAD.pdf",
+        "txt": null
+    },
+    "86": {
+        "match": "Cadiz_Athletic",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J22-CAD-ATH.txt"
+    },
+    "87": {
+        "match": "Cartagena_Oviedo",
+        "pdf": "data/reports/FC Cartagena - Real Oviedo SAD.pdf",
+        "txt": "data/events/INF-S-23-24-J36-CAR-OVI.txt"
+    },
+    "88": {
+        "match": "Oviedo_VillarealB",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J33-OVI-VIB.txt"
+    },
+    "89": {
+        "match": "Tenerife_Huesca",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J31-TEN-HUE.txt"
+    },
+    "90": {
+        "match": "VillarrealB_Malaga",
+        "pdf": "data/reports/Villarreal CF _B_ - Málaga CF SAD.pdf",
+        "txt": null
+    },
+    "91": {
+        "match": "Betis_Alaves",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J25-BET-ALA.txt"
+    },
+    "92": {
+        "match": "Valencia_Sporting",
+        "pdf": null,
+        "txt": "data/events/INF-F-23-24-J07-VAL-SPO.txt"
+    },
+    "93": {
+        "match": "Athletic_Villarreal",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J31-ATH-VIL.txt"
+    },
+    "94": {
+        "match": "Cartagena_Espanyol",
+        "pdf": "data/reports/FC Cartagena - RCD Espanyol de Barcelona SAD.pdf",
+        "txt": "data/events/INF-S-23-24-J09-CAR-ESP.txt"
+    },
+    "95": {
+        "match": "Mallorca_Elche",
+        "pdf": "data/reports/RCD Mallorca SAD - Elche CF SAD.pdf",
+        "txt": null
+    },
+    "96": {
+        "match": "VillarrealB_Celta",
+        "pdf": "data/reports/Villarreal CF - RC Celta de Vigo.pdf",
+        "txt": null
+    },
+    "97": {
+        "match": "Girona_Villarreal",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J36-GIR-VIL.txt"
+    },
+    "98": {
+        "match": "ValenciaF_RealMadrid",
+        "pdf": "data/reports/Valencia Féminas CF - Real Madrid CF.pdf",
+        "txt": null
+    },
+    "99": {
+        "match": "Huesca_Espanyol",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J14-HUE-ESP.txt"
+    },
+    "100": {
+        "match": "ValenciaF_Sevilla",
+        "pdf": "data/reports/Valencia Féminas CF - Sevilla FC SAD.pdf",
+        "txt": null
+    },
+    "101": {
+        "match": "Sporting_Andorra",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J39-SPO-AND.txt"
+    },
+    "102": {
+        "match": "Alcorcon_Racing",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J14-ALC-RAC.txt"
+    },
+    "103": {
+        "match": "Valladolid_Ferrol",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J21-VLL-FER.txt"
+    },
+    "104": {
+        "match": "RayoVallecano_Getafe",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J31-RAY-GET.txt"
+    },
+    "105": {
+        "match": "Athletic_Valencia",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J11-ATH-VAL.txt"
+    },
+    "106": {
+        "match": "Barcelona_RealMadrid",
+        "pdf": "data/reports/FC Barcelona - Real Madrid CF.pdf",
+        "txt": null
+    },
+    "107": {
+        "match": "Unionistas_Barcelona",
+        "pdf": null,
+        "txt": "data/events/INF-C-23-24-J08-SAL-BAR.txt"
+    },
+    "108": {
+        "match": "Racing_Albacete",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J07-RAC-ALB.txt"
+    },
+    "109": {
+        "match": "Almeria_AtleticoMadrid",
+        "pdf": null,
+        "txt": "data/events/INF-P-23-24-J26-ALM-ATM.txt"
+    },
+    "110": {
+        "match": "Eibar_Andorra",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J19-EIB-AND.txt"
+    },
+    "111": {
+        "match": "JESanVicente_Atzeneta",
+        "pdf": "data/reports/FC Jove Español San Vicente - UE Atzeneta.pdf",
+        "txt": null
+    },
+    "112": {
+        "match": "Mallorca_Barcelona",
+        "pdf": "data/reports/RCD Mallorca SAD - FC Barcelona.pdf",
+        "txt": "data/events/INF-P-23-24-J07-MLL-BAR.txt"
+    },
+    "113": {
+        "match": "Zaragoza_Levante",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J21-ZAR-LEV.txt"
+    },
+    "114": {
+        "match": "Cartagena_VillarrealB",
+        "pdf": "data/reports/FC Cartagena - Villarreal CF “B” SAD.pdf",
+        "txt": "data/events/INF-S-23-24-J22-CAR-VIB.txt"
+    },
+    "115": {
+        "match": "Huesca_Eibar",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J23-HUE-EIB.txt"
+    },
+    "116": {
+        "match": "Levante_Sevilla1",
+        "pdf": "data/reports/Levante UD - Sevilla FC (1).pdf",
+        "txt": null
+    },
+    "117": {
+        "match": "Cartagena_Ibiza",
+        "pdf": "data/reports/FC Cartagena SAD - UD Ibiza SAD.pdf",
+        "txt": null
+    },
+    "118": {
+        "match": "VillarrealB_Tenerife",
+        "pdf": null,
+        "txt": "data/events/INF-S-23-24-J26-VIB-TEN.txt"
+    },
+    "119": {
+        "match": "Villarreal_LasPalmas",
+        "pdf": "data/reports/Villarreal CF - UD Las Palmas.pdf",
+        "txt": null
+    },
+    "120": {
+        "match": "Levante_Osasuna",
+        "pdf": "data/reports/Levante UD SAD - Club Atlético Osasuna.pdf",
+        "txt": null
+    },
+    "121": {
+        "match": "Cartagena_Fuenlabrada",
+        "pdf": "data/reports/FC Cartagena SAD - CF Fuenlabrada SAD.pdf",
+        "txt": null
+    },
+    "122": {
+        "match": "Espanyol_Barcelona",
+        "pdf": "data/reports/RCD Espanyol de Barcelona SAD - FC Barcelona.pdf",
+        "txt": null
+    }
+}

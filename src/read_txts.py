@@ -1,3 +1,7 @@
+import json
+import os
+
+
 def extract_teams_names_from_txt(txt_file):
     with open(txt_file, "r", encoding="utf-8") as f:
             first_line = f.readline().strip()
@@ -19,7 +23,8 @@ def extract_teams_names_from_txt(txt_file):
             print(f"{team1}_{team2}")
             
 
-def extract_events_from_txt(txt_file):
+def extract_events_from_txt(id, match, txt_file):
+    print(f"Procesando archivo TXT: {txt_file}")
     with open(txt_file, "r", encoding="utf-8") as f:
         lines = f.readlines()
     
@@ -45,11 +50,12 @@ def extract_events_from_txt(txt_file):
         
         if current_section == "events":
             parts = line.split(sep=" ")
+            print(parts)
             minute = parts[0]
 
             i = 1
             codes = []
-            while parts[i] != '' or parts[i+2] != '':
+            while parts[i] != '': # or parts[i+1] != '':
                 codes.append(parts[i])
                 i += 1
 
@@ -75,101 +81,28 @@ def extract_events_from_txt(txt_file):
             asistente2_info[key] = " ".join(parts[1:])
     
     return {
+        "id": id,
+        "match": match,
         "events": events,
         "asistente_1": asistente1_info,
         "asistente_2": asistente2_info
     }
 
-if __name__ == "__main__":
-    txt_files = {
-        "Manacor_MallorcaB": "data/events/INF-3M-23-24-J01-MAN-MLL.txt",
-        "Unionistas_Barcelona": "data/events/INF-C-23-24-J08-SAL-BAR.txt",
-        "Levante_Sevilla": "data/events/INF-F-23-24-J02-LEV-SEV.txt",
-        "Valencia_Sporting": "data/events/INF-F-23-24-J07-VAL-SPO.txt",
-        "Levante_Athletic": "data/events/INF-F-23-24-J19-LEV-ATH.txt",
-        "Valencia_Sevilla": "data/events/INF-F-23-24-J28-VAL-SEV .txt",
-        "LasPalmas_Mallorca": "data/events/INF-P-23-24-J01-LPA-MLL.txt",
-        "Granada_Mallorca": "data/events/INF-P-23-24-J03-GRA-MLL.txt",
-        "AtleticoMadrid_Sevilla": "data/events/INF-P-23-24-J04-ATM-SEV.txt",
-        "RealSociedad_Granada": "data/events/INF-P-23-24-J04-RSO-GRA.txt",
-        "Athletic_Cadiz": "data/events/INF-P-23-24-J05-ATH-CAD.txt",
-        "Barcelona_Celta": "data/events/INF-P-23-24-J06-BAR-CEL.txt",
-        "Mallorca_Barcelona": "data/events/INF-P-23-24-J07-MLL-BAR.txt",
-        "Betis_Valencia": "data/events/INF-P-23-24-J08-BET-VAL.txt",
-        "Celta_Getafe": "data/events/INF-P-23-24-J09-CEL-GET.txt",
-        "Valencia_Cadiz": "data/events/INF-P-23-24-J10-VAL-CAD.txt",
-        "Almeria_Las Palmas": "data/events/INF-P-23-24-J11-ALM-LPA.txt",
-        "Athletic_Valencia": "data/events/INF-P-23-24-J11-ATH-VAL.txt",
-        "Granada_Getafe": "data/events/INF-P-23-24-J13-GRA-GET.txt",
-        "Mallorca_Alavés": "data/events/INF-P-23-24-J15-MLL-ALA.txt",
-        "Girona_AtleticoMadrid": "data/events/INF-P-23-24-J19-GIR-ATM.txt",
-        "Cadiz_Athletic": "data/events/INF-P-23-24-J22-CAD-ATH.txt",
-        "Villarreal_Cadiz": "data/events/INF-P-23-24-J23-VIL-CAD.txt",
-        "Betis_Alaves": "data/events/INF-P-23-24-J25-BET-ALA.txt",
-        "Valencia_Sevilla": "data/events/INF-P-23-24-J25-VAL-SEV.txt",
-        "Alaves_Mallorca": "data/events/INF-P-23-24-J26-ALA-MLL.txt",
-        "Almeria_AtleticoMadrid": "data/events/INF-P-23-24-J26-ALM-ATM.txt",
-        "Barcelona_Mallorca": "data/events/INF-P-23-24-J28-BAR-MLL.txt",
-        "Barcelona_LasPalmas": "data/events/INF-P-23-24-J30-BAR-LPA.txt",
-        "Athletic_Villarreal": "data/events/INF-P-23-24-J31-ATH-VIL.txt",
-        "RayoVallecano_Getafe": "data/events/INF-P-23-24-J31-RAY-GET.txt",
-        "Celta_LasPalmas": "data/events/INF-P-23-24-J32-CEL-LPA.txt",
-        "Cadiz_Mallorca": "data/events/INF-P-23-24-J33-CAD-MLL.txt",
-        "Real Sociedad_LasPalmas": "data/events/INF-P-23-24-J34-RSO-LPA.txt",
-        "Girona_Villarreal": "data/events/INF-P-23-24-J36-GIR-VIL.txt",
-        "Betis_RealSociedad": "data/events/INF-P-23-24-J37-BET-RSO.txt",
-        "Girona_Granada": "data/events/INF-P-23-24-J38-GIR-GRA.txt",
-        "Cartagena_Eldense": "data/events/INF-S-23-24-J01-CAR-ELD.txt",
-        "Levante_Burgos": "data/events/INF-S-23-24-J02-LEV-BUR.txt",
-        "Oviedo_Ferrol": "data/events/INF-S-23-24-J02-OVI-FER.txt",
-        "Eldense_Eibar": "data/events/INF-S-23-24-J03-ELD-EIB.txt",
-        "Espanyol_Amorebieta": "data/events/INF-S-23-24-J04-ESP-AMO.txt",
-        "Zaragoza_Racing": "data/events/INF-S-23-24-J06-ZAR-RAC.txt",
-        "Racing_Albacete": "data/events/INF-S-23-24-J07-RAC-ALB.txt",
-        "Elche_Levante": "data/events/INF-S-23-24-J08-ELC-LEV.txt",
-        "Cartagena_Espanyol": "data/events/INF-S-23-24-J09-CAR-ESP.txt",
-        "Zaragoza_Alcorcon": "data/events/INF-S-23-24-J10-ZAR-ALC.txt",
-        "Eldense_Elche": "data/events/INF-S-23-24-J11-ELD-ELC.txt",
-        "VillarrealB_Mirandes": "data/events/INF-S-23-24-J12-VIB-MIR.txt",
-        "Alcorcon_Racing": "data/events/INF-S-23-24-J14-ALC-RAC.txt",
-        "Espanyol_Eibar": "data/events/INF-S-23-24-J14-ESP-EIB.txt",
-        "Huesca_Espanyol": "data/events/INF-S-23-24-J14-HUE-ESP.txt",
-        "VillarrealB_Andorra": "data/events/INF-S-23-24-J16-VIB-AND.txt",
-        "Espanyol_Alcorcon": "data/events/INF-S-23-24-J17-ESP-ALC.txt",
-        "Leganes_Ferrol": "data/events/INF-S-23-24-J17-LEG-FER.txt",
-        "Oviedo_Espanyol": "data/events/INF-S-23-24-J18-OVI-ESP.txt",
-        "Albacete_VillarrealB": "data/events/INF-S-23-24-J19-ALB-VIB.txt",
-        "Eibar_Andorra": "data/events/INF-S-23-24-J19-EIB-AND.txt",
-        "Alcorcon_Eibar": "data/events/INF-S-23-24-J20-ALC-EIB.txt",
-        "Cartagena_Burgos": "data/events/INF-S-23-24-J20-CAR-BUR.txt",
-        "Valladolid_Ferrol": "data/events/INF-S-23-24-J21-VLL-FER.txt",
-        "Zaragoza_Levante": "data/events/INF-S-23-24-J21-ZAR-LEV.txt",
-        "Cartagena_VillarrealB": "data/events/INF-S-23-24-J22-CAR-VIB.txt",
-        "Eldense_Zaragoza": "data/events/INF-S-23-24-J22-ELD-ZAR.txt",
-        "Huesca_Eibar": "data/events/INF-S-23-24-J23-HUE-EIB.txt",
-        "Cartagena_Amorebieta": "data/events/INF-S-23-24-J24-CAR-AMO.txt",
-        "Alcorcon_Andorra": "data/events/INF-S-23-24-J26-ALC-AND.txt",
-        "VillarrealB_Tenerife": "data/events/INF-S-23-24-J26-VIB-TEN.txt",
-        "Eldense_VillarrealB": "data/events/INF-S-23-24-J29-ELD-VIB.txt",
-        "Leganes_Eibar": "data/events/INF-S-23-24-J29-LEG-EIB.txt",
-        "Sporting_Alcorcon": "data/events/INF-S-23-24-J31-SPO-ALC.txt",
-        "Tenerife_Huesca": "data/events/INF-S-23-24-J31-TEN-HUE.txt",
-        "Espanyol_Tenerife": "data/events/INF-S-23-24-J32-ESP-TEN.txt",
-        "Oviedo_VillarealB": "data/events/INF-S-23-24-J33-OVI-VIB.txt",
-        "Eldense_Andorra": "data/events/INF-S-23-24-J34-ELD-AND.txt",
-        "Albacete_Tenerife": "data/events/INF-S-23-24-J35-ALB-TEN.txt",
-        "Cartagena_Oviedo": "data/events/INF-S-23-24-J36-CAR-OVI.txt",
-        "Espanyol_Sporting": "data/events/INF-S-23-24-J37-ESP-SPOm.txt",
-        "Levante_Cartagena": "data/events/INF-S-23-24-J37-LEV-CAR.txt",
-        "Cartagena_Tenerife": "data/events/INF-S-23-24-J39-CAR-TEN.txt",
-        "Sporting_Andorra": "data/events/INF-S-23-24-J39-SPO-AND.txt",
-        "Mirandes_Elche": "data/events/INF-S-23-24-J40-MIR-ELC.txt",
-        "Elche_Eldense": "data/events/INF-S-23-24-J41-ELC-ELD.txt",
-        "Alcorcon_Burgos": "data/events/INF-S-23-24-J42-ALC-BUR.txt"
-    }
+def extract_events_from_multiple_txts(txt_files):
+    all_events = []
+    for id, match_info in txt_files.items():
+        txt_file = match_info.get("txt")
+        match = match_info.get("match")
+        if txt_file is None:
+            print(f"Archivo TXT no disponible para el partido: {match}")
+            continue
+        if not os.path.exists(txt_file):
+            print(f"Archivo no encontrado para el partido {txt_file}")
+            continue
+        events = extract_events_from_txt(id, match, txt_file)
+        all_events.append(events)
+    return all_events
 
-    for txt_file in txt_files.values():
-        events = extract_events_from_txt(txt_file)
-        print(f"Eventos de {txt_file}:")
-        print(events)
-        break
+
+if __name__ == "__main__":
+    pass
