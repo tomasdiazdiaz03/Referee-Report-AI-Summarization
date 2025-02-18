@@ -23,7 +23,7 @@ def extract_teams_names_from_txt(txt_file):
             print(f"{team1}_{team2}")
             
 
-def extract_events_from_txt(id, match, txt_file):
+def extract_events_from_txt(txt_file):
     print(f"Procesando archivo TXT: {txt_file}")
     with open(txt_file, "r", encoding="utf-8") as f:
         lines = f.readlines()
@@ -50,7 +50,6 @@ def extract_events_from_txt(id, match, txt_file):
         
         if current_section == "events":
             parts = line.split(sep=" ")
-            print(parts)
             minute = parts[0]
 
             i = 1
@@ -80,16 +79,13 @@ def extract_events_from_txt(id, match, txt_file):
             key = parts[0].split(sep=":")[0]
             asistente2_info[key] = " ".join(parts[1:])
     
-    return {
-        "id": id,
-        "match": match,
-        "events": events,
+    return {"events": events,
         "asistente_1": asistente1_info,
         "asistente_2": asistente2_info
     }
 
 def extract_events_from_multiple_txts(txt_files):
-    all_events = []
+    all_events = {}
     for id, match_info in txt_files.items():
         txt_file = match_info.get("txt")
         match = match_info.get("match")
@@ -99,10 +95,6 @@ def extract_events_from_multiple_txts(txt_files):
         if not os.path.exists(txt_file):
             print(f"Archivo no encontrado para el partido {txt_file}")
             continue
-        events = extract_events_from_txt(id, match, txt_file)
-        all_events.append(events)
+        events = extract_events_from_txt(txt_file)
+        all_events[id] = events
     return all_events
-
-
-if __name__ == "__main__":
-    pass

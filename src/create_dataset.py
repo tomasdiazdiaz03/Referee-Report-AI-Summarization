@@ -191,26 +191,18 @@ if __name__ == "__main__":
     all_sections = extract_sections_from_multiple_pdfs(matches_dict)
     all_events = extract_events_from_multiple_txts(matches_dict)
     
-    # Convert all_sections to DataFrame
-    sections_df = pd.DataFrame(all_sections)
+    dataset = {}
+    for id, match_data in matches_dict.items():
+        pdf_sections = all_sections[id] if id in all_sections else None
+        txt_events = all_events[id] if id in all_events else None
+        dataset[id] = {
+            "match_info": match_data.get("match"), 
+            "pdf_sections": pdf_sections, 
+            "txt_events": txt_events
+        }
+        
     
-    # Convert all_events to DataFrame
-    events_df = pd.json_normalize(all_events, 'events', ['id', 'match', 'asistente_1', 'asistente_2'], errors='ignore')
-    
-    # Merge the sections and events DataFrames on 'id'
-    combined_df = pd.merge(sections_df, events_df, on='id', how='outer')
-
-    # Combine match_x and match_y into a single match column
-    combined_df['match'] = combined_df['match_x'].combine_first(combined_df['match_y'])
-    
-    # Drop the original match_x and match_y columns
-    combined_df = combined_df.drop(columns=['match_x', 'match_y'])
-
-    # Reorder columns to make 'match' the second column
-    cols = list(combined_df.columns)
-    cols.insert(1, cols.pop(cols.index('match')))
-    combined_df = combined_df[cols]
-    
-    # Save the new dataset
-    combined_df.to_csv("data/dataset/dataset.csv", index=False)
-    print("Nuevo dataset creado y guardado en data/dataset/dataset.csv")
+    # Save the new dataset as JSON
+    with open("data/dataset/dataset.json", "w", encoding="utf-8") as output:
+        json.dump(dataset, output, indent=4, ensure_ascii=False)
+    print("Nuevo dataset creado y guardado en data/dataset/dataset.json")

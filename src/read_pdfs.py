@@ -72,7 +72,7 @@ def extract_all_sections(pdf_path):
     return sections
 
 def extract_sections_from_multiple_pdfs(matches):
-    all_sections = []
+    all_sections = {}
     for id, match_info in tqdm(matches.items(), desc="Procesando informes PDF"):
         pdf_path = match_info.get("pdf")
         match = match_info.get("match")
@@ -84,8 +84,8 @@ def extract_sections_from_multiple_pdfs(matches):
             continue
         try:
             sections = extract_all_sections(pdf_path)
-            sections = {"id": id, "match": match, **sections}
-            all_sections.append(sections)
+            sections = {"match": match, **sections}
+            all_sections[id] = sections
         except Exception as e:
             print(f"Error procesando {pdf_path}: {e}")
     return all_sections
