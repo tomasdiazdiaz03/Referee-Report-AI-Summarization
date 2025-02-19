@@ -1,0 +1,590 @@
+[
+    {
+        "Topic": "TOPIC",
+        "Code": "CÓDIGO"
+    },
+    {
+        "Topic": "CHALLENGES",
+        "Code": "--"
+    },
+    {
+        "Topic": "No Falta / Fair Challenge",
+        "Code": "NF"
+    },
+    {
+        "Topic": "Ball First (Toca el balón antes del contacto)",
+        "Code": "BF"
+    },
+    {
+        "Topic": "Careless (Imprudente)",
+        "Code": "CAR"
+    },
+    {
+        "Topic": "Dangerous Play (Juego Peligroso)",
+        "Code": "DP"
+    },
+    {
+        "Topic": "Excessive Force (Uso de fuerza excesiva)",
+        "Code": "EXF / NEXF"
+    },
+    {
+        "Topic": "Fair Challenge (Disputa limpia)",
+        "Code": "FCHA"
+    },
+    {
+        "Topic": "Foot on Foot (Pisotón en el pie)",
+        "Code": "FOF"
+    },
+    {
+        "Topic": "Holding (Sujeción/Agarrón)",
+        "Code": "HOL"
+    },
+    {
+        "Topic": "Illegal Use of the Arms (Uso Ilegal de Brazos)",
+        "Code": "IUA"
+    },
+    {
+        "Topic": "Indirect Free Kick (Tiro libre indirecto)",
+        "Code": "IFK"
+    },
+    {
+        "Topic": "No Card (Sin tarjeta)",
+        "Code": "NC"
+    },
+    {
+        "Topic": "Normal Football Contact (Contacto normal de fútbol)",
+        "Code": "NFC"
+    },
+    {
+        "Topic": "Persistent Infringement (Infracción Persistente)",
+        "Code": "PI"
+    },
+    {
+        "Topic": "Reckless (Temerario)",
+        "Code": "REC / NREC"
+    },
+    {
+        "Topic": "Red Card (Tarjeta roja)",
+        "Code": "RC"
+    },
+    {
+        "Topic": "Serious Foul Play (Juego Brusco Grave)",
+        "Code": "SFP / NSFP"
+    },
+    {
+        "Topic": "Simulation (Simulación)",
+        "Code": "SIM"
+    },
+    {
+        "Topic": "Unsporting Behaviour (Comportamiento antideportivo)",
+        "Code": "UB"
+    },
+    {
+        "Topic": "Violent Conduct (Conducta Violenta)",
+        "Code": "VC / NVC"
+    },
+    {
+        "Topic": "Yellow Card (Tarjeta amarilla)",
+        "Code": "YC"
+    },
+    {
+        "Topic": "GAME MANAGEMENT",
+        "Code": "GM"
+    },
+    {
+        "Topic": "1st Yellow Card (Primera Tarjeta)",
+        "Code": "1YC"
+    },
+    {
+        "Topic": "2 Yellow Card (Segunda Amonestación)",
+        "Code": "2YC"
+    },
+    {
+        "Topic": "4th Official (4 árbitro)",
+        "Code": "4O"
+    },
+    {
+        "Topic": "Advantage (Ventaja)",
+        "Code": "ADV"
+    },
+    {
+        "Topic": "Backpass (Cesión)",
+        "Code": "BKP"
+    },
+    {
+        "Topic": "Body Language (Lenguaje Corporal)",
+        "Code": "BL"
+    },
+    {
+        "Topic": "Communication (Comunicación)",
+        "Code": "COM"
+    },
+    {
+        "Topic": "Confrontation (Confrontación entre jugadores)",
+        "Code": "CONF"
+    },
+    {
+        "Topic": "Conscussion (Conmoción)",
+        "Code": "CONCU"
+    },
+    {
+        "Topic": "Delaying Restart (Retrasar la reanudación)",
+        "Code": "DR"
+    },
+    {
+        "Topic": "Delaying the Whistle (Retrasar el silbato)",
+        "Code": "DW"
+    },
+    {
+        "Topic": "Dissent (Protestas)",
+        "Code": "DIS"
+    },
+    {
+        "Topic": "Dopped Ball (Balón a tierra)",
+        "Code": "DB"
+    },
+    {
+        "Topic": "Encroachment (Invasión)",
+        "Code": "ENC"
+    },
+    {
+        "Topic": "Equipment (Equipamiento)",
+        "Code": "EQU"
+    },
+    {
+        "Topic": "Goal Celebration (Celebración de gol excesiva)",
+        "Code": "GC"
+    },
+    {
+        "Topic": "Injury (Lesión)",
+        "Code": "INJ"
+    },
+    {
+        "Topic": "Last Minutes (Últimos minutos)",
+        "Code": "LM"
+    },
+    {
+        "Topic": "Malice (Malicia)",
+        "Code": "MAL"
+    },
+    {
+        "Topic": "Management of Penalty Kicks (Manejo de tiros penales)",
+        "Code": "MPK"
+    },
+    {
+        "Topic": "Management of Restart (Manejo del reinicio)",
+        "Code": "MR"
+    },
+    {
+        "Topic": "Mass Confrontation (Confrontación masiva)",
+        "Code": "MC"
+    },
+    {
+        "Topic": "Personality (Personalidad)",
+        "Code": "PERS"
+    },
+    {
+        "Topic": "Players Management (Manejo de Jugadores)",
+        "Code": "PM"
+    },
+    {
+        "Topic": "Prevention (Prevención)",
+        "Code": "PREV"
+    },
+    {
+        "Topic": "Quick Free Kick (Saque rápido)",
+        "Code": "QFK"
+    },
+    {
+        "Topic": "Substitution (Sustitución)",
+        "Code": "SUST"
+    },
+    {
+        "Topic": "Team Tactics (Tácticas de los equipos)",
+        "Code": "TTA"
+    },
+    {
+        "Topic": "Technical Area (Área Técnica)",
+        "Code": "TA"
+    },
+    {
+        "Topic": "Throw In (Saque de banda)",
+        "Code": "THROW-IN"
+    },
+    {
+        "Topic": "Time Management (Manejo del tiempo)",
+        "Code": "TM"
+    },
+    {
+        "Topic": "Unsporting Behaviour (Comportamiento antideportivo)",
+        "Code": "UB"
+    },
+    {
+        "Topic": "HANDBALL (Mano)",
+        "Code": "HB / NHB"
+    },
+    {
+        "Topic": "Accidenal Handball (Mano Accidental)",
+        "Code": "ACCHB"
+    },
+    {
+        "Topic": "Adittional Movement (Movimiento Adicional de la mano)",
+        "Code": "ADMHB"
+    },
+    {
+        "Topic": "Attacket's Handball (Mano del atacante)",
+        "Code": "ATHB"
+    },
+    {
+        "Topic": "Deliberate Handball (Mano intencionada)",
+        "Code": "DHB"
+    },
+    {
+        "Topic": "Immediate Handball (Mano inmediata previa a gol)",
+        "Code": "INMHB"
+    },
+    {
+        "Topic": "Making the Body Bigger (Mano que agranda el cuerpo)",
+        "Code": "HB-MBB"
+    },
+    {
+        "Topic": "Rebounded Hanball (Mano rebotada)",
+        "Code": "REBHB"
+    },
+    {
+        "Topic": "Supporting Handball (Mano apoyada)",
+        "Code": "SUPHB"
+    },
+    {
+        "Topic": "GOAL / NO GOAL",
+        "Code": "GOAL / NGOAL"
+    },
+    {
+        "Topic": "APP (Fase de Ataque Previo)",
+        "Code": "APP"
+    },
+    {
+        "Topic": "Attacket's Handball (Mano del atacante)",
+        "Code": "ATHB"
+    },
+    {
+        "Topic": "DFK (Tiro Libre Directo)",
+        "Code": "DFK"
+    },
+    {
+        "Topic": "Goal Line Technology (para \"goles fantasma\")",
+        "Code": "GLT"
+    },
+    {
+        "Topic": "HB (Mano)",
+        "Code": "HB / NHB"
+    },
+    {
+        "Topic": "Immediate Handball (Mano inmediata)",
+        "Code": "INMHB"
+    },
+    {
+        "Topic": "IN-OUT (Dentro / Fuera)",
+        "Code": "IN-OUT"
+    },
+    {
+        "Topic": "NF (No falta)",
+        "Code": "NF"
+    },
+    {
+        "Topic": "OFFSIDE (Fuera de Juego)",
+        "Code": "--"
+    },
+    {
+        "Topic": "Offside Interfering with Play (Interfiriendo con el juego)",
+        "Code": "OIP / NOIP"
+    },
+    {
+        "Topic": "ADV (Ventaja)",
+        "Code": "ADV"
+    },
+    {
+        "Topic": "Assistant Referee (Árbitro Asistente)",
+        "Code": "AR"
+    },
+    {
+        "Topic": "CP (Procedimiento Correcto)",
+        "Code": "CP"
+    },
+    {
+        "Topic": "Delay the Flag (Retrasar la bandera)",
+        "Code": "DF"
+    },
+    {
+        "Topic": "GOAL",
+        "Code": "GOAL"
+    },
+    {
+        "Topic": "NGOAL",
+        "Code": "NGOAL"
+    },
+    {
+        "Topic": "Offside Gaining Advantage (Ganando ventaja)",
+        "Code": "OGA / NOGA"
+    },
+    {
+        "Topic": "Offside Interfering the Opponent (Interfiriendo con el oponente)",
+        "Code": "OIO / NOIO"
+    },
+    {
+        "Topic": "PAI",
+        "Code": "PAI"
+    },
+    {
+        "Topic": "TW (Trabajo en Equipo)",
+        "Code": "TW"
+    },
+    {
+        "Topic": "Wait and see (Esperar y ver antes de tomar una decisión)",
+        "Code": "W&S"
+    },
+    {
+        "Topic": "WP (Procedimiento Incorrecto)",
+        "Code": "WP"
+    },
+    {
+        "Topic": "PENALTY AREA INCIDENTS (Incidentes de área penal)",
+        "Code": "PAI"
+    },
+    {
+        "Topic": "No Foul (No falta)",
+        "Code": "NF"
+    },
+    {
+        "Topic": "Attacker Initiates Contact (Atacante inicia el contacto)",
+        "Code": "AIC"
+    },
+    {
+        "Topic": "Attacker's Foul (Falta del atacante)",
+        "Code": "ATF"
+    },
+    {
+        "Topic": "CAR (Impridente)",
+        "Code": "CAR"
+    },
+    {
+        "Topic": "DFK (Tiro libre directo)",
+        "Code": "DFK"
+    },
+    {
+        "Topic": "DOGSO",
+        "Code": "DOGSO"
+    },
+    {
+        "Topic": "Goalkeeper Challenge (Disputa con el portero)",
+        "Code": "GKC"
+    },
+    {
+        "Topic": "Handball (Mano)",
+        "Code": "HB / NHB"
+    },
+    {
+        "Topic": "Holding (Sujeción)",
+        "Code": "HOL"
+    },
+    {
+        "Topic": "IN-OUT (Dentro / Fuera)",
+        "Code": "IN-OUT"
+    },
+    {
+        "Topic": "Light Holding (Sujeción leve)",
+        "Code": "LIGHT-HOL"
+    },
+    {
+        "Topic": "Light Pulling (Tirón leve)",
+        "Code": "LIGHT-PULL"
+    },
+    {
+        "Topic": "Light Pushing (Empujón leve)",
+        "Code": "LIGHT-PUSH"
+    },
+    {
+        "Topic": "Pulling (Tirón)",
+        "Code": "PULL"
+    },
+    {
+        "Topic": "Push (Empujón)",
+        "Code": "PUSH"
+    },
+    {
+        "Topic": "REC (Temerario)",
+        "Code": "REC"
+    },
+    {
+        "Topic": "Simulation (Simulación)",
+        "Code": "SIM"
+    },
+    {
+        "Topic": "SPA",
+        "Code": "SPA"
+    },
+    {
+        "Topic": "POSITIONING & READING (Posicionamiento y Lectura)",
+        "Code": "PR"
+    },
+    {
+        "Topic": "Angle (Ángulo)",
+        "Code": "ANG"
+    },
+    {
+        "Topic": "Anticipation (Anticipación)",
+        "Code": "ANT"
+    },
+    {
+        "Topic": "Assistant Referees (Asistentes)",
+        "Code": "AR"
+    },
+    {
+        "Topic": "Ball Hits the Referee (Balón golpea al árbitro)",
+        "Code": "BHR"
+    },
+    {
+        "Topic": "Corner Kick (Tiro de esquina)",
+        "Code": "CK"
+    },
+    {
+        "Topic": "Counter Attacks (Contra-ataque)",
+        "Code": "CA"
+    },
+    {
+        "Topic": "Fast Transition (Transición rápida)",
+        "Code": "FT"
+    },
+    {
+        "Topic": "Free Kick (Tiro Libre)",
+        "Code": "FK"
+    },
+    {
+        "Topic": "High Pressing (Presión alta)",
+        "Code": "HP"
+    },
+    {
+        "Topic": "Interference (Interferencia)",
+        "Code": "INT"
+    },
+    {
+        "Topic": "Penalty Area (Área Penal)",
+        "Code": "PA"
+    },
+    {
+        "Topic": "Pressing (Presión)",
+        "Code": "PRES"
+    },
+    {
+        "Topic": "Reaction (Reacción)",
+        "Code": "REAC"
+    },
+    {
+        "Topic": "Short Corner Kick (Saque de esquina en corto)",
+        "Code": "SCK"
+    },
+    {
+        "Topic": "Short Free Kick (Saque de falta en corto)",
+        "Code": "SFK"
+    },
+    {
+        "Topic": "Wall (Barrera)",
+        "Code": "WALL"
+    },
+    {
+        "Topic": "TACTICAL FOULS (Faltas Tácticas)",
+        "Code": "TF"
+    },
+    {
+        "Topic": "No Card (Sin tarjeta)",
+        "Code": "NC"
+    },
+    {
+        "Topic": "Challenging For The Ball (Disputar el balón)",
+        "Code": "CHABA"
+    },
+    {
+        "Topic": "DOGSO (Evitar una ocasión manifiesta)",
+        "Code": "DOGSO"
+    },
+    {
+        "Topic": "Goalkeeper (Portero)",
+        "Code": "GK"
+    },
+    {
+        "Topic": "Handball (Mano)",
+        "Code": "HB"
+    },
+    {
+        "Topic": "Holding (Sujeción / Empujón)",
+        "Code": "HOL"
+    },
+    {
+        "Topic": "SPA (Evitar ataque prometedor)",
+        "Code": "SPA"
+    },
+    {
+        "Topic": "TEAMWORK (Trabajo en equipo)",
+        "Code": "TW"
+    },
+    {
+        "Topic": "VIDEO ASSISTANT REFEREE",
+        "Code": "VAR"
+    },
+    {
+        "Topic": "AVAR",
+        "Code": "AVAR"
+    },
+    {
+        "Topic": "Attacking Possesion Phase (Análisis de la fase de Ataque)",
+        "Code": "APP"
+    },
+    {
+        "Topic": "Changed Decision (Cambio de decisión)",
+        "Code": "CD / NCD"
+    },
+    {
+        "Topic": "Check (Chequeo)",
+        "Code": "CHECK"
+    },
+    {
+        "Topic": "Factual Decision (Cambio de decisión Factual)",
+        "Code": "FCD"
+    },
+    {
+        "Topic": "On Field Review (Revisión a pie de campo)",
+        "Code": "OFR"
+    },
+    {
+        "Topic": "Referee Review Area (Zona de revisión)",
+        "Code": "RRA"
+    },
+    {
+        "Topic": "Semi Automatic Offside Technology (Tecnología de fuera de juego semiautomático)",
+        "Code": "SAOT"
+    },
+    {
+        "Topic": "VIDEOTEST (Law 12 & Law 11)",
+        "Code": "VT"
+    },
+    {
+        "Topic": "TEAM ARRIVAL MEETING (Reunión con equipos)",
+        "Code": "TAM"
+    },
+    {
+        "Topic": "EDUCATIONAL MATERIAL (Material Educativo)",
+        "Code": "EM"
+    },
+    {
+        "Topic": "CORRECT PROCEDURE (Procedimiento Correcto)",
+        "Code": "CP"
+    },
+    {
+        "Topic": "WRONG PROCEDURE (Procedimiento Incorrecto)",
+        "Code": "WP"
+    },
+    {
+        "Topic": "NEW LAWS (Nuevas Reglas)",
+        "Code": "NL"
+    }
+]
