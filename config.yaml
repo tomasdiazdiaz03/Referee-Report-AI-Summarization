@@ -1,0 +1,7 @@
+data_path: "../../data/dataset.json"
+model_gpt_path: "../../models/gpt2_model"
+model_bart_path: "../../models/bart_model"
+training:
+  batch_size: 4
+  epochs: 3
+  learning_rate: 5e-5
