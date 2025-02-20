@@ -1,3 +1,0 @@
-https://regex101.com 12/02/25 Para hacer testing con REs
-https://www.regular-expressions.info/catastrophic.html 12/02/25 Debido al uso de (.|\n)* en varias instancias ocurría un catastrophic backtracking
-https://www.programiz.com/python-programming/methods/string/split 16/02/25 Para entender valores que puede recibir maxsplit y si es necesario en mi código (respuesta: no)
