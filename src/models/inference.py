@@ -9,8 +9,22 @@ bart_tokenizer = BartTokenizer.from_pretrained("../../models/bart_model")
 
 # Función para generar informe
 def generar_informe(partido):
+    input_text = ""
+    
+    # Si hay pdf_sections, lo agregamos
+    if partido.get("pdf_sections"):
+        input_text += "Condición física: " + partido["pdf_sections"].get("condicion_fisica", "") + " "
+        input_text += "Actuación técnica: " + partido["pdf_sections"].get("actuacion_tecnica", "") + " "
+        input_text += "Actuación disciplinaria: " + partido["pdf_sections"].get("actuacion_disciplinaria", "") + " "
+        input_text += "Manejo del partido: " + partido["pdf_sections"].get("manejo_partido", "") + " "
+        input_text += "Personalidad y trabajo en equipo: " + partido["pdf_sections"].get("personalidad_trabajo_equipo", "") + " "
+    
+    # Si hay txt_events, lo agregamos
+    if partido.get("txt_events"):
+        for event in partido["txt_events"]:
+            input_text += f"Minuto {event['minute']}: {event['description']} "
+    
     # Paso 1: Generación estructurada con GPT
-    input_text = f"Árbitro: {partido['pdf_data']['arbitro']['actuacion_tecnica']}..."
     input_ids = gpt_tokenizer.encode(input_text, return_tensors="pt")
     gpt_output = gpt_model.generate(input_ids, max_length=200)
     generated_text = gpt_tokenizer.decode(gpt_output[0], skip_special_tokens=True)
@@ -26,4 +40,4 @@ def generar_informe(partido):
 with open("../../data/dataset.json", "r", encoding="utf-8") as f:
     dataset = json.load(f)
 
-print(generar_informe(dataset[0]))
+print(generar_informe(dataset["0"]))

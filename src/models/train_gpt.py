@@ -6,13 +6,30 @@ import json
 with open("../../data/dataset.json", "r", encoding="utf-8") as f:
     dataset = json.load(f)
 
-# Procesar datos: concatenamos los campos importantes como entrada de entrenamiento
+# Procesar datos: combinamos pdf_sections y txt_events
 train_texts = []
-for partido in dataset:
-    input_text = f"Árbitro: {partido['pdf_data']['arbitro']['actuacion_tecnica']} "
-    input_text += f"Asistente 1: {partido['pdf_data']['asistente_1']['comentarios']} "
-    input_text += f"Asistente 2: {partido['pdf_data']['asistente_2']['comentarios']} "
-    output_text = partido['pdf_data']['resumen_final']  # Resumen de referencia
+for partido in dataset.values():
+    input_text = ""
+    
+    # Si hay pdf_sections, lo agregamos
+    if partido.get("pdf_sections"):
+        input_text += "Condición física: " + partido["pdf_sections"].get("condicion_fisica", "") + " "
+        input_text += "Actuación técnica: " + partido["pdf_sections"].get("actuacion_tecnica", "") + " "
+        input_text += "Actuación disciplinaria: " + partido["pdf_sections"].get("actuacion_disciplinaria", "") + " "
+        input_text += "Manejo del partido: " + partido["pdf_sections"].get("manejo_partido", "") + " "
+        input_text += "Personalidad y trabajo en equipo: " + partido["pdf_sections"].get("personalidad_trabajo_equipo", "") + " "
+    
+    # Si hay txt_events, lo agregamos
+    if partido.get("txt_events"):
+        for event in partido["txt_events"]:
+            input_text += f"Minuto {event['minute']}: {event['description']} "
+    
+    # Si hay resumen final, lo usamos como salida
+    if partido.get("pdf_sections") and partido["pdf_sections"].get("resumen_final"):
+        output_text = partido["pdf_sections"]["resumen_final"]
+    else:
+        output_text = "Resumen no disponible"
+    
     train_texts.append(f"{input_text} => {output_text}")
 
 # Tokenización

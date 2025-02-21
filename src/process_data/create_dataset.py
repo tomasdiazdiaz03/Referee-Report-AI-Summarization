@@ -203,6 +203,6 @@ if __name__ == "__main__":
         
     
     # Save the new dataset as JSON
-    with open("data/dataset/dataset.json", "w", encoding="utf-8") as output:
+    with open("data/dataset/full_dataset.json", "w", encoding="utf-8") as output:
         json.dump(dataset, output, indent=4, ensure_ascii=False)
-    print("Nuevo dataset creado y guardado en data/dataset/dataset.json")
+    print("Nuevo dataset creado y guardado en data/dataset/full_dataset.json")
