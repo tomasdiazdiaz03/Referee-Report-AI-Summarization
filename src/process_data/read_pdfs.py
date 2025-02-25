@@ -6,11 +6,17 @@ import pandas as pd
 from tqdm import tqdm
 
 def extract_all_text_from_pdf(pdf_path):
+    """
+    Abre un archivo PDF y extrae todo el texto de todas las páginas.
+    """
     with pdfplumber.open(pdf_path) as pdf:
         return "\n".join([page.extract_text() for page in pdf.pages if page.extract_text()])
 
 
 def extract_text_between_markers(pdf_path, start_marker, end_marker):
+    """
+    Abre un archivo PDF y extrae el texto contenido entre dos marcadores determinados, en este caso, las expresiones regulares.
+    """
     with pdfplumber.open(pdf_path) as pdf:
         text = "\n".join([page.extract_text() for page in pdf.pages if page.extract_text()])
         start_match = re.search(start_marker, text)
@@ -20,6 +26,9 @@ def extract_text_between_markers(pdf_path, start_marker, end_marker):
         return ""
 
 def extract_tablas_asistentes(asistente1, pdf_path):
+    """
+    Extrae las dos tablas del PDF correspondientes a los incidentes relacionados con uno de los asistentes y devuelve un diccionario con los datos estructurados.
+    """
     asistente = {
         "acciones": {},
         "jugadas_fuera_de_juego": []
@@ -178,6 +187,9 @@ def extract_discipline_incidences_from_pdf(pdf_path):
 
 
 def extract_all_sections(pdf_path):
+    """
+    Extrae todas las secciones de un informe dado en formato PDF.
+    """
     sections = {
         "condicion_fisica": extract_text_between_markers(pdf_path, 
             r"COMENTARIOS ADICIONALES A LA CONDICIÓN FÍSICA Y POSICIONAMIENTO \(Si fuera necesario\):", 
@@ -217,12 +229,14 @@ def extract_all_sections(pdf_path):
     return sections
 
 def extract_sections_from_multiple_pdfs(matches):
+    """
+    Extrae las secciones de todos los informes PDF de una lista de partidos, en caso de que exista la ruta.
+    """
     all_sections = {}
     for id, match_info in tqdm(matches.items(), desc="Procesando informes PDF"):
         pdf_path = match_info.get("pdf")
-        match = match_info.get("match")
         if pdf_path is None:
-            print(f"Archivo PDF no disponible para el partido: {match}")
+            print(f"Archivo PDF no disponible para el partido: {match_info.get("match")}")
             continue
         if not os.path.exists(pdf_path):
             print(f"Archivo no encontrado: {pdf_path}")
@@ -235,18 +249,18 @@ def extract_sections_from_multiple_pdfs(matches):
     return all_sections
 
 
-if __name__ == "__main__":
-    pdf_path = "data/reports/RCD Espanyol de Barcelona SAD - FC Barcelona.pdf"
-    data1 = extract_all_sections(pdf_path)
+# if __name__ == "__main__":
+#     pdf_path = "data/reports/RCD Espanyol de Barcelona SAD - FC Barcelona.pdf"
+#     data1 = extract_all_sections(pdf_path)
     
-    # Imprimir todas las secciones de data1 de forma legible
-    for section, content in data1.items():
-        print(f"--- {section.upper()} ---")
-        if isinstance(content, pd.DataFrame):
-            print(content.to_string(index=False))
-        elif isinstance(content, dict):
-            for key, value in content.items():
-                print(f"{key}: {value}")
-        else:
-            print(content)
-        print("\n")
+#     # Imprimir todas las secciones de data1 de forma legible
+#     for section, content in data1.items():
+#         print(f"--- {section.upper()} ---")
+#         if isinstance(content, pd.DataFrame):
+#             print(content.to_string(index=False))
+#         elif isinstance(content, dict):
+#             for key, value in content.items():
+#                 print(f"{key}: {value}")
+#         else:
+#             print(content)
+#         print("\n")

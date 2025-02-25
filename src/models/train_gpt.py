@@ -3,7 +3,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArgume
 import json
 
 # Cargar datos
-with open("../../data/dataset.json", "r", encoding="utf-8") as f:
+with open("../../data/full_dataset.json", "r", encoding="utf-8") as f:
     dataset = json.load(f)
 
 # Procesar datos: combinamos pdf_sections y txt_events

@@ -3,6 +3,9 @@ import os
 
 
 def extract_teams_names_from_txt(txt_file):
+    """
+    Extrae los nombres de los equipos de un archivo TXT y los imprime en pantalla. (originalmente usada para crear las keys del diccionario de partidos)
+    """
     with open(txt_file, "r", encoding="utf-8") as f:
             first_line = f.readline().strip()
             parts = first_line.split()
@@ -24,6 +27,9 @@ def extract_teams_names_from_txt(txt_file):
             
 
 def extract_events_from_txt(txt_file):
+    """
+    Extrae los eventos de partido de un archivo TXT y los devuelve en un diccionario.
+    """
     print(f"Procesando archivo TXT: {txt_file}")
     with open(txt_file, "r", encoding="utf-8") as f:
         lines = f.readlines()
@@ -79,12 +85,16 @@ def extract_events_from_txt(txt_file):
             key = parts[0].split(sep=":")[0]
             asistente2_info[key] = " ".join(parts[1:])
     
-    return {"events": events,
+    return {
+        "events": events,
         "asistente_1": asistente1_info,
         "asistente_2": asistente2_info
     }
 
 def extract_events_from_multiple_txts(txt_files):
+    """
+    Extrae los eventos de varios informes en formato TXT y los devuelve en un diccionario.
+    """
     all_events = {}
     for id, match_info in txt_files.items():
         txt_file = match_info.get("txt")
