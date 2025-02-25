@@ -2,6 +2,8 @@ import re
 import json
 import unicodedata
 
+dataset_path = "./data/dataset/full_dataset.json"
+
 ##############################
 ### SECCIÓN PARA DATOS TXT ###
 ##############################
@@ -36,10 +38,16 @@ def extract_additional_codes_from_description(event):
 
     # Reconstruimos la descripción sin los separadores no deseados
     description_cleaned = " ".join(filtered_tokens)
+    description_processed = normalize_text(description_cleaned)
+
+    print(description)
+    print(description_processed)
+    print(additional_codes)
+    print("-------------------")
 
     # Actualizar el evento con los códigos extraídos
     event["additional_codes"] = additional_codes
-    event["description"] = description_cleaned  # Guardamos la descripción limpia
+    event["description"] = description_processed  # Guardamos la descripción limpia
 
     return event
 
@@ -82,25 +90,31 @@ def normalize_text(text):
 
 def preprocess_match_data(match):
     """Aplica limpieza a todos los textos de un partido."""
-    for section in match["pdf_data"]:
-        if isinstance(match["pdf_data"][section], dict):  
-            for key in match["pdf_data"][section]:  
-                match["pdf_data"][section][key] = normalize_text(match["pdf_data"][section][key])
-        else:
-            match["pdf_data"][section] = normalize_text(match["pdf_data"][section])
+    if match["pdf_sections"] is not None:
+        for section in match["pdf_sections"]:
+            if isinstance(match["pdf_sections"][section], dict):  
+                for key in match["pdf_sections"][section]:  
+                    match["pdf_sections"][section][key] = normalize_text(match["pdf_sections"][section][key])
+            else:
+                match["pdf_sections"][section] = normalize_text(match["pdf_sections"][section])
     
-    for section in match["txt_events"]:
-        if isinstance(match["txt_events"][section], list):
-            for event in match["txt_events"][section]:
-                event = extract_additional_codes_from_description(event)
-                event["description"] = normalize_text(event["description"])
-
+    if match["txt_events"] is not None:
+        for section in match["txt_events"]:
+            if isinstance(match["txt_events"][section], list):
+                new_events = [extract_additional_codes_from_description(event) for event in match["txt_events"][section]]
+                match["txt_events"][section] = new_events
+            elif isinstance(match["txt_events"][section], dict):
+                new_assistant = {}
+                for key, event_string in match["txt_events"][section].items():
+                    new_assistant[key] = parse_assistant_events(event_string)
+                match["txt_events"][section] = new_assistant
+    print(match)
     return match
 
 if __name__ == "__main__":
-    # # Cargar dataset
-    # with open("../../data/full_dataset.json", "r", encoding="utf-8") as f:
-    #     dataset = json.load(f)
+    # Cargar dataset
+    with open(dataset_path, "r", encoding="utf-8") as f:
+        dataset = json.load(f)
 
     # # Preprocesar cada partido
     # processed_dataset = [preprocess_match_data(match) for match in dataset]
@@ -110,4 +124,6 @@ if __name__ == "__main__":
     #     json.dump(processed_dataset, f, ensure_ascii=False, indent=4)
 
     # print("Preprocesamiento completado. Datos guardados en dataset_clean.json")
-    pass
+    for _, match in dataset.items():
+        preprocess_match_data(match)
+        break
