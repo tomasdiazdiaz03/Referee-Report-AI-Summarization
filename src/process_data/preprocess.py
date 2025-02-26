@@ -108,7 +108,6 @@ def preprocess_match_data(match):
                 for key, event_string in match["txt_events"][section].items():
                     new_assistant[key] = parse_assistant_events(event_string)
                 match["txt_events"][section] = new_assistant
-    print(match)
     return match
 
 if __name__ == "__main__":
