@@ -40,11 +40,6 @@ def extract_additional_codes_from_description(event):
     description_cleaned = " ".join(filtered_tokens)
     description_processed = normalize_text(description_cleaned)
 
-    print(description)
-    print(description_processed)
-    print(additional_codes)
-    print("-------------------")
-
     # Actualizar el evento con los códigos extraídos
     event["additional_codes"] = additional_codes
     event["description"] = description_processed  # Guardamos la descripción limpia
@@ -81,7 +76,9 @@ def parse_assistant_events(event_string):
 ###########################################
 
 def normalize_text(text):
-    """Normaliza el texto eliminando espacios innecesarios y caracteres extraños."""
+    """Normaliza el texto eliminando espacios innecesarios y caracteres extraños. Solo se procesa el valor de text si es un string, y si es un diccionario/lista se mantiene igual."""
+    if not isinstance(text, str):
+        return text
     text = text.strip()  # Elimina espacios al inicio y final
     text = re.sub(r"\s+", " ", text)  # Reemplaza múltiples espacios con uno solo
     text = unicodedata.normalize("NFKC", text)  # Normaliza caracteres unicode (como comillas raras)
@@ -115,14 +112,16 @@ if __name__ == "__main__":
     with open(dataset_path, "r", encoding="utf-8") as f:
         dataset = json.load(f)
 
-    # # Preprocesar cada partido
-    # processed_dataset = [preprocess_match_data(match) for match in dataset]
+    # Preprocesar cada partido
+    processed_dataset = {}
+    for key, match in dataset.items():
+        processed_dataset[key] = preprocess_match_data(match)
 
-    # # Guardar dataset preprocesado
-    # with open("../../data/dataset_clean.json", "w", encoding="utf-8") as f:
-    #     json.dump(processed_dataset, f, ensure_ascii=False, indent=4)
+    # Guardar dataset preprocesado
+    with open("./data/dataset_clean.json", "w", encoding="utf-8") as f:
+        json.dump(processed_dataset, f, ensure_ascii=False, indent=4)
 
-    # print("Preprocesamiento completado. Datos guardados en dataset_clean.json")
-    for _, match in dataset.items():
-        preprocess_match_data(match)
-        break
+    print("Preprocesamiento completado. Datos guardados en dataset_clean.json")
+    # for _, match in dataset.items():
+    #     preprocess_match_data(match)
+    #     break
