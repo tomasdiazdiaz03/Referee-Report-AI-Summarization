@@ -118,7 +118,7 @@ if __name__ == "__main__":
         processed_dataset[key] = preprocess_match_data(match)
 
     # Guardar dataset preprocesado
-    with open("./data/dataset_clean.json", "w", encoding="utf-8") as f:
+    with open("./data/dataset/dataset_clean.json", "w", encoding="utf-8") as f:
         json.dump(processed_dataset, f, ensure_ascii=False, indent=4)
 
     print("Preprocesamiento completado. Datos guardados en dataset_clean.json")
