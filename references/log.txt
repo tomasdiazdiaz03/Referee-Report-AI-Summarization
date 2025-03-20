@@ -1,4 +1,14 @@
 https://regex101.com 12/02/25 Para hacer testing con REs
 https://www.regular-expressions.info/catastrophic.html 12/02/25 Debido al uso de (.|\n)* en varias instancias ocurría un catastrophic backtracking
 https://www.programiz.com/python-programming/methods/string/split 16/02/25 Para entender valores que puede recibir maxsplit y si es necesario en mi código (respuesta: no)
+
 Mencionar el uso inicial de CSV para el dataset y traslado final a JSON
+
+https://www.alia.gob.es/ 12/03/25 Para contemplar la opción de utilizar estos modelos del Barcelona Supercomputing Center
+https://langtech-bsc.gitbook.io/alia-kit/modelos/modelos-de-texto 12/03/25 Modelos de Alia impulsados para funcionalidades de texto
+
+Intento de aplicar una estrategia con un modelo esquematizador y otro refinador, pero la tediosa creación de un dataset que permita crear una entrada de forma manual para entrenar en la tarea que buscamos al esquematizador hace que hayamos replanteado la estrategia.
+A mano no podemos modificar los datos del resumen y clasificarlos como output ya que nos llevaría una cantidad indecente de días. Por otro lado, si pasamos el contenido del pdf a saco al modelo esquematizador obtenemos un resumen como este:
+"condicion_fisica": "enfoque táctico adecuado y eficiente. "actuacion_tecnica": ", "incidencias_penaltis": "sanciones": "acierto": "3", "Error": "1", "Beneficio/Duda": "", "2a TARJETAS AMARILLAS MO...
+Esto no es en absoluto viable como resultado, por lo que la estrategia a seguir a continuación es formatear el output de forma manual con una generación de frases base a modo de sistema basado en reglas. Esto genera un resumen inicial que pasará al LLM directamente y
+podrá comparar la salida con el resumen.
