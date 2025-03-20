@@ -452,6 +452,8 @@ def generar_resumen():
             # generar_frase_manejo_partido(datos),
             # generar_frase_personalidad(datos),
             # generar_frase_trabajo_equipo(datos),
+            generar_frase_completa_asistente[0], # Asistente 1
+            generar_frase_completa_asistente[1], # Asistente 2
             # generar_frase_asistente_1(datos),
             # generar_frase_asistente_2(datos),
             # generar_frase_cuarto_arbitro(datos)
