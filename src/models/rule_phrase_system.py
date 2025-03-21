@@ -6,7 +6,7 @@ plantilla_frase_actuacion_tecnica = "Sobre la actuación técnica, {actuacion_te
 plantilla_frase_incidencias_penaltis = "Sobre las incidencias de penaltis, {incidencias_penaltis}"
 plantilla_frase_actuacion_disciplinaria = "Sobre la actuación disciplinaria, {actuacion_disciplinaria}"
 plantilla_frase_incidencias_disciplinarias = "Sobre las incidencias disciplinarias, {incidencias_disciplinarias}"
-plantilla_frase_manejo_partido = "Sobre el manejo del partido, {manejo_partido}"
+plantilla_frase_manejo_partido = "Sobre el manejo del partido, la estructura de eventos seguida es: 'Minuto' 'Breve descripción de la acción', y los eventos son los siguientes: {manejo_partido} Como comentarios adicionales, se incluyen los siguientes: {comentarios_adicionales_manejo}"
 plantilla_frase_personalidad = "Sobre la personalidad, {personalidad}"
 plantilla_frase_trabajo_equipo = "Sobre el trabajo en equipo, {trabajo_equipo}"
 plantilla_frase_asistente_1 = "Sobre el asistente 1, {asistente_1}"
@@ -53,7 +53,7 @@ def generar_frase_condicion_fisica(datos):
     """
     Genera una frase sencilla sobre la condición física del informe
     """
-    if "condicion_fisica" in datos:
+    if "condicion_fisica" in datos.keys():
         if datos["condicion_fisica"] == "":
             # Si está vacío, se devuelve un mensaje predeterminado
             return "Sobre la condición física, no se dispone de información pdf."
@@ -101,7 +101,14 @@ def generar_frase_manejo_partido(datos):
             return "Sobre el manejo del partido, no se dispone de información pdf."
         else:
             # Rellena la plantilla con los datos disponibles
-            return plantilla_frase_manejo_partido.format(manejo_partido=datos["manejo_partido"])
+            string_manejo_partido = datos["manejo_partido"]
+            estructura_string = string_manejo_partido.split("Minuto Breve descripción de la acción")
+            eventos_comentarios = estructura_string[1].strip() if len(estructura_string) > 1 else "No hay eventos."
+
+            estructura_comentarios = eventos_comentarios.split("COMENTARIOS ADICIONALES AL MANEJO DE PARTIDO (Si fuera necesario):")
+            eventos = estructura_comentarios[0].strip()
+            comentarios_adicionales = estructura_comentarios[1].strip() if len(estructura_comentarios) > 1 else "No hay comentarios adicionales."
+            return plantilla_frase_manejo_partido.format(manejo_partido=eventos, comentarios_adicionales_manejo=comentarios_adicionales)
     else:
         raise(ValueError("No se ha encontrado la clave 'manejo_partido' en el diccionario de datos"))
 
@@ -439,26 +446,23 @@ def generar_resumen():
     with open("./data/dataset/dataset_clean.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
     _, ids_solo_pdf_sections, _ = count_txts_pdfs_not_nulls()
-    print(ids_solo_pdf_sections)
     for id in ids_solo_pdf_sections:
         datos_pdf = datos[id]['pdf_sections']
-        print(generar_frase_condicion_fisica(datos_pdf))
+        print(generar_frase_completa_asistente(datos_pdf))
         frases = [
-            # generar_frase_condicion_fisica(datos),
-            # generar_frase_actuacion_tecnica(datos),
-            # generar_frase_incidencias_penaltis(datos),
-            # generar_frase_actuacion_disciplinaria(datos),
-            # generar_frase_incidencias_disciplinarias(datos),
-            # generar_frase_manejo_partido(datos),
-            # generar_frase_personalidad(datos),
-            # generar_frase_trabajo_equipo(datos),
-            generar_frase_completa_asistente[0], # Asistente 1
-            generar_frase_completa_asistente[1], # Asistente 2
-            # generar_frase_asistente_1(datos),
-            # generar_frase_asistente_2(datos),
+            # generar_frase_condicion_fisica(datos_pdf),
+            # generar_frase_actuacion_tecnica(datos_pdf),
+            #TODO generar_frase_incidencias_penaltis(datos_pdf),
+            # generar_frase_actuacion_disciplinaria(datos_pdf),
+            #TODO generar_frase_incidencias_disciplinarias(datos_pdf),
+            # generar_frase_manejo_partido(datos_pdf),
+            # generar_frase_personalidad(datos_pdf),
+            # generar_frase_trabajo_equipo(datos_pdf),
+            # generar_frase_completa_asistente(datos_pdf)[0], # Asistente 1
+            # generar_frase_completa_asistente(datos_pdf)[1], # Asistente 2
             # generar_frase_cuarto_arbitro(datos)
         ]
     return "\n".join(frases)
 
 if __name__ == "__main__":
-    generar_resumen()
+    print(generar_resumen())
