@@ -403,7 +403,15 @@
                         "Beneficio/Duda": ""
                     }
                 },
-                "incidentes_disciplinarios": []
+                "incidentes_disciplinarios": [
+                    {"Minuto": "00:06", "Decision_arbitro": "Tarjeta amarilla", "Opinion_evaluador": "Tarjeta amarilla"},
+                    {"Minuto": "21:15", "Decision_arbitro": "Sin tarjeta", "Opinion_evaluador": "Sin tarjeta"},
+                    {"Minuto": "35:55", "Decision_arbitro": "Sin tarjeta", "Opinion_evaluador": "Sin tarjeta"},
+                    {"Minuto": "37:39", "Decision_arbitro": "Tarjeta amarilla", "Opinion_evaluador": "Tarjeta amarilla"},
+                    {"Minuto": "41:49", "Decision_arbitro": "Sin tarjeta", "Opinion_evaluador": "Sin tarjeta"},
+                    {"Minuto": "51:15", "Decision_arbitro": "Sin tarjeta", "Opinion_evaluador": "Sin tarjeta"},
+                    {"Minuto": "87:20", "Decision_arbitro": "Tarjeta amarilla", "Opinion_evaluador": "Tarjeta amarilla"}
+                ]
             },
             "manejo_partido": "Minuto Breve descripción de la acción 63:39 23-ibi cae sobre el terreno de juego, sin balón de por medio, tras un choque. Advierte 23-ibi y 16-mga. COMENTARIOS ADICIONALES AL MANEJO DE PARTIDO (Si fuera necesario):",
             "personalidad": "",
@@ -22923,7 +22931,15 @@
                         "Beneficio/Duda": ""
                     }
                 },
-                "incidentes_disciplinarios": []
+                "incidentes_disciplinarios": [
+                    {"Minuto": "00:04", "Decision_arbitro": "Sin tarjeta", "Opinion_evaluador": "Sin tarjeta"},
+                    {"Minuto": "14:06", "Decision_arbitro": "Sin tarjeta", "Opinion_evaluador": "Sin tarjeta"},
+                    {"Minuto": "39:08", "Decision_arbitro": "Tarjeta amarilla", "Opinion_evaluador": "Tarjeta amarilla"},
+                    {"Minuto": "42:58", "Decision_arbitro": "Tarjeta amarilla", "Opinion_evaluador": "Tarjeta amarilla"},
+                    {"Minuto": "45:46", "Decision_arbitro": "Tarjeta amarilla", "Opinion_evaluador": "Tarjeta amarilla"},
+                    {"Minuto": "83:29", "Decision_arbitro": "Tarjeta amarilla", "Opinion_evaluador": "Sin tarjeta"},
+                    {"Minuto": "87:57", "Decision_arbitro": "Tarjeta amarilla", "Opinion_evaluador": "Tarjeta amarilla"}
+                ]
             },
             "manejo_partido": "Minuto Breve descripción de la acción 46:02 Advierte portero-CAR para que no se demore en un saque de meta. Se da la vuelta y se va corriendo a posición en el centro del campo. Aconsejo no perder de vista al portero hasta que se produzca el saque de meta, para tener mayor efecto sobre la advertencia realizada. 50:12 4-ZAR cae al suelo por lesión muscular, que no es grave, por lo que deja seguir el juego correctamente. Acaba en gol 17-car. Se encaran jugadores de ambos equipos. Disuade sin amonestaciones. COMENTARIOS ADICIONALES AL MANEJO DE PARTIDO (Si fuera necesario):",
             "personalidad": "",

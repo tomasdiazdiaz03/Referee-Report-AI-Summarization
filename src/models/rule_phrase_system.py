@@ -182,10 +182,15 @@ def procesar_sanciones(sanciones):
     # Procesamos "ACCIONES DE ÁREA SIGNIFICATIVAS NO SANCIONADAS COMO PENALTI"
     acciones_no_sancionadas = sanciones.get("ACCIONES DE ÁREA SIGNIFICATIVAS NO SANCIONADAS COMO PENALTI:", {})
     aciertos = acciones_no_sancionadas.get("Acierto", "")
+    if aciertos == "":
+        aciertos = 0
     errores = acciones_no_sancionadas.get("Error", "")
+    if errores == "":
+        errores = 0
     dudas = acciones_no_sancionadas.get("Beneficio/Duda", "")
-
-    if aciertos or errores or dudas:
+    if dudas == "":
+        dudas = 0
+    if aciertos != 0 or errores != 0 or dudas != 0:
         resumen_sanciones.append(
             f"En acciones de área no sancionadas como penalti: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
         )
@@ -216,10 +221,11 @@ def procesar_incidentes(incidentes):
 
     return " ".join(resumen_incidentes)
 
-def generar_resumen_incidencias_penaltis(incidencias_penaltis):
+def generar_resumen_incidencias_penaltis(datos):
     """
     Genera un resumen completo de las incidencias de penaltis.
     """
+    incidencias_penaltis = datos.get("incidencias_penaltis", {})
     if not incidencias_penaltis:
         return "No se encontraron datos sobre incidencias de penaltis."
 
@@ -255,10 +261,15 @@ def procesar_tarjetas(tarjetas):
     # Procesamos "TARJETAS AMARILLAS NO MOSTRADAS"
     amarillas_no_mostradas = tarjetas.get("TARJETAS AMARILLAS NO MOSTRADAS:", {})
     aciertos = amarillas_no_mostradas.get("Acierto", "")
+    if aciertos == "":
+        aciertos = 0
     errores = amarillas_no_mostradas.get("Error", "")
+    if errores == "":
+        errores = 0
     dudas = amarillas_no_mostradas.get("Beneficio/Duda", "")
-
-    if aciertos or errores or dudas:
+    if dudas == "":
+        dudas = 0
+    if aciertos != 0 or errores != 0 or dudas != 0:
         resumen_tarjetas.append(
             f"En tarjetas amarillas no mostradas: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
         )
@@ -268,10 +279,15 @@ def procesar_tarjetas(tarjetas):
     # Procesamos "2ª TARJETAS AMARILLAS MOSTRADAS"
     segundas_amarillas = tarjetas.get("2ª TARJETAS AMARILLAS MOSTRADAS:", {})
     aciertos = segundas_amarillas.get("Acierto", "")
+    if aciertos == "":
+        aciertos = 0
     errores = segundas_amarillas.get("Error", "")
+    if errores == "":
+        errores = 0
     dudas = segundas_amarillas.get("Beneficio/Duda", "")
-
-    if aciertos or errores or dudas:
+    if dudas == "":
+        dudas = 0
+    if aciertos != 0 or errores != 0 or dudas != 0:
         resumen_tarjetas.append(
             f"En segundas tarjetas amarillas mostradas: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
         )
@@ -281,10 +297,15 @@ def procesar_tarjetas(tarjetas):
     # Procesamos "TARJETAS ROJAS DIRECTAS NO MOSTRADAS"
     rojas_no_mostradas = tarjetas.get("TARJETAS ROJAS DIRECTAS NO MOSTRADAS:", {})
     aciertos = rojas_no_mostradas.get("Acierto", "")
+    if aciertos == "":
+        aciertos = 0
     errores = rojas_no_mostradas.get("Error", "")
+    if errores == "":
+        errores = 0
     dudas = rojas_no_mostradas.get("Beneficio/Duda", "")
-
-    if aciertos or errores or dudas:
+    if dudas == "":
+        dudas = 0
+    if aciertos != 0 or errores != 0 or dudas != 0:
         resumen_tarjetas.append(
             f"En tarjetas rojas directas no mostradas: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
         )
@@ -316,10 +337,11 @@ def procesar_incidentes_disciplinarios(incidentes):
     return " ".join(resumen_incidentes)
 
 
-def generar_resumen_incidencias_disciplinarias(incidencias_disciplinarias):
+def generar_resumen_incidencias_disciplinarias(datos):
     """
     Genera un resumen completo de las incidencias disciplinarias.
     """
+    incidencias_disciplinarias = datos.get("incidencias_disciplinarias", {})
     if not incidencias_disciplinarias:
         return "No se encontraron datos sobre incidencias disciplinarias."
 
@@ -341,11 +363,17 @@ def procesar_acciones_asistente(acciones):
 
     # Procesamos "DECISIONES DE FUERA DE JUEGO SEÑALADOS"
     fuera_juego_señalados = acciones.get("DECISIONES DE FUERA DE JUEGO SEÑALADOS:", {})
+    
     aciertos = fuera_juego_señalados.get("Acierto", "")
+    if aciertos == "":
+        aciertos = 0
     errores = fuera_juego_señalados.get("Error", "")
+    if errores == "":
+        errores = 0
     dudas = fuera_juego_señalados.get("Beneficio/Duda", "")
-
-    if aciertos or errores or dudas:
+    if dudas == "":
+        dudas = 0
+    if aciertos != 0 or errores != 0 or dudas != 0:
         resumen_acciones.append(
             f"En decisiones de fuera de juego señalados: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
         )
@@ -355,10 +383,16 @@ def procesar_acciones_asistente(acciones):
     # Procesamos "DECISIONES RELEVANTES DE FUERA DE JUEGO NO SEÑALADOS"
     fuera_juego_no_señalados = acciones.get("DECISIONES RELEVANTES DE FUERA DE JUEGO NO SEÑALADOS:", {})
     aciertos = fuera_juego_no_señalados.get("Acierto", "")
+    if aciertos == "":	
+        aciertos = 0
     errores = fuera_juego_no_señalados.get("Error", "")
+    if errores == "":
+        errores = 0
     dudas = fuera_juego_no_señalados.get("Beneficio/Duda", "")
+    if dudas == "":
+        dudas = 0
 
-    if aciertos or errores or dudas:
+    if aciertos != 0 or errores != 0 or dudas != 0:
         resumen_acciones.append(
             f"En decisiones relevantes de fuera de juego no señalados: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
         )
@@ -448,13 +482,14 @@ def generar_resumen():
     _, ids_solo_pdf_sections, _ = count_txts_pdfs_not_nulls()
     for id in ids_solo_pdf_sections:
         datos_pdf = datos[id]['pdf_sections']
-        print(generar_frase_completa_asistente(datos_pdf))
+        print(id)
+        print(generar_resumen_incidencias_disciplinarias(datos_pdf))
         frases = [
             # generar_frase_condicion_fisica(datos_pdf),
             # generar_frase_actuacion_tecnica(datos_pdf),
-            #TODO generar_frase_incidencias_penaltis(datos_pdf),
+            #TODO generar_resumen_incidencias_penaltis(datos_pdf),
             # generar_frase_actuacion_disciplinaria(datos_pdf),
-            #TODO generar_frase_incidencias_disciplinarias(datos_pdf),
+            #TODO generar_resumen_incidencias_disciplinarias(datos_pdf),
             # generar_frase_manejo_partido(datos_pdf),
             # generar_frase_personalidad(datos_pdf),
             # generar_frase_trabajo_equipo(datos_pdf),
