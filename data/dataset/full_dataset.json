@@ -6605,7 +6605,13 @@
                         "Beneficio/Duda": ""
                     }
                 },
-                "incidentes_area_penalti": []
+                "incidentes_area_penalti": [
+                    {
+                        "Minuto": "35:24",
+                        "Decision": "No penalti",
+                        "Opinion_evaluador": "Error"
+                    }
+                ]
             },
             "actuacion_disciplinaria": "",
             "incidencias_disciplinarias": {
@@ -6641,7 +6647,58 @@
                         "Beneficio/Duda": ""
                     }
                 },
-                "incidentes_disciplinarios": []
+                "incidentes_disciplinarios": [
+                    {
+                        "Minuto": "14:26",
+                        "Decision_arbitro": "Tarjeta amarilla",
+                        "Opinion_evaluador": "Tarjeta amarilla"
+                    },
+                    {
+                        "Minuto": "26:10",
+                        "Decision_arbitro": "Sin tarjeta",
+                        "Opinion_evaluador": "Sin tarjeta"
+                    },
+                    {
+                        "Minuto": "34:32",
+                        "Decision_arbitro": "Sin tarjeta",
+                        "Opinion_evaluador": "Sin tarjeta"
+                    },
+                    {
+                        "Minuto": "42:30",
+                        "Decision_arbitro": "Tarjeta amarilla",
+                        "Opinion_evaluador": "Tarjeta amarilla"
+                    },
+                    {
+                        "Minuto": "43:31",
+                        "Decision_arbitro": "Sin tarjeta",
+                        "Opinion_evaluador": "Tarjeta amarilla"
+                    },
+                    {
+                        "Minuto": "45:30",
+                        "Decision_arbitro": "Sin tarjeta",
+                        "Opinion_evaluador": "Sin tarjeta"
+                    },
+                    {
+                        "Minuto": "48:38",
+                        "Decision_arbitro": "Tarjeta amarilla",
+                        "Opinion_evaluador": "Tarjeta amarilla"
+                    },
+                    {
+                        "Minuto": "53:11",
+                        "Decision_arbitro": "Tarjeta amarilla",
+                        "Opinion_evaluador": "Tarjeta amarilla"
+                    },
+                    {
+                        "Minuto": "65:02",
+                        "Decision_arbitro": "Tarjeta amarilla",
+                        "Opinion_evaluador": "Tarjeta amarilla"
+                    },
+                    {
+                        "Minuto": "81:27",
+                        "Decision_arbitro": "Tarjeta amarilla",
+                        "Opinion_evaluador": "Tarjeta amarilla"
+                    }
+                ]
             },
             "manejo_partido": "",
             "personalidad": "",
@@ -24152,276 +24209,7 @@
     },
     "121": {
         "match_info": "Cartagena_Fuenlabrada",
-        "pdf_sections": {
-            "condicion_fisica": "Supo anticiparse y detectar un par de faltas (minutos 35:27 y 90+1:28), en los que el infractor se desentendió del balón y derribó a un adversario.",
-            "actuacion_tecnica": "Durante la totalidad del encuentro estableció un nivel homogéneo y equilibrado en la determinación de faltas, permitiendo la fluidez y continuidad\ndel juego.",
-            "incidencias_penaltis": {
-                "sanciones": {
-                    "PENALTIS SEÑALADOS:": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "ACCIONES DE ÁREA SIGNIFICATIVAS NO SANCIONADAS COMO PENALTI:": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    }
-                },
-                "incidentes_area_penalti": []
-            },
-            "actuacion_disciplinaria": "",
-            "incidencias_disciplinarias": {
-                "tarjetas": {
-                    "TARJETAS AMARILLAS MOSTRADAS:": {
-                        "Acierto": "4",
-                        "Error": "1",
-                        "Beneficio/Duda": ""
-                    },
-                    "TARJETAS AMARILLAS NO MOSTRADAS:": {
-                        "Acierto": "3",
-                        "Error": "1",
-                        "Beneficio/Duda": ""
-                    },
-                    "2ª TARJETAS AMARILLAS MOSTRADAS:": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "2ª TARJETAS AMARILLAS NO MOSTRADAS:": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "TARJETAS ROJAS DIRECTAS MOSTRADAS:": {
-                        "Acierto": "1",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "TARJETAS ROJAS DIRECTAS NO MOSTRADAS:": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    }
-                },
-                "incidentes_disciplinarios": [
-                    {
-                        "Minuto": "11:02",
-                        "Decision_arbitro": "Tarjeta amarilla",
-                        "Opinion_evaluador": "Tarjeta amarilla"
-                    },
-                    {
-                        "Minuto": "16:11",
-                        "Decision_arbitro": "Tarjeta amarilla",
-                        "Opinion_evaluador": "Sin tarjeta"
-                    },
-                    {
-                        "Minuto": "17:54",
-                        "Decision_arbitro": "Tarjeta amarilla",
-                        "Opinion_evaluador": "Tarjeta amarilla"
-                    },
-                    {
-                        "Minuto": "34:50",
-                        "Decision_arbitro": "Sin tarjeta",
-                        "Opinion_evaluador": "Sin tarjeta"
-                    },
-                    {
-                        "Minuto": "35:27",
-                        "Decision_arbitro": "Tarjeta amarilla",
-                        "Opinion_evaluador": "Tarjeta amarilla"
-                    },
-                    {
-                        "Minuto": "44:04",
-                        "Decision_arbitro": "Sin tarjeta",
-                        "Opinion_evaluador": "Tarjeta amarilla"
-                    },
-                    {
-                        "Minuto": "50:20",
-                        "Decision_arbitro": "Tarjeta amarilla",
-                        "Opinion_evaluador": "Tarjeta amarilla"
-                    },
-                    {
-                        "Minuto": "82:37",
-                        "Decision_arbitro": "Sin tarjeta",
-                        "Opinion_evaluador": "Sin tarjeta"
-                    },
-                    {
-                        "Minuto": "83:48",
-                        "Decision_arbitro": "Tarjeta roja",
-                        "Opinion_evaluador": "Tarjeta roja"
-                    }
-                ]
-            },
-            "manejo_partido": "Minuto Breve descripción de la acción\n07:28 Advierte portero-fue que no pierda tiempo en el saque de meta. Tiene efecto durante el resto del partido.\n50:20 Resuelve enfrentamiento múltiple de jugadores de ambos equipos con tranquilidad y amonestando correctamente a los dos\njugadores que iniciaron el conflicto.\n88:28 Resuelve pequeño enfrentamiento entre 25-fue y 15-car sin la necesidad de amonestar, tras fuera de juego.\nCOMENTARIOS ADICIONALES AL MANEJO DE PARTIDO (Si fuera necesario):",
-            "personalidad": "",
-            "trabajo_equipo": "",
-            "asistente_1": {
-                "acciones": {
-                    "DECISIONES DE FUERA DE JUEGO SEÑALADOS:": {
-                        "Acierto": "2",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "DECISIONES RELEVANTES DE FUERA DE JUEGO NO SEÑALADOS:": {
-                        "Acierto": "4",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "AYUDA AL ÁRBITRO EN ACCIONES DISCIPLINARIAS:": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "RETRASAR LA BANDERA EN ACCIONES PRÓXIMAS A GOL (SOLO CON VAR):": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    }
-                },
-                "jugadas_fuera_de_juego": [
-                    {
-                        "Minuto": "01:58",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "09:58",
-                        "Decision": "Fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "30:57",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "36:50",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "70:05",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "88:28",
-                        "Decision": "Fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    }
-                ]
-            },
-            "asistente_1_comentarios": "",
-            "asistente_2": {
-                "acciones": {
-                    "DECISIONES DE FUERA DE JUEGO SEÑALADOS:": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "DECISIONES RELEVANTES DE FUERA DE JUEGO NO SEÑALADOS:": {
-                        "Acierto": "10",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "AYUDA AL ÁRBITRO EN ACCIONES DISCIPLINARIAS:": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    },
-                    "RETRASAR LA BANDERA EN ACCIONES PRÓXIMAS A GOL (SOLO CON VAR):": {
-                        "Acierto": "",
-                        "Error": "",
-                        "Beneficio/Duda": ""
-                    }
-                },
-                "jugadas_fuera_de_juego": [
-                    {
-                        "Minuto": "01:58",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "09:58",
-                        "Decision": "Fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "30:57",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "36:50",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "70:05",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "88:28",
-                        "Decision": "Fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "11:00",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "30:11",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "60:25",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "61:05",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "61:45",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "67:56",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "73:15",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "81:20",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "89:33",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    },
-                    {
-                        "Minuto": "92:27",
-                        "Decision": "No fuera de juego",
-                        "Opinion_evaluador": "Acierto"
-                    }
-                ]
-            },
-            "asistente_2_comentarios": "",
-            "cuarto_arbitro": "",
-            "resumen_final": "Árbitro\nASPECTOS MÁS DESTACADOS:\n- Buen manejo y control de los jugadores con advertencias y pro-actividad. Contribuyó y trabajó para que todo fuera por los mejores cauces\nposibles, sabiendo aparecer con el suficiente liderazgo en los momentos clave. Resolvió correctamente un enfrentamiento múltiple y un pequeño\nenfrentamiento entre dos jugadores.\n- Interacción adecuada con jugadores, tranquilidad, seguridad, experiencia, afable en algunos momentos y en otros con la autoridad necesaria.\n- Criterio técnico homogéneo y equilibrado.\n- Acertó al expulsar al dorsal 11 foráneo por golpear con el pie elevado la cabeza de un adversario, poniendo en peligro su integridad física.\n- Gestionó correctamente varias acciones sin amonestación.\n- Enfoque táctico adecuado y buena condición física.\nRECOMENDACIONES DE MEJORA:\n- Se equivocó al amonestar al número 17 local, en una descoordinación con el asistente número 2 (minuto 16:11), en la que debió señalar falta\ndel dorsal 2 foráneo. Necesario mejor comunicación y coordinación con el asistente.\n- Debió mostrar amarilla al dorsal 16 visitante por un derribo temerario, en el que rozó con los tacos el gemelo de un adversario, en disputa de\nbalón (minuto 44:04).\n- Aconsejable mejorar la identificación de dos amonestados (minutos 11:02 y 17:54).\nÁrbitro asistente 1\nASPECTOS MÁS DESTACADOS:\n- Buena posición en línea con el penúltimo defensor.\n- Correcta técnica de carrera frontal y lateral.\n- Acierto en situaciones de fuera de juego.\n- Permitió continuar el juego en una situación muy ajustada respecto al penúltimo defensor, tras tiro libre, que finalizó en el primer gol del equipo\nlocal (minuto 36:50).\nRECOMENDACIONES DE MEJORA:\n- Acercarse a la posición del cuarto árbitro y ayudar en una doble sustitución del equipo local (minuto 73:59).\nÁrbitro asistente 2\nASPECTOS MÁS DESTACADOS:\n- Buena técnica de carrera, reacción y aceleración.\n- Lenguaje corporal adecuado.\n- Acierto en situaciones muy ajustadas de permitir continuar el juego.\n- Permite continuar el juego en situación milimétrica respecto al penúltimo defensor que finaliza en gol 7-car (minuto 67:56).\n- Permite continuar el juego y determina gol tras 16-car, en posición adelantada, pasar por delante y cerca del portero-fue cuando hay un centro\nlateral y 12-car marca gol. Portero-fue divisa en todo momento el balón y no hay interferencia clara (minuto 89:33).\nRECOMENDACIONES DE MEJORA:\n- Mejor comunicación y coordinación con el principal (minuto 16:11), en una acción en la que el principal determina amarilla errónea a 17-car por\nun derribo temerario que no se produce y el asistente señala derribo imprudente de 2-fue en disputa de balón, que sería lo correcto.\n- Tras permitir continuar el juego en situación muy ajustada respecto al penúltimo defensor (minuto 61:05), es necesario una mayor aceleración\nde la carrera del asistente para mantener la línea con el penúltimo defensor en la segunda acción."
-        },
+        "pdf_sections": null,
         "txt_events": null
     },
     "122": {
