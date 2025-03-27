@@ -169,9 +169,14 @@ def procesar_sanciones(sanciones):
     # Procesamos "PENALTIS SEÑALADOS"
     penaltis_señalados = sanciones.get("PENALTIS SEÑALADOS:", {})
     aciertos = penaltis_señalados.get("Acierto", "")
+    if aciertos == "":
+        aciertos = 0
     errores = penaltis_señalados.get("Error", "")
+    if errores == "":
+        errores = 0
     dudas = penaltis_señalados.get("Beneficio/Duda", "")
-
+    if dudas == "":
+        dudas = 0
     if aciertos or errores or dudas:
         resumen_sanciones.append(
             f"En penaltis señalados: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
@@ -483,7 +488,7 @@ def generar_resumen():
     for id in ids_solo_pdf_sections:
         datos_pdf = datos[id]['pdf_sections']
         print(id)
-        print(generar_resumen_incidencias_disciplinarias(datos_pdf))
+        print(generar_resumen_incidencias_penaltis(datos_pdf))
         frases = [
             # generar_frase_condicion_fisica(datos_pdf),
             # generar_frase_actuacion_tecnica(datos_pdf),
