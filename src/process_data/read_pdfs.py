@@ -83,108 +83,151 @@ def extract_tablas_asistentes(asistente1, pdf_path):
                 break
 
     return asistente
-    
 
+#TODO Revisar cambiar la lógica de esta función para hacerla similar a extract_discipline_incidences_from_pdf
 def extract_penalty_incidences_from_pdf(pdf_path):
     """
-    Extrae las dos tablas del PDF correspondientes a los incidentes de área de penalti y devuelve un diccionario con los datos estructurados.
+    Extrae y concatena las tablas del PDF correspondientes a los incidentes de área de penalti,
+    entre el marcador "INCIDENTES DE ÁREA DE PENALTI" y el delimitador final "OTRAS ACCIONES DE ACTUACIÓN TÉCNICA RESEÑABLES".
+    Omite filas con valores nulos.
     """
     incidences = {
         "sanciones": {},
         "incidentes_area_penalti": []
     }
 
+    accumulating = False  # Bandera para concatenar las tablas después de encontrar "INCIDENTES DE ÁREA DE PENALTI"
+    all_incidentes_rows = []  # Lista acumuladora de filas
+
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
             tables = page.extract_tables()
 
             for table in tables:
-                # Convertir la tabla en DataFrame para facilitar su manejo
                 df = pd.DataFrame(table)
 
-                # Si es la primera tabla, buscamos las filas con la cantidad de acciones no sancionadas
+                # Manejar la tabla de "ACCIONES DE ÁREA SIGNIFICATIVAS NO SANCIONADAS COMO PENALTI"
                 if "ACCIONES DE ÁREA SIGNIFICATIVAS NO SANCIONADAS COMO PENALTI" in df.to_string():
                     df.columns = df.iloc[0]  # Primera fila como encabezado
-                    df = df[1:]  # Eliminar la primera fila
-                    df = df.rename(columns=lambda x: x.strip() if isinstance(x, str) else x)  # Limpiar nombres de columnas
+                    df = df[1:]  # Eliminar la fila del encabezado original
+                    df = df.rename(columns=lambda x: x.strip() if isinstance(x, str) else x)  # Limpiar encabezados
 
                     for _, row in df.iterrows():
-                        if row.iloc[0] == "PENALTIS SEÑALADOS:" or row.iloc[0] == "ACCIONES DE ÁREA SIGNIFICATIVAS NO SANCIONADAS COMO PENALTI:":
+                        if row.iloc[0] in ["PENALTIS SEÑALADOS:", "ACCIONES DE ÁREA SIGNIFICATIVAS NO SANCIONADAS COMO PENALTI:"]:
                             incidences["sanciones"][row.iloc[0]] = {
                                 "Acierto": row.iloc[1],
                                 "Error": row.iloc[2],
                                 "Beneficio/Duda": row.iloc[3]
                             }
 
-                # Si es la segunda tabla, extraer incidentes del área de penalti
-                elif "INCIDENTES DE ÁREA DE PENALTI" in df.to_string():
-                    headers = df.iloc[1]  # Segunda fila como encabezado
-                    df = df[2:]  # Eliminar las dos primeras filas
-                    df.columns = headers  # Asignar encabezados
-                    df = df.rename(columns=lambda x: x.strip())  # Limpiar nombres de columnas
-                    
-                    # Guardar los incidentes en la lista
-                    for _, row in df.iterrows():
-                        incidences["incidentes_area_penalti"].append({
-                            "Minuto": row.get("Minuto", "").strip(),
-                            "Decision": row.get("Decisión", "").strip(),
-                            "Opinion_evaluador": row.get("Opinión del evaluador", "").strip()
-                        })
+                # Comenzar a acumular tablas si encontramos "INCIDENTES DE ÁREA DE PENALTI"
+                elif "INCIDENTES DE ÁREA DE PENALTI" in df.to_string() or accumulating:
+                    if not accumulating:
+                        headers = df.iloc[1]  # Segunda fila como encabezado
+                        df = df[2:]  # Eliminar las dos primeras filas
+                        df.columns = headers  # Asignar encabezados
+                        accumulating = True
+                    else:
+                        df.columns = df.iloc[0]  # Usar la primera fila como encabezado si la tabla es continua
+                        df = df[1:]  # Eliminar encabezado viejo
+
+                    # Añadir las filas de la tabla a la lista acumuladora
+                    all_incidentes_rows.extend(df.values.tolist())
+
+                # Detener acumulación si encontramos el delimitador "OTRAS ACCIONES DE ACTUACIÓN TÉCNICA RESEÑABLES"
+                if "OTRAS ACCIONES DE ACTUACIÓN TÉCNICA RESEÑABLES" in df.to_string():
+                    accumulating = False
+                    break
+
+    # Crear DataFrame final concatenado y eliminar filas con valores nulos
+    if all_incidentes_rows:
+        df_final = pd.DataFrame(all_incidentes_rows, columns=headers)
+        df_final.dropna(subset=["Minuto", "Decisión", "Opinión del evaluador"], inplace=True)
+
+        # Recorrer el DataFrame filtrado y añadir las filas relevantes al diccionario final
+        for _, row in df_final.iterrows():
+            if all(row):  # Verificar que no haya valores nulos o None en la fila
+                incidences["incidentes_area_penalti"].append({
+                    "Minuto": row.get("Minuto", "").strip(),
+                    "Decision": row.get("Decisión", "").strip(),
+                    "Opinion_evaluador": row.get("Opinión del evaluador", "").strip()
+                })
 
     return incidences
 
-
 def extract_discipline_incidences_from_pdf(pdf_path):
     """
-    Extrae las dos tablas del PDF correspondientes a los incidentes disciplinarios y devuelve un diccionario con los datos estructurados.
+    Extrae y concatena las tablas del PDF correspondientes a los incidentes disciplinarios,
+    acumulando todas las tablas después de "TARJETAS AMARILLAS MOSTRADAS" hasta encontrar el delimitador final.
+    Omite filas nulas y aquellas que contengan el string "INCIDENTES DISCIPLINARIOS".
     """
     incidences = {
         "tarjetas": {},
         "incidentes_disciplinarios": []
     }
 
+    accumulating = False  # Bandera para acumular las tablas tras "TARJETAS AMARILLAS MOSTRADAS"
+    all_incidentes_rows = []  # Lista para acumular filas
+
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
             tables = page.extract_tables()
 
             for table in tables:
-                # Convertir la tabla en DataFrame para facilitar su manejo
                 df = pd.DataFrame(table)
 
-                # Si es la primera tabla, buscamos las filas con la cantidad de acciones no sancionadas
+                # Si encontramos "TARJETAS AMARILLAS MOSTRADAS", procesamos esa tabla específica
                 if "TARJETAS AMARILLAS MOSTRADAS" in df.to_string():
                     df.columns = df.iloc[0]  # Primera fila como encabezado
-                    df = df[1:]  # Eliminar la primera fila
-                    df = df.rename(columns=lambda x: x.strip() if isinstance(x, str) else x)  # Limpiar nombres de columnas
+                    df = df[1:]  # Eliminar encabezado viejo
+                    df = df.rename(columns=lambda x: x.strip() if isinstance(x, str) else x)
 
-                    for index, row in df.iterrows():
+                    for _, row in df.iterrows():
                         if row.iloc[0] in ["TARJETAS AMARILLAS MOSTRADAS:", "TARJETAS AMARILLAS NO MOSTRADAS:",
-                                      "2ª TARJETAS AMARILLAS MOSTRADAS:", "2ª TARJETAS AMARILLAS NO MOSTRADAS:" 
-                                      "TARJETAS ROJAS DIRECTAS MOSTRADAS:", "TARJETAS ROJAS DIRECTAS NO MOSTRADAS:"]:
+                                           "2ª TARJETAS AMARILLAS MOSTRADAS:", "2ª TARJETAS AMARILLAS NO MOSTRADAS:",
+                                           "TARJETAS ROJAS DIRECTAS MOSTRADAS:", "TARJETAS ROJAS DIRECTAS NO MOSTRADAS:"]:
                             incidences["tarjetas"][row.iloc[0]] = {
                                 "Acierto": row.iloc[1],
                                 "Error": row.iloc[2],
                                 "Beneficio/Duda": row.iloc[3]
                             }
 
-                # Si es la segunda tabla, extraer incidentes del área de penalti
-                elif "INCIDENTES DISCIPLINARIOS" in df.to_string():
-                    # print(df)
-                    headers = df.iloc[1]  # Segunda fila como encabezado
-                    df = df[2:]  # Eliminar las dos primeras filas
-                    df.columns = headers  # Asignar encabezados
-                    df = df.rename(columns=lambda x: x.strip())  # Limpiar nombres de columnas
-                    
-                    # Guardar los incidentes en la lista
-                    for _, row in df.iterrows():
-                        incidences["incidentes_disciplinarios"].append({
-                            "Minuto": row.get("Minuto", "").strip(),
-                            "Decision_arbitro": row.get("Decisión árbitro", "").strip(),
-                            "Opinion_evaluador": row.get("Opinión del evaluador", "").strip()
-                        })
+                    # Activar acumulación de tablas tras encontrar la tabla de "TARJETAS AMARILLAS MOSTRADAS"
+                    accumulating = True
+
+                # Si estamos acumulando tablas (después de encontrar "TARJETAS AMARILLAS MOSTRADAS")
+                elif accumulating:
+                    # Si encontramos el delimitador, detener la acumulación
+                    if "COMENTARIOS ADICIONALES A LA ACTUACIÓN DISCIPLINARIA" in df.to_string():
+                        accumulating = False
+                        break
+
+                    # Procesar la tabla acumulada: asignar encabezados si es la primera tabla acumulada
+                    if len(all_incidentes_rows) == 0:
+                        df = df[2:]  # Eliminar las dos primeras filas
+                    else:
+                        df.columns = df.iloc[0]  # Asignar encabezado si hay más tablas continuas
+                        df = df[1:]
+
+                    # Agregar las filas de la tabla a la lista acumuladora
+                    all_incidentes_rows.extend(df.values.tolist())
+
+    # Crear DataFrame con las filas acumuladas y eliminar filas nulas o con "INCIDENTES DISCIPLINARIOS"
+    if all_incidentes_rows:
+        df_final = pd.DataFrame(all_incidentes_rows, columns=['Minuto', 'Decisión árbitro', 'Opinión del evaluador', 'Tipo acción', 'Breve descripción de la acción'])
+        df_final.dropna(subset=["Minuto", "Decisión árbitro", "Opinión del evaluador"], inplace=True)
+
+        # Recorrer el DataFrame filtrado y añadir las filas relevantes al diccionario final
+        for _, row in df_final.iterrows():
+            # Ignorar filas vacías y aquellas que contengan "INCIDENTES DISCIPLINARIOS"
+            if all(row) and "INCIDENTES DISCIPLINARIOS" not in row.to_string():
+                incidences["incidentes_disciplinarios"].append({
+                    "Minuto": row.get("Minuto", "").strip(),
+                    "Decision_arbitro": row.get("Decisión árbitro", "").strip(),
+                    "Opinion_evaluador": row.get("Opinión del evaluador", "").strip()
+                })
 
     return incidences
-
 
 def extract_all_sections(pdf_path):
     """
@@ -249,18 +292,20 @@ def extract_sections_from_multiple_pdfs(matches):
     return all_sections
 
 
-# if __name__ == "__main__":
-#     pdf_path = "data/reports/RCD Espanyol de Barcelona SAD - FC Barcelona.pdf"
-#     data1 = extract_all_sections(pdf_path)
-    
-#     # Imprimir todas las secciones de data1 de forma legible
-#     for section, content in data1.items():
-#         print(f"--- {section.upper()} ---")
-#         if isinstance(content, pd.DataFrame):
-#             print(content.to_string(index=False))
-#         elif isinstance(content, dict):
-#             for key, value in content.items():
-#                 print(f"{key}: {value}")
-#         else:
-#             print(content)
-#         print("\n")
+if __name__ == "__main__":
+    pdf_path = "data/reports/UD Ibiza SAD - Málaga CF SAD.pdf"
+    # pdf_path = "data/reports/UD Ibiza SAD - SD Ponferradina SAD.pdf"
+    # data1 = extract_all_sections(pdf_path)
+    print(extract_discipline_incidences_from_pdf(pdf_path))
+    # extract_discipline_incidences_from_pdf(pdf_path)
+    # Imprimir todas las secciones de data1 de forma legible
+    # for section, content in data1.items():
+    #     print(f"--- {section.upper()} ---")
+    #     if isinstance(content, pd.DataFrame):
+    #         print(content.to_string(index=False))
+    #     elif isinstance(content, dict):
+    #         for key, value in content.items():
+    #             print(f"{key}: {value}")
+    #     else:
+    #         print(content)
+    #     print("\n")
