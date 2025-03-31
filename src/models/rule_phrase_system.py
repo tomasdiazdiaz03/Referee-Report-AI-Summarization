@@ -485,24 +485,26 @@ def generar_resumen():
     with open("./data/dataset/dataset_clean.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
     _, ids_solo_pdf_sections, _ = count_txts_pdfs_not_nulls()
+
+    inputs_finales = {}
     for id in ids_solo_pdf_sections:
+        print(f"Generando resumen para el informe con ID {id}")
         datos_pdf = datos[id]['pdf_sections']
-        print(id)
-        print(generar_resumen_incidencias_penaltis(datos_pdf))
         frases = [
-            # generar_frase_condicion_fisica(datos_pdf),
-            # generar_frase_actuacion_tecnica(datos_pdf),
-            #TODO generar_resumen_incidencias_penaltis(datos_pdf),
-            # generar_frase_actuacion_disciplinaria(datos_pdf),
-            #TODO generar_resumen_incidencias_disciplinarias(datos_pdf),
-            # generar_frase_manejo_partido(datos_pdf),
-            # generar_frase_personalidad(datos_pdf),
-            # generar_frase_trabajo_equipo(datos_pdf),
-            # generar_frase_completa_asistente(datos_pdf)[0], # Asistente 1
-            # generar_frase_completa_asistente(datos_pdf)[1], # Asistente 2
-            # generar_frase_cuarto_arbitro(datos)
+            generar_frase_condicion_fisica(datos_pdf),
+            generar_frase_actuacion_tecnica(datos_pdf),
+            generar_resumen_incidencias_penaltis(datos_pdf),
+            generar_frase_actuacion_disciplinaria(datos_pdf),
+            generar_resumen_incidencias_disciplinarias(datos_pdf),
+            generar_frase_manejo_partido(datos_pdf),
+            generar_frase_personalidad(datos_pdf),
+            generar_frase_trabajo_equipo(datos_pdf),
+            generar_frase_completa_asistente(datos_pdf)[0], # Asistente 1
+            generar_frase_completa_asistente(datos_pdf)[1], # Asistente 2
+            generar_frase_cuarto_arbitro(datos_pdf)
         ]
-    return "\n".join(frases)
+        inputs_finales[id] = "\n".join(frases)
+    return inputs_finales
 
 if __name__ == "__main__":
     print(generar_resumen())

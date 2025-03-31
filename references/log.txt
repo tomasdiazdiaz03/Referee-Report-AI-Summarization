@@ -12,3 +12,7 @@ A mano no podemos modificar los datos del resumen y clasificarlos como output ya
 "condicion_fisica": "enfoque táctico adecuado y eficiente. "actuacion_tecnica": ", "incidencias_penaltis": "sanciones": "acierto": "3", "Error": "1", "Beneficio/Duda": "", "2a TARJETAS AMARILLAS MO...
 Esto no es en absoluto viable como resultado, por lo que la estrategia a seguir a continuación es formatear el output de forma manual con una generación de frases base a modo de sistema basado en reglas. Esto genera un resumen inicial que pasará al LLM directamente y
 podrá comparar la salida con el resumen.
+
+https://platform.openai.com/docs/guides/realtime 27/03/25
+https://platform.openai.com/docs/models/gpt-4o 29/03/25
+https://ollama.com/download 29/03/25
