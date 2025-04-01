@@ -4,6 +4,17 @@ https://www.programiz.com/python-programming/methods/string/split 16/02/25 Para 
 
 Mencionar el uso inicial de CSV para el dataset y traslado final a JSON
 
+MODELOS TENIDOS EN CUENTA PREVIOS A OLLAMA
+https://huggingface.co/BSC-LT
+https://huggingface.co/BSC-LT/ALIA-40b
+https://huggingface.co/facebook/mbart-large-50
+https://huggingface.co/mrm8488/bart-legal-base-es
+https://huggingface.co/vgaraujov/bart-base-spanish
+https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1
+https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct
+https://huggingface.co/datificate/gpt2-small-spanish
+https://huggingface.co/PlanTL-GOB-ES/gpt2-base-bne
+https://huggingface.co/DeepESP/gpt2-spanish
 https://www.alia.gob.es/ 12/03/25 Para contemplar la opción de utilizar estos modelos del Barcelona Supercomputing Center
 https://langtech-bsc.gitbook.io/alia-kit/modelos/modelos-de-texto 12/03/25 Modelos de Alia impulsados para funcionalidades de texto
 
