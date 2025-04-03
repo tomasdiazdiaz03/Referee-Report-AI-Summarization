@@ -1,13 +1,13 @@
 import json
 
 
-plantilla_frase_condicion_fisica = "Sobre la condición física, {condicion_fisica}"
-plantilla_frase_actuacion_tecnica = "Sobre la actuación técnica, {actuacion_tecnica}"
+plantilla_frase_condicion_fisica = "Sobre la condición física del árbitro, {condicion_fisica}"
+plantilla_frase_actuacion_tecnica = "Sobre la actuación técnica del árbitro, {actuacion_tecnica}"
 plantilla_frase_incidencias_penaltis = "Sobre las incidencias de penaltis, {incidencias_penaltis}"
 plantilla_frase_actuacion_disciplinaria = "Sobre la actuación disciplinaria, {actuacion_disciplinaria}"
 plantilla_frase_incidencias_disciplinarias = "Sobre las incidencias disciplinarias, {incidencias_disciplinarias}"
-plantilla_frase_manejo_partido = "Sobre el manejo del partido, la estructura de eventos seguida es: 'Minuto' 'Breve descripción de la acción', y los eventos son los siguientes: {manejo_partido} Como comentarios adicionales, se incluyen los siguientes: {comentarios_adicionales_manejo}"
-plantilla_frase_personalidad = "Sobre la personalidad, {personalidad}"
+plantilla_frase_manejo_partido = "Sobre el manejo del partido por parte del árbitro, la estructura de eventos seguida es: 'Minuto' 'Breve descripción de la acción', y los eventos son los siguientes: {manejo_partido} Como comentarios adicionales, se incluyen los siguientes: {comentarios_adicionales_manejo}"
+plantilla_frase_personalidad = "Sobre la personalidad del árbitro, {personalidad}"
 plantilla_frase_trabajo_equipo = "Sobre el trabajo en equipo, {trabajo_equipo}"
 plantilla_frase_asistente_1 = "Sobre el asistente 1, {asistente_1}"
 plantilla_frase_asistente_2 = "Sobre el asistente 2, {asistente_2}"
@@ -107,7 +107,7 @@ def generar_frase_manejo_partido(datos):
 
             estructura_comentarios = eventos_comentarios.split("COMENTARIOS ADICIONALES AL MANEJO DE PARTIDO (Si fuera necesario):")
             eventos = estructura_comentarios[0].strip()
-            comentarios_adicionales = estructura_comentarios[1].strip() if len(estructura_comentarios) > 1 else "No hay comentarios adicionales."
+            comentarios_adicionales = "No hay comentarios adicionales." if estructura_comentarios[1] == '' else estructura_comentarios[1].strip()
             return plantilla_frase_manejo_partido.format(manejo_partido=eventos, comentarios_adicionales_manejo=comentarios_adicionales)
     else:
         raise(ValueError("No se ha encontrado la clave 'manejo_partido' en el diccionario de datos"))
@@ -507,4 +507,4 @@ def generar_resumen():
     return inputs_finales
 
 if __name__ == "__main__":
-    print(generar_resumen())
+    generar_resumen()
