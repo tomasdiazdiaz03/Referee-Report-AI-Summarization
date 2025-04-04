@@ -1,3 +1,6 @@
+MODELOS USADOS EN EL TEST
+Deepseek-r1:7b, Llama3.1:8b, Mistral:7b, Gemma3:4b
+
 Partido 4 con id 10: Sobre la condición física, En general, buenos movimientos y transiciones para buscar la mejor posición en acciones de área (minutos 28:05 y 34:59).
 Sobre la actuación técnica, Añadió correctamente de tiempo adicional 4 minutos, en la primera mitad, y 4 minutos y 25 segundos, en la segunda parte.
 Sobre las incidencias de penaltis, En penaltis señalados: 1 aciertos, 0 errores y 0 dudas o beneficios. En acciones de área no sancionadas como penalti: 1 aciertos, 0 errores y 0 dudas o beneficios. En el minuto 28:05, se decidió 'No penalti' y la opinión del evaluador fue 'Acierto'. En el minuto 34:59, se decidió 'Penalti' y la opinión del evaluador fue 'Acierto'.

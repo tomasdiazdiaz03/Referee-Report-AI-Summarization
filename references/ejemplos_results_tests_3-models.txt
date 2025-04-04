@@ -1,3 +1,6 @@
+MODELOS USADOS EN EL TEST
+Mistral:7b, Gemma3:4b, Gemma3:12b
+
 Partido 2 con id 3: Sobre la condición física del árbitro, Enfoque táctico adecuado y eficiente. Buena condición física con rápidas aceleraciones (minutos 12:31, 49:33 y 77:39), a pesar de la temperatura fría y húmeda.
 Sobre la actuación técnica, no se dispone de información pdf.
 Sobre las incidencias de penaltis, No hubo penaltis señalados. En acciones de área no sancionadas como penalti: 3 aciertos, 1 errores y 0 dudas o beneficios. En el minuto 07:11, se decidió 'No penalti' y la opinión del evaluador fue 'Acierto'. En el minuto 25:08, se decidió 'No penalti' y la opinión del evaluador fue 'Acierto'. En el minuto 29:38, se decidió 'No penalti' y la opinión del evaluador fue 'Acierto'. En el minuto 49:42, se decidió 'No penalti' y la opinión del evaluador fue 'Error'.       
