@@ -4,7 +4,8 @@ from tqdm import tqdm
 from rule_phrase_system import generar_resumen
 
 # Lista de modelos a probar en Ollama
-MODELOS = ["mistral", "gemma3:4b", "llama3.1:8b", "deepseek-r1:7b"]
+# MODELOS = ["mistral", "gemma3:4b", "llama3.1:8b", "deepseek-r1:7b"]
+MODELOS = ["mistral", "gemma3:4b", "gemma3:12b"]
 
 # Diccionario para almacenar los resultados
 resultados = {}
@@ -14,7 +15,7 @@ def cargar_partidos():
     datos_partidos = generar_resumen()
     ids = list(datos_partidos.keys())
     resumenes = list(datos_partidos.values())
-    return [f"Partido {i+1} con id {ids[i]}: {resumenes[i]}" for i in range(8)]
+    return [f"Partido {i+1} con id {ids[i]}: {resumenes[i]}" for i in range(5)]
 
 # Función para generar resumen con un modelo
 def generar_outputs(modelo, contenido):
@@ -52,7 +53,7 @@ for i, partido in enumerate(partidos, start=1):
         print(opcion)
 
     # Pedir al usuario que seleccione la mejor opción
-    eleccion = int(input("\nElige la mejor respuesta (1, 2, 3 o 4): ")) - 1
+    eleccion = int(input("\nElige la mejor respuesta (1, 2 o 3): ")) - 1
 
     # Guardar la respuesta elegida y el modelo correspondiente
     modelo_elegido = [m for m, r in respuestas.items() if r == opciones[eleccion]][0]
