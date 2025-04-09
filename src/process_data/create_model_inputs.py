@@ -1,5 +1,7 @@
 import json
 
+# TODO Este fichero es candidato a ser eliminado
+
 def count_txts_pdfs_not_nulls():
     # Cargar el dataset desde el archivo JSON
     with open('./data/dataset/dataset_clean.json', 'r', encoding='utf-8') as file:

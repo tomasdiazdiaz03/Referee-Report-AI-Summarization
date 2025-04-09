@@ -1,13 +1,5 @@
 [
     {
-        "Topic": "TOPIC",
-        "Code": "CÓDIGO"
-    },
-    {
-        "Topic": "CHALLENGES",
-        "Code": "--"
-    },
-    {
         "Topic": "No Falta / Fair Challenge",
         "Code": "NF"
     },
@@ -256,10 +248,6 @@
         "Code": "SUPHB"
     },
     {
-        "Topic": "GOAL / NO GOAL",
-        "Code": "GOAL / NGOAL"
-    },
-    {
         "Topic": "APP (Fase de Ataque Previo)",
         "Code": "APP"
     },
@@ -292,10 +280,6 @@
         "Code": "NF"
     },
     {
-        "Topic": "OFFSIDE (Fuera de Juego)",
-        "Code": "--"
-    },
-    {
         "Topic": "Offside Interfering with Play (Interfiriendo con el juego)",
         "Code": "OIP / NOIP"
     },
@@ -316,11 +300,11 @@
         "Code": "DF"
     },
     {
-        "Topic": "GOAL",
+        "Topic": "Gol",
         "Code": "GOAL"
     },
     {
-        "Topic": "NGOAL",
+        "Topic": "No Gol",
         "Code": "NGOAL"
     },
     {
@@ -364,7 +348,7 @@
         "Code": "ATF"
     },
     {
-        "Topic": "CAR (Impridente)",
+        "Topic": "Carga (Imprudente)",
         "Code": "CAR"
     },
     {

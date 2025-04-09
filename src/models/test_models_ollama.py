@@ -4,8 +4,8 @@ from tqdm import tqdm
 from rule_phrase_system import generar_resumen
 
 # Lista de modelos a probar en Ollama
-# MODELOS = ["mistral", "gemma3:4b", "llama3.1:8b", "deepseek-r1:7b"]
-MODELOS = ["mistral", "gemma3:4b", "gemma3:12b"]
+# MODELOS = ["mistral", "gemma3:4b", "llama3.1:8b", "deepseek-r1:7b"] # Primera prueba
+MODELOS = ["mistral", "gemma3:4b", "gemma3:12b"] # Segunda prueba
 
 # Diccionario para almacenar los resultados
 resultados = {}
@@ -63,5 +63,5 @@ for i, partido in enumerate(partidos, start=1):
 print("\n📊 **Resultados Finales**")
 for partido, (respuesta, modelo) in resultados.items():
     print(f"\n{partido}")
-    print(f"✅ Respuesta elegida: {respuesta[:100]}...")  # Mostrar solo los primeros 100 caracteres
+    print(f"✅ Respuesta elegida: {respuesta[:100]}...")  # Mostramos solo los primeros 100 caracteres
     print(f"📌 Generada por: {modelo}")

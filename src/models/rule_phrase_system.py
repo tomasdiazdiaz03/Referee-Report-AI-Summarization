@@ -45,9 +45,9 @@ def count_txts_pdfs_not_nulls():
     return ids_solo_txt_events, ids_solo_pdf_sections, ids_ambos
 
 
-###############################################
-# Funciones de generación de frases sencillas #
-###############################################
+##################################################
+# Funciones de generación de frases informes PDF #
+##################################################
 
 def generar_frase_condicion_fisica(datos):
     """
@@ -154,10 +154,6 @@ def generar_frase_cuarto_arbitro(datos):
     else:
         raise(ValueError("No se ha encontrado la clave 'cuarto_arbitro' en el diccionario de datos"))
     
-
-###############################################
-# Funciones de generación de frases complejas #
-###############################################
 
 ##### Incidencias de penaltis
 def procesar_sanciones(sanciones):
@@ -481,7 +477,7 @@ def generar_frase_completa_asistente(datos):
 
 
 
-def generar_resumen():
+def generar_resumen_pdf():
     with open("./data/dataset/dataset_clean.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
     _, ids_solo_pdf_sections, _ = count_txts_pdfs_not_nulls()
@@ -506,5 +502,146 @@ def generar_resumen():
         inputs_finales[id] = "\n".join(frases)
     return inputs_finales
 
+
+##################################################
+# Funciones de generación de frases informes TXT #
+##################################################
+
+def cargar_codigos(path):
+    import re
+
+    with open(path, "r", encoding="utf-8") as f:
+        codigos_raw = json.load(f)
+
+    codigos_dict = {}
+
+    for item in codigos_raw:
+        topic = item["Topic"]
+        codes = [c.strip().upper() for c in item["Code"].split("/")]
+
+        # Si hay dos códigos, y uno empieza con "N" y el otro es su raíz
+        if len(codes) == 2:
+            code1, code2 = codes
+            base1 = code1[1:] if code1.startswith("N") else code1
+            base2 = code2[1:] if code2.startswith("N") else code2
+
+            if base1 == base2:
+                for c in codes:
+                    if c.startswith("N"):
+                        codigos_dict[c] = f"No hay {topic} -> Negación"
+                    else:
+                        codigos_dict[c] = f"{topic}"
+                continue
+
+        # Por defecto, mapear todos los códigos al mismo topic
+        for code in codes:
+            codigos_dict[code] = topic
+
+    return codigos_dict
+
+
+
+# def normalizar_codigo(codigo, codigos_dict):
+#     codigo = codigo.upper().strip("-")
+
+#     # Tratamiento especial AR / AR1 / AR2 / ÁRBITRO
+#     if codigo in {"AR", "ÁRBITRO", "ARBITRO"}:
+#         return "Árbitro Principal"
+#     elif codigo == "AR1":
+#         return "Árbitro Asistente 1"
+#     elif codigo == "AR2":
+#         return "Árbitro Asistente 2"
+
+#     # OIP y NOIP como casos especiales
+#     if codigo == "OIP":
+#         return "Interfiere con el juego (OIP)"
+#     elif codigo == "NOIP":
+#         return "No interfiere con el juego (NOIP)"
+
+#     # Buscar coincidencia directa
+#     if codigo in codigos_dict:
+#         return codigos_dict[codigo]
+
+#     return "Desconocido"
+
+
+def evento_a_frase(evento, codigos_dict):
+    minuto = evento.get("minute", "Sin minuto")
+    descripcion = evento.get("description", "").strip()
+
+    # Obtener todos los códigos: normales y adicionales
+    codigos_brutos = evento.get("codes", []) + evento.get("additional_codes", [])
+
+    topicos_encontrados = []
+
+    for codigo in codigos_brutos:
+        codigo = codigo.strip().upper()
+
+        if not codigo:
+            continue
+
+        # --- Tratamiento especial para códigos tipo VAR-... ---
+        if codigo.startswith("VAR-") or codigo.startswith("-VAR-"):
+            partes = codigo.strip("-").split("-")  # Eliminar guiones iniciales y dividir
+            topicos_var = []
+
+            for parte in partes:
+                parte = parte.strip()
+                if parte in codigos_dict:
+                    topicos_var.append(codigos_dict[parte])
+                else:
+                    topicos_var.append(f"Código desconocido ({parte})")
+
+            topicos_encontrados.append("VAR-" + "-".join(topicos_var))
+            continue
+
+        # --- Casos específicos ---
+        if codigo in ["AR1", "AR2"]:
+            topicos_encontrados.append(f"Árbitro asistente {codigo[-1]}")
+        elif codigo in ["ARBITRO", "ÁRBITRO", "AR"]:
+            topicos_encontrados.append("Árbitro principal")
+
+        # --- Códigos negativos (N como prefijo) ---
+        elif len(codigo) > 1 and codigo.startswith("N") and codigo[1:] in codigos_dict:
+            original = codigo[1:]
+            topico = codigos_dict[original]
+            topicos_encontrados.append(f"{topico} - Negativo ({codigo})")
+
+        # --- Código normal ---
+        elif codigo in codigos_dict:
+            topicos_encontrados.append(codigos_dict[codigo])
+
+        else:
+            topicos_encontrados.append(f"Código desconocido ({codigo})")
+
+    # Generar frase completa
+    topicos_texto = "; ".join(topicos_encontrados) if topicos_encontrados else "Sin códigos relevantes"
+    frase = f"[{minuto}] {descripcion}. (Tópicos: {topicos_texto})"
+    return frase
+
+
+def generar_resumen_txt():
+    with open("./data/dataset/dataset_clean.json", "r", encoding="utf-8") as f:
+        datos = json.load(f)
+    ids_solo_txt_events, ids_solo_pdf_sections, ids_ambos = count_txts_pdfs_not_nulls()
+    print(len(ids_solo_txt_events), len(ids_solo_pdf_sections), len(ids_ambos))
+    ids_combinados = set(ids_solo_txt_events).union(ids_ambos)
+    ids_ordenados = sorted(ids_combinados, key=int)
+    print(ids_ordenados)
+
+    codes = cargar_codigos("./data/topics.json")
+    inputs_finales = {}
+    for id in ids_ordenados:
+        print(f"Generando resumen para el informe con ID {id}")
+        datos_txt = datos[id]['txt_events']['events']
+        eventos = [evento_a_frase(evento, codes) for evento in datos_txt]
+        inputs_finales[id] = "\n".join(eventos)
+        print(f"Resumen generado para el informe con ID {id}:")
+        print(inputs_finales[id])
+        break
+    return inputs_finales
+
 if __name__ == "__main__":
-    generar_resumen()
+    codigos = cargar_codigos("./data/topics.json")
+    for item in codigos.items():
+        print(item[0], item[1])
