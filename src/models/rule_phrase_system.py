@@ -614,10 +614,14 @@ def evento_a_frase(evento, codigos_dict):
         else:
             topicos_encontrados.append(f"Código desconocido ({codigo})")
 
+    # Quitar duplicados manteniendo el orden
+    topicos_sin_repetir = list(dict.fromkeys(topicos_encontrados))
+
     # Generar frase completa
-    topicos_texto = "; ".join(topicos_encontrados) if topicos_encontrados else "Sin códigos relevantes"
+    topicos_texto = "; ".join(topicos_sin_repetir) if topicos_sin_repetir else "Sin códigos relevantes"
     frase = f"[{minuto}] {descripcion}. (Tópicos: {topicos_texto})"
     return frase
+
 
 
 def generar_resumen_txt():
@@ -642,6 +646,4 @@ def generar_resumen_txt():
     return inputs_finales
 
 if __name__ == "__main__":
-    codigos = cargar_codigos("./data/topics.json")
-    for item in codigos.items():
-        print(item[0], item[1])
+    generar_resumen_txt()
