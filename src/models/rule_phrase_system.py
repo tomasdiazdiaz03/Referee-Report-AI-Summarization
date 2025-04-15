@@ -1,5 +1,8 @@
 import json
 
+#############################
+# Frases para resúmenes PDF #
+#############################
 
 plantilla_frase_condicion_fisica = "Sobre la condición física del árbitro, {condicion_fisica}"
 plantilla_frase_actuacion_tecnica = "Sobre la actuación técnica del árbitro, {actuacion_tecnica}"
@@ -500,6 +503,9 @@ def generar_resumen_pdf():
             generar_frase_cuarto_arbitro(datos_pdf)
         ]
         inputs_finales[id] = "\n".join(frases)
+        print(f"Resumen generado para el informe con ID {id}:")
+        print(inputs_finales[id])
+        break
     return inputs_finales
 
 
@@ -538,31 +544,6 @@ def cargar_codigos(path):
             codigos_dict[code] = topic
 
     return codigos_dict
-
-
-
-# def normalizar_codigo(codigo, codigos_dict):
-#     codigo = codigo.upper().strip("-")
-
-#     # Tratamiento especial AR / AR1 / AR2 / ÁRBITRO
-#     if codigo in {"AR", "ÁRBITRO", "ARBITRO"}:
-#         return "Árbitro Principal"
-#     elif codigo == "AR1":
-#         return "Árbitro Asistente 1"
-#     elif codigo == "AR2":
-#         return "Árbitro Asistente 2"
-
-#     # OIP y NOIP como casos especiales
-#     if codigo == "OIP":
-#         return "Interfiere con el juego (OIP)"
-#     elif codigo == "NOIP":
-#         return "No interfiere con el juego (NOIP)"
-
-#     # Buscar coincidencia directa
-#     if codigo in codigos_dict:
-#         return codigos_dict[codigo]
-
-#     return "Desconocido"
 
 
 def evento_a_frase(evento, codigos_dict):

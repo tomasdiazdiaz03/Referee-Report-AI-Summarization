@@ -63,5 +63,5 @@ for i, partido in enumerate(partidos, start=1):
 print("\n📊 **Resultados Finales**")
 for partido, (respuesta, modelo) in resultados.items():
     print(f"\n{partido}")
-    print(f"✅ Respuesta elegida: {respuesta[:100]}...")  # Mostramos solo los primeros 100 caracteres
+    print(f"✅ Respuesta elegida: {respuesta[:100]}...")  # Solo los primeros 100 caracteres
     print(f"📌 Generada por: {modelo}")
