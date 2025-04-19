@@ -107,21 +107,49 @@ def preprocess_match_data(match):
                 match["txt_events"][section] = new_assistant
     return match
 
+
+def eliminar_beneficio_duda(data):
+    """
+    Recorre recursivamente un dataset JSON y elimina todos los campos "Beneficio/Duda".
+    """
+    if isinstance(data, dict):
+        # Si es un diccionario, eliminamos la clave "Beneficio/Duda" si existe
+        if "Beneficio/Duda" in data:
+            del data["Beneficio/Duda"]
+        # Recorremos los valores del diccionario
+        for key, value in data.items():
+            eliminar_beneficio_duda(value)
+    elif isinstance(data, list):
+        # Si es una lista, recorremos cada elemento
+        for item in data:
+            eliminar_beneficio_duda(item)
+
+print("Campos 'Beneficio/Duda' eliminados.")
+
+
 if __name__ == "__main__":
-    # Cargar dataset
-    with open(dataset_path, "r", encoding="utf-8") as f:
+    # # Cargar dataset
+    # with open(dataset_path, "r", encoding="utf-8") as f:
+    #     dataset = json.load(f)
+
+    # # Preprocesar cada partido
+    # processed_dataset = {}
+    # for key, match in dataset.items():
+    #     processed_dataset[key] = preprocess_match_data(match)
+
+    # # Guardar dataset preprocesado
+    # with open("./data/dataset/dataset_clean.json", "w", encoding="utf-8") as f:
+    #     json.dump(processed_dataset, f, ensure_ascii=False, indent=4)
+
+    # print("Preprocesamiento completado. Datos guardados en dataset_clean.json")
+
+    # Cargar el dataset JSON
+    with open("./data/dataset/dataset_clean.json", 'r', encoding='utf-8') as f:
         dataset = json.load(f)
 
-    # Preprocesar cada partido
-    processed_dataset = {}
-    for key, match in dataset.items():
-        processed_dataset[key] = preprocess_match_data(match)
+    # Eliminar los campos "Beneficio/Duda"
+    eliminar_beneficio_duda(dataset)
 
-    # Guardar dataset preprocesado
-    with open("./data/dataset/dataset_clean.json", "w", encoding="utf-8") as f:
-        json.dump(processed_dataset, f, ensure_ascii=False, indent=4)
-
-    print("Preprocesamiento completado. Datos guardados en dataset_clean.json")
-    # for _, match in dataset.items():
-    #     preprocess_match_data(match)
-    #     break
+    # Guardar el dataset modificado
+    with open("./data/dataset/dataset_updated.json", 'w', encoding='utf-8') as f:
+        json.dump(dataset, f, ensure_ascii=False, indent=4)

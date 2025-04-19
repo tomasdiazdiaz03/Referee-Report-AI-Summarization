@@ -58,8 +58,7 @@ def extract_tablas_asistentes(asistente1, pdf_path):
                                       "RETRASAR LA BANDERA EN ACCIONES PRÓXIMAS A GOL (SOLO CON VAR):"]:
                             asistente["acciones"][row.iloc[0]] = {
                                 "Acierto": row.iloc[1],
-                                "Error": row.iloc[2],
-                                "Beneficio/Duda": row.iloc[3]
+                                "Error": row.iloc[2]
                             }
 
                 # Si es la segunda tabla, extraer incidentes del área de penalti
@@ -116,8 +115,7 @@ def extract_penalty_incidences_from_pdf(pdf_path):
                         if row.iloc[0] in ["PENALTIS SEÑALADOS:", "ACCIONES DE ÁREA SIGNIFICATIVAS NO SANCIONADAS COMO PENALTI:"]:
                             incidences["sanciones"][row.iloc[0]] = {
                                 "Acierto": row.iloc[1],
-                                "Error": row.iloc[2],
-                                "Beneficio/Duda": row.iloc[3]
+                                "Error": row.iloc[2]
                             }
 
                     # Activar acumulación de tablas tras encontrar la tabla de "ACCIONES DE ÁREA SIGNIFICATIVAS"
@@ -190,8 +188,7 @@ def extract_discipline_incidences_from_pdf(pdf_path):
                                            "TARJETAS ROJAS DIRECTAS MOSTRADAS:", "TARJETAS ROJAS DIRECTAS NO MOSTRADAS:"]:
                             incidences["tarjetas"][row.iloc[0]] = {
                                 "Acierto": row.iloc[1],
-                                "Error": row.iloc[2],
-                                "Beneficio/Duda": row.iloc[3]
+                                "Error": row.iloc[2]
                             }
 
                     # Activar acumulación de tablas tras encontrar la tabla de "TARJETAS AMARILLAS MOSTRADAS"

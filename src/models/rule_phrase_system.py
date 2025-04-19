@@ -173,12 +173,9 @@ def procesar_sanciones(sanciones):
     errores = penaltis_señalados.get("Error", "")
     if errores == "":
         errores = 0
-    dudas = penaltis_señalados.get("Beneficio/Duda", "")
-    if dudas == "":
-        dudas = 0
-    if aciertos or errores or dudas:
+    if aciertos or errores:
         resumen_sanciones.append(
-            f"En penaltis señalados: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En penaltis señalados: {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_sanciones.append("No hubo penaltis señalados.")
@@ -191,12 +188,9 @@ def procesar_sanciones(sanciones):
     errores = acciones_no_sancionadas.get("Error", "")
     if errores == "":
         errores = 0
-    dudas = acciones_no_sancionadas.get("Beneficio/Duda", "")
-    if dudas == "":
-        dudas = 0
-    if aciertos != 0 or errores != 0 or dudas != 0:
+    if aciertos != 0 or errores != 0:
         resumen_sanciones.append(
-            f"En acciones de área no sancionadas como penalti: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En acciones de área no sancionadas como penalti: {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_sanciones.append("No hubo acciones de área significativas no sancionadas como penalti.")
@@ -253,11 +247,10 @@ def procesar_tarjetas(tarjetas):
     amarillas_mostradas = tarjetas.get("TARJETAS AMARILLAS MOSTRADAS:", {})
     aciertos = amarillas_mostradas.get("Acierto", "")
     errores = amarillas_mostradas.get("Error", "")
-    dudas = amarillas_mostradas.get("Beneficio/Duda", "")
 
-    if aciertos or errores or dudas:
+    if aciertos or errores:
         resumen_tarjetas.append(
-            f"En tarjetas amarillas mostradas: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En tarjetas amarillas mostradas: {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_tarjetas.append("No hubo tarjetas amarillas mostradas.")
@@ -270,12 +263,9 @@ def procesar_tarjetas(tarjetas):
     errores = amarillas_no_mostradas.get("Error", "")
     if errores == "":
         errores = 0
-    dudas = amarillas_no_mostradas.get("Beneficio/Duda", "")
-    if dudas == "":
-        dudas = 0
-    if aciertos != 0 or errores != 0 or dudas != 0:
+    if aciertos != 0 or errores != 0:
         resumen_tarjetas.append(
-            f"En tarjetas amarillas no mostradas: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En tarjetas amarillas no mostradas: {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_tarjetas.append("No hubo tarjetas amarillas no mostradas.")
@@ -288,12 +278,9 @@ def procesar_tarjetas(tarjetas):
     errores = segundas_amarillas.get("Error", "")
     if errores == "":
         errores = 0
-    dudas = segundas_amarillas.get("Beneficio/Duda", "")
-    if dudas == "":
-        dudas = 0
-    if aciertos != 0 or errores != 0 or dudas != 0:
+    if aciertos != 0 or errores != 0:
         resumen_tarjetas.append(
-            f"En segundas tarjetas amarillas mostradas: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En segundas tarjetas amarillas mostradas: {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_tarjetas.append("No hubo segundas tarjetas amarillas mostradas.")
@@ -306,12 +293,9 @@ def procesar_tarjetas(tarjetas):
     errores = rojas_no_mostradas.get("Error", "")
     if errores == "":
         errores = 0
-    dudas = rojas_no_mostradas.get("Beneficio/Duda", "")
-    if dudas == "":
-        dudas = 0
-    if aciertos != 0 or errores != 0 or dudas != 0:
+    if aciertos != 0 or errores != 0:
         resumen_tarjetas.append(
-            f"En tarjetas rojas directas no mostradas: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En tarjetas rojas directas no mostradas: {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_tarjetas.append("No hubo tarjetas rojas directas no mostradas.")
@@ -374,12 +358,9 @@ def procesar_acciones_asistente(acciones):
     errores = fuera_juego_señalados.get("Error", "")
     if errores == "":
         errores = 0
-    dudas = fuera_juego_señalados.get("Beneficio/Duda", "")
-    if dudas == "":
-        dudas = 0
-    if aciertos != 0 or errores != 0 or dudas != 0:
+    if aciertos != 0 or errores != 0:
         resumen_acciones.append(
-            f"En decisiones de fuera de juego señalados: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En decisiones de fuera de juego señalados: {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_acciones.append("No hubo decisiones de fuera de juego señalados.")
@@ -392,13 +373,10 @@ def procesar_acciones_asistente(acciones):
     errores = fuera_juego_no_señalados.get("Error", "")
     if errores == "":
         errores = 0
-    dudas = fuera_juego_no_señalados.get("Beneficio/Duda", "")
-    if dudas == "":
-        dudas = 0
 
-    if aciertos != 0 or errores != 0 or dudas != 0:
+    if aciertos != 0 or errores != 0:
         resumen_acciones.append(
-            f"En decisiones relevantes de fuera de juego no señalados: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En decisiones relevantes de fuera de juego no señalados: {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_acciones.append("No hubo decisiones relevantes de fuera de juego no señalados.")
@@ -407,11 +385,10 @@ def procesar_acciones_asistente(acciones):
     ayuda_disciplinarias = acciones.get("AYUDA AL ÁRBITRO EN ACCIONES DISCIPLINARIAS:", {})
     aciertos = ayuda_disciplinarias.get("Acierto", "")
     errores = ayuda_disciplinarias.get("Error", "")
-    dudas = ayuda_disciplinarias.get("Beneficio/Duda", "")
 
-    if aciertos or errores or dudas:
+    if aciertos or errores:
         resumen_acciones.append(
-            f"En ayuda al árbitro en acciones disciplinarias: {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En ayuda al árbitro en acciones disciplinarias: {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_acciones.append("No hubo ayuda al árbitro en acciones disciplinarias.")
@@ -420,11 +397,10 @@ def procesar_acciones_asistente(acciones):
     retrasar_bandera = acciones.get("RETRASAR LA BANDERA EN ACCIONES PRÓXIMAS A GOL (SOLO CON VAR):", {})
     aciertos = retrasar_bandera.get("Acierto", "")
     errores = retrasar_bandera.get("Error", "")
-    dudas = retrasar_bandera.get("Beneficio/Duda", "")
 
-    if aciertos or errores or dudas:
+    if aciertos or errores:
         resumen_acciones.append(
-            f"En retrasar la bandera en acciones próximas a gol (solo con VAR): {aciertos} aciertos, {errores} errores y {dudas} dudas o beneficios."
+            f"En retrasar la bandera en acciones próximas a gol (solo con VAR): {aciertos} aciertos y {errores} errores."
         )
     else:
         resumen_acciones.append("No hubo retrasos de bandera en acciones próximas a gol.")
