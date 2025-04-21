@@ -1,5 +1,9 @@
 [
     {
+        "Topic": "Fuera de juego",
+        "Code": "OFFSIDE"
+    },
+    {
         "Topic": "No Falta / Fair Challenge",
         "Code": "NF"
     },

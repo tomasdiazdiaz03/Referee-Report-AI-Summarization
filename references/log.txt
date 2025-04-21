@@ -33,5 +33,5 @@ Prioritarios gemma3 y mistral, ganando gemma3 12B tras un segundo test
 - Modificar estructura resúmenes en general, haciendo un resumen para el árbitro de campo, otro para el asistente 1, otro para el asistente 2 y otro para el cuarto árbitro
 - Relacionar los eventos txt con los apartados utilizados sobre condición física, incidentes disciplinarios, etc... (usar el excel como chuleta)
 X - Eliminar columna Beneficio/Duda de las tablas de incidencias disciplinarias, incidencias de penaltis y sucesos de asistentes
-- Separar por items (filas) los incidentes disciplinarios, incidentes de penalti y sucesos de asistentes, en lugar de sumar las columnas de aciertos y errores
+- En el prompt de Gemma, separar por items (filas) los incidentes disciplinarios, incidentes de penalti y sucesos de asistentes, en lugar de sumar las columnas de aciertos y errores
 - Utilizar primero métricas automáticas para valorar el rendimiento de los modelos (BLEU, Rouge, etc) y luego añadir verificación humana (valoración mía)

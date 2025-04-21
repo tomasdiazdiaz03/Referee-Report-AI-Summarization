@@ -1,8 +1,10 @@
 import json
+import re
+from collections import defaultdict
 
-#############################
-# Frases para resúmenes PDF #
-#############################
+#########################
+# Frases para resúmenes #
+#########################
 
 plantilla_frase_condicion_fisica = "Sobre la condición física del árbitro, {condicion_fisica}"
 plantilla_frase_actuacion_tecnica = "Sobre la actuación técnica del árbitro, {actuacion_tecnica}"
@@ -15,6 +17,12 @@ plantilla_frase_trabajo_equipo = "Sobre el trabajo en equipo, {trabajo_equipo}"
 plantilla_frase_asistente_1 = "Sobre el asistente 1, {asistente_1}"
 plantilla_frase_asistente_2 = "Sobre el asistente 2, {asistente_2}"
 plantilla_frase_cuarto_arbitro = "Sobre el cuarto árbitro, {cuarto_arbitro}"
+
+
+#######################################
+# Diccionarios de tópicos por sección #
+#######################################
+
 
 ###################################################
 # Funciones de procesamiento de datos del dataset #
@@ -490,8 +498,6 @@ def generar_resumen_pdf():
 ##################################################
 
 def cargar_codigos(path):
-    import re
-
     with open(path, "r", encoding="utf-8") as f:
         codigos_raw = json.load(f)
 
@@ -522,85 +528,119 @@ def cargar_codigos(path):
     return codigos_dict
 
 
+def clasificar_evento_por_apartado(codigos_evento):
+    # Filtrar códigos que contengan VAR
+    codigos_evento = [c for c in codigos_evento if "VAR" not in c]
+    subcodigos = [sub for c in codigos_evento for sub in c.strip("-").split("-")]
+
+    # 1. Cuarto árbitro: prioritario
+    if "4O" in subcodigos:
+        return "cuarto_arbitro"
+
+    # 2. TW solo si es el primer código
+    if codigos_evento and codigos_evento[0].strip("-").startswith("TW"):
+        return "trabajo_equipo"
+
+    # 3. Asistentes (último subcódigo)
+    ultimo = subcodigos[-1] if subcodigos else ""
+
+    if ultimo == "AR1":
+        return "asistente_1"
+    elif ultimo == "AR2":
+        return "asistente_2"
+
+    # 4. Clasificación por prefijos temáticos
+    if "PAI" in subcodigos:
+        return "incidencias_penaltis"
+    if "GM" in subcodigos:
+        return "manejo_partido"
+    if "PR" in subcodigos:
+        return "condicion_fisica"
+    if "TF" in subcodigos:
+        return "incidencias_disciplinarias"
+    if ("HB" in subcodigos or "NHB" in subcodigos) and "PAI" not in subcodigos:
+        return "actuacion_tecnica"
+
+    # 5. Fallback por defecto
+    return "incidencias_disciplinarias"
+
+
 def evento_a_frase(evento, codigos_dict):
     minuto = evento.get("minute", "Sin minuto")
     descripcion = evento.get("description", "").strip()
+    codigos = evento.get("codes", []) + evento.get("additional_codes", [])
+    codigos = [c.strip().upper() for c in codigos if "VAR" not in c]
 
-    # Obtener todos los códigos: normales y adicionales
-    codigos_brutos = evento.get("codes", []) + evento.get("additional_codes", [])
-
-    topicos_encontrados = []
-
-    for codigo in codigos_brutos:
-        codigo = codigo.strip().upper()
-
-        if not codigo:
-            continue
-
-        # --- Tratamiento especial para códigos tipo VAR-... ---
-        if codigo.startswith("VAR-") or codigo.startswith("-VAR-"):
-            partes = codigo.strip("-").split("-")  # Eliminar guiones iniciales y dividir
-            topicos_var = []
-
-            for parte in partes:
-                parte = parte.strip()
-                if parte in codigos_dict:
-                    topicos_var.append(codigos_dict[parte])
-                else:
-                    topicos_var.append(f"Código desconocido ({parte})")
-
-            topicos_encontrados.append("VAR-" + "-".join(topicos_var))
-            continue
-
-        # --- Casos específicos ---
-        if codigo in ["AR1", "AR2"]:
-            topicos_encontrados.append(f"Árbitro asistente {codigo[-1]}")
-        elif codigo in ["ARBITRO", "ÁRBITRO", "AR"]:
-            topicos_encontrados.append("Árbitro principal")
-
-        # --- Códigos negativos (N como prefijo) ---
-        elif len(codigo) > 1 and codigo.startswith("N") and codigo[1:] in codigos_dict:
-            original = codigo[1:]
-            topico = codigos_dict[original]
-            topicos_encontrados.append(f"{topico} - Negativo ({codigo})")
-
-        # --- Código normal ---
-        elif codigo in codigos_dict:
-            topicos_encontrados.append(codigos_dict[codigo])
-
+    topicos = []
+    for code in codigos:
+        if code in ["AR1", "AR2"]:
+            topicos.append(f"Árbitro asistente {code[-1]}")
+        elif code in ["AR", "ÁRBITRO", "ARBITRO"]:
+            topicos.append("Árbitro principal")
+        elif code.startswith("N") and code[1:] in codigos_dict:
+            topicos.append(f"{codigos_dict[code[1:]]} - Negación")
+        elif code in codigos_dict:
+            topicos.append(codigos_dict[code])
         else:
-            topicos_encontrados.append(f"Código desconocido ({codigo})")
+            topicos.append(f"Código desconocido ({code})")
 
-    # Quitar duplicados manteniendo el orden
-    topicos_sin_repetir = list(dict.fromkeys(topicos_encontrados))
-
-    # Generar frase completa
+    topicos_sin_repetir = list(dict.fromkeys(topicos))
     topicos_texto = "; ".join(topicos_sin_repetir) if topicos_sin_repetir else "Sin códigos relevantes"
-    frase = f"[{minuto}] {descripcion}. (Tópicos: {topicos_texto})"
-    return frase
-
+    return f"[{minuto}] {descripcion}. (Tópicos: {topicos_texto})"
 
 
 def generar_resumen_txt():
     with open("./data/dataset/dataset_clean.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
-    ids_solo_txt_events, ids_solo_pdf_sections, ids_ambos = count_txts_pdfs_not_nulls()
-    print(len(ids_solo_txt_events), len(ids_solo_pdf_sections), len(ids_ambos))
-    ids_combinados = set(ids_solo_txt_events).union(ids_ambos)
-    ids_ordenados = sorted(ids_combinados, key=int)
-    print(ids_ordenados)
 
-    codes = cargar_codigos("./data/topics.json")
-    inputs_finales = {}
-    for id in ids_ordenados:
-        print(f"Generando resumen para el informe con ID {id}")
-        datos_txt = datos[id]['txt_events']['events']
-        eventos = [evento_a_frase(evento, codes) for evento in datos_txt]
-        inputs_finales[id] = "\n".join(eventos)
-        print(f"Resumen generado para el informe con ID {id}:")
-        print(inputs_finales[id])
-        break
-    return inputs_finales
+    from rule_phrase_system import count_txts_pdfs_not_nulls
+    ids_solo_txt_events, _, ids_ambos = count_txts_pdfs_not_nulls()
+    ids = sorted(set(ids_solo_txt_events).union(ids_ambos), key=int)
+
+    codigos_dict = cargar_codigos("./data/topics.json")
+    apartados_eventos = {
+        "condicion_fisica": [],
+        "actuacion_tecnica": [],
+        "incidencias_penaltis": [],
+        "incidencias_disciplinarias": [],
+        "manejo_partido": [],
+        "trabajo_equipo": [],
+        "asistente_1": [],
+        "asistente_2": [],
+        "cuarto_arbitro": []
+    }
+
+    for id in ids:
+        eventos = datos[id]["txt_events"]["events"]
+        for evento in eventos:
+            codigos = evento.get("codes", []) + evento.get("additional_codes", [])
+            apartado = clasificar_evento_por_apartado(codigos)
+            if apartado:
+                frase = evento_a_frase(evento, codigos_dict)
+                apartados_eventos[apartado].append(frase)
+        break  # Procesar solo el primero por ahora
+
+    plantillas = {
+        "condicion_fisica": "Sobre la condición física del árbitro, {contenido}",
+        "actuacion_tecnica": "Sobre la actuación técnica del árbitro, {contenido}",
+        "incidencias_penaltis": "Sobre las incidencias de penaltis, {contenido}",
+        "incidencias_disciplinarias": "Sobre las incidencias disciplinarias, {contenido}",
+        "manejo_partido": "Sobre el manejo del partido por parte del árbitro, {contenido}",
+        "trabajo_equipo": "Sobre el trabajo en equipo, {contenido}",
+        "asistente_1": "Sobre el asistente 1, {contenido}",
+        "asistente_2": "Sobre el asistente 2, {contenido}",
+        "cuarto_arbitro": "Sobre el cuarto árbitro, {contenido}",
+    }
+
+    resumen = {}
+    for apartado, frases in apartados_eventos.items():
+        if frases:
+            print(f"Resumen para {apartado}:")
+            print(" // ".join(frases))
+            resumen[apartado] = plantillas[apartado].format(contenido=" ".join(frases))
+
+    return resumen
+
 
 if __name__ == "__main__":
     generar_resumen_txt()
