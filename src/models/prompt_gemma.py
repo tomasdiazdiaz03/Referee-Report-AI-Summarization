@@ -3,9 +3,12 @@ from rule_phrase_system import generar_resumen_pdf, generar_resumen_txt
 
 MODELO = "gemma3:12b"
 
+# TODO Mencionar que debe comentar solo los aciertos y errores relevantes siguiendo lo marcado en el PDF ejemplo
 def generar_outputs(modelo, contenido):
     prompt = f"""
-    Eres un experto en arbitraje de fútbol. Dado el siguiente partido, genera un resumen profesional y conciso utilizando lenguaje natural. Si se te dan varios apartados, quiero que menciones únicamente los que sí tengan información. Si no hay información sobre un apartado, ignóralo. Si se te dan numerosos eventos, resume lo acontecido en el partido. Todo esto debe ocupar un párrafo extenso:
+    Eres un experto en arbitraje de fútbol. Dado el siguiente partido, genera un resumen profesional y conciso utilizando lenguaje natural.
+    Menciona todos los apartados relevantes sobre el árbitro. Si no dispones de información sobre alguno de los apartados, indica que el rendimiento en dicho apartado ha sido suficientemente bueno sin nada destacable.
+    Debes incluir un único párrafo extenso para todos los apartados relacionados con el árbitro, un nuevo párrafo dedicado para el asistente 1, otro para el asistente 2 y otro para el cuarto árbitro. Si uno de ellos no tiene información, menciona que no ha sucedido ningún evento relevante. Aquí tienes el contenido de los apartados:
 
     {contenido}
     """

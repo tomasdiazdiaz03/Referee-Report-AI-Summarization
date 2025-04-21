@@ -487,8 +487,8 @@ def generar_resumen_pdf():
             generar_frase_cuarto_arbitro(datos_pdf)
         ]
         inputs_finales[id] = "\n".join(frases)
-        print(f"Resumen generado para el informe con ID {id}:")
-        print(inputs_finales[id])
+        # print(f"Resumen generado para el informe con ID {id}:")
+        # print(inputs_finales[id])
         break
     return inputs_finales
 
@@ -635,8 +635,8 @@ def generar_resumen_txt():
     resumen = {}
     for apartado, frases in apartados_eventos.items():
         if frases:
-            print(f"Resumen para {apartado}:")
-            print(" // ".join(frases))
+            # print(f"Resumen para {apartado}:")
+            # print(" // ".join(frases))
             resumen[apartado] = plantillas[apartado].format(contenido=" ".join(frases))
 
     return resumen
