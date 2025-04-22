@@ -52,13 +52,16 @@ def extract_tablas_asistentes(asistente1, pdf_path):
                     for _, row in df.iterrows():
                         if row.iloc[0] in ["DECISIONES DE FUERA DE JUEGO SEÑALADOS:", 
                                       "DECISIONES RELEVANTES DE FUERA DE JUEGO NO SEÑALADOS:",
-                                      "INFRACCIONES INDICADAS", 
                                       "AYUDA AL ÁRBITRO EN ACCIONES DE ÁREA",
                                       "AYUDA AL ÁRBITRO EN ACCIONES DISCIPLINARIAS:",
                                       "RETRASAR LA BANDERA EN ACCIONES PRÓXIMAS A GOL (SOLO CON VAR):"]:
                             asistente["acciones"][row.iloc[0]] = {
-                                "Acierto": row.iloc[1],
-                                "Error": row.iloc[2]
+                                "Acierto": row.iloc[1] if row.iloc[1] != "" else "0",
+                                "Error": row.iloc[2] if row.iloc[2] != "" else "0"
+                            }
+                        elif row.iloc[0] == "INFRACCIONES INDICADAS":
+                            asistente["acciones"][row.iloc[0]] = {
+                                "Error": row.iloc[2] if row.iloc[2] != "" else "0"
                             }
 
                 # Si es la segunda tabla, extraer incidentes del área de penalti
@@ -114,8 +117,8 @@ def extract_penalty_incidences_from_pdf(pdf_path):
                     for _, row in df.iterrows():
                         if row.iloc[0] in ["PENALTIS SEÑALADOS:", "ACCIONES DE ÁREA SIGNIFICATIVAS NO SANCIONADAS COMO PENALTI:"]:
                             incidences["sanciones"][row.iloc[0]] = {
-                                "Acierto": row.iloc[1],
-                                "Error": row.iloc[2]
+                                "Acierto": row.iloc[1] if row.iloc[1] != "" else "0",
+                                "Error": row.iloc[2] if row.iloc[2] != "" else "0"
                             }
 
                     # Activar acumulación de tablas tras encontrar la tabla de "ACCIONES DE ÁREA SIGNIFICATIVAS"
@@ -183,12 +186,15 @@ def extract_discipline_incidences_from_pdf(pdf_path):
                     df = df.rename(columns=lambda x: x.strip() if isinstance(x, str) else x)
 
                     for _, row in df.iterrows():
-                        if row.iloc[0] in ["TARJETAS AMARILLAS MOSTRADAS:", "TARJETAS AMARILLAS NO MOSTRADAS:",
-                                           "2ª TARJETAS AMARILLAS MOSTRADAS:", "2ª TARJETAS AMARILLAS NO MOSTRADAS:",
+                        if row.iloc[0] in ["TARJETAS AMARILLAS MOSTRADAS:", "2ª TARJETAS AMARILLAS MOSTRADAS:", "2ª TARJETAS AMARILLAS NO MOSTRADAS:",
                                            "TARJETAS ROJAS DIRECTAS MOSTRADAS:", "TARJETAS ROJAS DIRECTAS NO MOSTRADAS:"]:
                             incidences["tarjetas"][row.iloc[0]] = {
-                                "Acierto": row.iloc[1],
-                                "Error": row.iloc[2]
+                                "Acierto": row.iloc[1] if row.iloc[1] != "" else "0",
+                                "Error": row.iloc[2] if row.iloc[2] != "" else "0"
+                            }
+                        elif row.iloc[0] == "TARJETAS AMARILLAS NO MOSTRADAS:":
+                            incidences["tarjetas"][row.iloc[0]] = {
+                                "Error": row.iloc[2] if row.iloc[2] != "" else "0"
                             }
 
                     # Activar acumulación de tablas tras encontrar la tabla de "TARJETAS AMARILLAS MOSTRADAS"

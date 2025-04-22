@@ -255,8 +255,11 @@ def procesar_tarjetas(tarjetas):
     amarillas_mostradas = tarjetas.get("TARJETAS AMARILLAS MOSTRADAS:", {})
     aciertos = amarillas_mostradas.get("Acierto", "")
     errores = amarillas_mostradas.get("Error", "")
-
-    if aciertos or errores:
+    if aciertos == "":
+        aciertos = 0
+    if errores == "":
+        errores = 0
+    if aciertos != 0 or errores != 0:
         resumen_tarjetas.append(
             f"En tarjetas amarillas mostradas: {aciertos} aciertos y {errores} errores."
         )
@@ -467,10 +470,11 @@ def generar_frase_completa_asistente(datos):
 def generar_resumen_pdf():
     with open("./data/dataset/dataset_clean.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
-    _, ids_solo_pdf_sections, _ = count_txts_pdfs_not_nulls()
+    _, ids_solo_pdf_sections, ids_ambos = count_txts_pdfs_not_nulls()
+    ids = sorted(set(ids_solo_pdf_sections).union(ids_ambos), key=int)
 
     inputs_finales = {}
-    for id in ids_solo_pdf_sections:
+    for id in ids:
         print(f"Generando resumen para el informe con ID {id}")
         datos_pdf = datos[id]['pdf_sections']
         frases = [
@@ -489,7 +493,7 @@ def generar_resumen_pdf():
         inputs_finales[id] = "\n".join(frases)
         # print(f"Resumen generado para el informe con ID {id}:")
         # print(inputs_finales[id])
-        break
+        # break
     return inputs_finales
 
 
@@ -595,7 +599,7 @@ def generar_resumen_txt():
 
     from rule_phrase_system import count_txts_pdfs_not_nulls
     ids_solo_txt_events, _, ids_ambos = count_txts_pdfs_not_nulls()
-    ids = sorted(set(ids_solo_txt_events).union(ids_ambos), key=int)
+    # ids = sorted(set(ids_solo_txt_events).union(ids_ambos), key=int)
 
     codigos_dict = cargar_codigos("./data/topics.json")
     apartados_eventos = {
@@ -610,34 +614,40 @@ def generar_resumen_txt():
         "cuarto_arbitro": []
     }
 
-    for id in ids:
+    plantillas = {
+        "condicion_fisica": "Sobre la condición física del árbitro, los eventos son:\n{contenido}",
+        "actuacion_tecnica": "Sobre la actuación técnica del árbitro, los eventos son:\n{contenido}",
+        "incidencias_penaltis": "Sobre las incidencias de penaltis, los eventos son:\n{contenido}",
+        "incidencias_disciplinarias": "Sobre las incidencias disciplinarias, los eventos son:\n{contenido}",
+        "manejo_partido": "Sobre el manejo del partido por parte del árbitro, los eventos son:\n{contenido}",
+        "trabajo_equipo": "Sobre el trabajo en equipo, los eventos son:\n{contenido}",
+        "asistente_1": "Sobre el asistente 1, los eventos son:\n{contenido}",
+        "asistente_2": "Sobre el asistente 2, los eventos son:\n{contenido}",
+        "cuarto_arbitro": "Sobre el cuarto árbitro, los eventos son:\n{contenido}",
+    }
+
+    resumen = {}
+    for id in ids_solo_txt_events:
+    # for id in ids:
         eventos = datos[id]["txt_events"]["events"]
         for evento in eventos:
             codigos = evento.get("codes", []) + evento.get("additional_codes", [])
             apartado = clasificar_evento_por_apartado(codigos)
             if apartado:
-                frase = evento_a_frase(evento, codigos_dict)
-                apartados_eventos[apartado].append(frase)
-        break  # Procesar solo el primero por ahora
+                apartados_eventos[apartado].append(evento_a_frase(evento, codigos_dict))
 
-    plantillas = {
-        "condicion_fisica": "Sobre la condición física del árbitro, {contenido}",
-        "actuacion_tecnica": "Sobre la actuación técnica del árbitro, {contenido}",
-        "incidencias_penaltis": "Sobre las incidencias de penaltis, {contenido}",
-        "incidencias_disciplinarias": "Sobre las incidencias disciplinarias, {contenido}",
-        "manejo_partido": "Sobre el manejo del partido por parte del árbitro, {contenido}",
-        "trabajo_equipo": "Sobre el trabajo en equipo, {contenido}",
-        "asistente_1": "Sobre el asistente 1, {contenido}",
-        "asistente_2": "Sobre el asistente 2, {contenido}",
-        "cuarto_arbitro": "Sobre el cuarto árbitro, {contenido}",
-    }
+        resumen_array = []
+        for apartado, eventos in apartados_eventos.items():
+            if eventos:
+                contenido = "\n".join(eventos)
+                frase = plantillas[apartado].format(contenido=contenido)
+                if id not in resumen:
+                    resumen[id] = []
+                resumen_array.append(frase)
 
-    resumen = {}
-    for apartado, frases in apartados_eventos.items():
-        if frases:
-            # print(f"Resumen para {apartado}:")
-            # print(" // ".join(frases))
-            resumen[apartado] = plantillas[apartado].format(contenido=" ".join(frases))
+        resumen[id] = "\n".join(resumen_array)
+        resumen_array.clear()  # Limpiar el resumen para el siguiente ID    
+        # break  # Procesar solo el primero
 
     return resumen
 
