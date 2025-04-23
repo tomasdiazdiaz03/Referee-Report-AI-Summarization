@@ -8,9 +8,9 @@ MODELO = "gemma3:12b"
 # TODO Mencionar que debe comentar solo los aciertos y errores relevantes siguiendo lo marcado en el PDF ejemplo
 def generar_outputs(modelo, contenido):
     prompt = f"""
-    Eres un experto en arbitraje de fútbol. Dado el siguiente partido, genera un resumen profesional y conciso utilizando lenguaje natural.
-    Menciona todos los apartados relevantes sobre el árbitro. Si no dispones de información sobre alguno de los apartados, indica que el rendimiento en dicho apartado ha sido suficientemente bueno sin nada destacable.
-    Si hay cero aciertos, no los menciones. Si hay cero errores, no los menciones. En caso contrario, menciona en qué apartado ha habido errores y en qué apartado ha habido aciertos.
+    Eres un experto en arbitraje de fútbol. Dado el siguiente partido, genera un resumen profesional y conciso utilizando únicamente lenguaje natural español.
+    Menciona todos los apartados relevantes sobre el árbitro, es decir: condición física, actuación técnica, incidencias de penaltis, incidencias disciplinarias, manejo del partido y trabajo en equipo. Si no dispones de información sobre alguno de los apartados, indica que el rendimiento en dicho apartado ha sido suficientemente bueno sin nada destacable.
+    Si hay cero aciertos, no menciones los aciertos. Si hay cero errores, no menciones los errores.
     Debes incluir un único párrafo extenso para todos los apartados relacionados con el árbitro, un nuevo párrafo dedicado para el asistente 1, otro párrafo dedicado para el asistente 2 y otro párrafo dedicado para el cuarto árbitro. Si uno de ellos no tiene información, menciona que no ha sucedido ningún evento relevante sobre su rendimiento.
     Es muy importante que no cuestiones nada por ti mismo. Si no se indica claramente que ha sido un error, no lo pongas en duda ni lo interpretes como tal.
     No menciones nada antes ni después del resumen, céntrate en dar únicamente los párrafos pedidos. Aquí tienes el contenido de los apartados:
