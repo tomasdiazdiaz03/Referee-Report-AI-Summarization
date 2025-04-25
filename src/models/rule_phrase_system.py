@@ -468,16 +468,16 @@ def generar_frase_completa_asistente(datos):
 
 
 def generar_resumen_pdf():
-    with open("./data/dataset/dataset_clean.json", "r", encoding="utf-8") as f:
+    with open("./data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
     _, ids_solo_pdf_sections, ids_ambos = count_txts_pdfs_not_nulls()
     ids = sorted(set(ids_solo_pdf_sections).union(ids_ambos), key=int)
 
     inputs_finales = {}
     for id in ids:
-        print(f"Generando resumen para el informe con ID {id}")
         datos_pdf = datos[id]['pdf_sections']
-        frases = [
+        
+        resumen_arbitro = "\n".join([
             generar_frase_condicion_fisica(datos_pdf),
             generar_frase_actuacion_tecnica(datos_pdf),
             generar_resumen_incidencias_penaltis(datos_pdf),
@@ -485,15 +485,20 @@ def generar_resumen_pdf():
             generar_resumen_incidencias_disciplinarias(datos_pdf),
             generar_frase_manejo_partido(datos_pdf),
             generar_frase_personalidad(datos_pdf),
-            generar_frase_trabajo_equipo(datos_pdf),
-            generar_frase_completa_asistente(datos_pdf)[0], # Asistente 1
-            generar_frase_completa_asistente(datos_pdf)[1], # Asistente 2
-            generar_frase_cuarto_arbitro(datos_pdf)
-        ]
-        inputs_finales[id] = "\n".join(frases)
-        # print(f"Resumen generado para el informe con ID {id}:")
-        # print(inputs_finales[id])
-        # break
+            generar_frase_trabajo_equipo(datos_pdf)
+        ])
+        asistente_1 = generar_frase_completa_asistente(datos_pdf)[0]
+        asistente_2 = generar_frase_completa_asistente(datos_pdf)[1]
+        cuarto_arbitro = generar_frase_cuarto_arbitro(datos_pdf)
+
+        inputs_finales[id] = {
+            "arbitro": resumen_arbitro,
+            "asistente_1": asistente_1,
+            "asistente_2": asistente_2,
+            "cuarto_arbitro": cuarto_arbitro
+        }
+        break # Procesar solo el primero
+
     return inputs_finales
 
 
@@ -582,7 +587,7 @@ def evento_a_frase(evento, codigos_dict):
         elif code in ["AR", "ÁRBITRO", "ARBITRO"]:
             topicos.append("Árbitro principal")
         elif code.startswith("N") and code[1:] in codigos_dict:
-            topicos.append(f"{codigos_dict[code[1:]]} - Negación")
+            topicos.append(f"No hay {codigos_dict[code[1:]]}")
         elif code in codigos_dict:
             topicos.append(codigos_dict[code])
         else:
@@ -594,12 +599,11 @@ def evento_a_frase(evento, codigos_dict):
 
 
 def generar_resumen_txt():
-    with open("./data/dataset/dataset_clean.json", "r", encoding="utf-8") as f:
+    with open("./data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
 
     from rule_phrase_system import count_txts_pdfs_not_nulls
-    ids_solo_txt_events, _, ids_ambos = count_txts_pdfs_not_nulls()
-    # ids = sorted(set(ids_solo_txt_events).union(ids_ambos), key=int)
+    ids_solo_txt_events, _, _ = count_txts_pdfs_not_nulls()
 
     codigos_dict = cargar_codigos("./data/topics.json")
     apartados_eventos = {
@@ -628,7 +632,8 @@ def generar_resumen_txt():
 
     resumen = {}
     for id in ids_solo_txt_events:
-    # for id in ids:
+        apartados_eventos = {k: [] for k in plantillas.keys()}
+
         eventos = datos[id]["txt_events"]["events"]
         for evento in eventos:
             codigos = evento.get("codes", []) + evento.get("additional_codes", [])
@@ -636,21 +641,26 @@ def generar_resumen_txt():
             if apartado:
                 apartados_eventos[apartado].append(evento_a_frase(evento, codigos_dict))
 
-        resumen_array = []
-        for apartado, eventos in apartados_eventos.items():
-            if eventos:
-                contenido = "\n".join(eventos)
-                frase = plantillas[apartado].format(contenido=contenido)
-                if id not in resumen:
-                    resumen[id] = []
-                resumen_array.append(frase)
+        resumen_arbitro = "\n".join([
+            plantillas[a].format(contenido="\n".join(apartados_eventos[a]))
+            for a in ["condicion_fisica", "actuacion_tecnica", "incidencias_penaltis", "incidencias_disciplinarias", "manejo_partido", "trabajo_equipo"]
+            if apartados_eventos[a]
+        ])
+        asistente_1 = plantillas["asistente_1"].format(contenido="\n".join(apartados_eventos["asistente_1"])) if apartados_eventos["asistente_1"] else "No hay datos del asistente 1."
+        asistente_2 = plantillas["asistente_2"].format(contenido="\n".join(apartados_eventos["asistente_2"])) if apartados_eventos["asistente_2"] else "No hay datos del asistente 2."
+        cuarto_arbitro = plantillas["cuarto_arbitro"].format(contenido="\n".join(apartados_eventos["cuarto_arbitro"])) if apartados_eventos["cuarto_arbitro"] else "No hay datos del cuarto árbitro."
 
-        resumen[id] = "\n".join(resumen_array)
-        resumen_array.clear()  # Limpiar el resumen para el siguiente ID    
-        # break  # Procesar solo el primero
+        resumen[id] = {
+            "arbitro": resumen_arbitro,
+            "asistente_1": asistente_1,
+            "asistente_2": asistente_2,
+            "cuarto_arbitro": cuarto_arbitro
+        }   
+        break  # Procesar solo el primero
 
     return resumen
 
 
 if __name__ == "__main__":
+    generar_resumen_pdf()
     generar_resumen_txt()

@@ -38,3 +38,7 @@ X - En el prompt de Gemma, separar por items (filas) los incidentes disciplinari
 
 Una opción de este último punto es diferenciar qué modelo obtiene mejores métricas automáticas de rendimiento, corroborando con mi opinión. Una vez hecho esto, podemos valorar el introducir un sistema en el que un modelo genera 2/3/4 respuestas y debo valorar cuál
 es la mejor y ver si coincide con las métricas automáticas.
+
+Algunos resúmenes salen en inglés aunque especifique que use español, otros no salen con la estructura pedida.
+
+Para mejorar el prompt del modelo y que se generen los resúmenes correctamente, se pueden dividir los datos por secciones del árbitro, asistentes y cuarto árbitro, que se genere una salida por cada uno y juntarlas posteriormente.
