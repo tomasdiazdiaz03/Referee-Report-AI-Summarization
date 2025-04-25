@@ -476,8 +476,10 @@ def generar_resumen_pdf():
     inputs_finales = {}
     for id in ids:
         datos_pdf = datos[id]['pdf_sections']
-        
-        resumen_arbitro = "\n".join([
+        equipos = datos[id].get("match_info", "")
+        equipos_texto = f"Partido entre {equipos.replace('_', ' y ')}\n"
+
+        resumen_arbitro = equipos_texto + "\n".join([
             generar_frase_condicion_fisica(datos_pdf),
             generar_frase_actuacion_tecnica(datos_pdf),
             generar_resumen_incidencias_penaltis(datos_pdf),
@@ -497,7 +499,7 @@ def generar_resumen_pdf():
             "asistente_2": asistente_2,
             "cuarto_arbitro": cuarto_arbitro
         }
-        break # Procesar solo el primero
+        # break # Procesar solo el primero
 
     return inputs_finales
 
@@ -634,6 +636,9 @@ def generar_resumen_txt():
     for id in ids_solo_txt_events:
         apartados_eventos = {k: [] for k in plantillas.keys()}
 
+        equipos = datos[id].get("match_info", "")
+        equipos_texto = f"Partido entre {equipos.replace('_', ' y ')}\n"
+
         eventos = datos[id]["txt_events"]["events"]
         for evento in eventos:
             codigos = evento.get("codes", []) + evento.get("additional_codes", [])
@@ -641,14 +646,14 @@ def generar_resumen_txt():
             if apartado:
                 apartados_eventos[apartado].append(evento_a_frase(evento, codigos_dict))
 
-        resumen_arbitro = "\n".join([
+        resumen_arbitro = equipos_texto + "\n".join([
             plantillas[a].format(contenido="\n".join(apartados_eventos[a]))
             for a in ["condicion_fisica", "actuacion_tecnica", "incidencias_penaltis", "incidencias_disciplinarias", "manejo_partido", "trabajo_equipo"]
             if apartados_eventos[a]
         ])
-        asistente_1 = plantillas["asistente_1"].format(contenido="\n".join(apartados_eventos["asistente_1"])) if apartados_eventos["asistente_1"] else "No hay datos del asistente 1."
-        asistente_2 = plantillas["asistente_2"].format(contenido="\n".join(apartados_eventos["asistente_2"])) if apartados_eventos["asistente_2"] else "No hay datos del asistente 2."
-        cuarto_arbitro = plantillas["cuarto_arbitro"].format(contenido="\n".join(apartados_eventos["cuarto_arbitro"])) if apartados_eventos["cuarto_arbitro"] else "No hay datos del cuarto árbitro."
+        asistente_1 = equipos_texto + plantillas["asistente_1"].format(contenido="\n".join(apartados_eventos["asistente_1"])) if apartados_eventos["asistente_1"] else "No hay datos del asistente 1."
+        asistente_2 = equipos_texto + plantillas["asistente_2"].format(contenido="\n".join(apartados_eventos["asistente_2"])) if apartados_eventos["asistente_2"] else "No hay datos del asistente 2."
+        cuarto_arbitro = equipos_texto + plantillas["cuarto_arbitro"].format(contenido="\n".join(apartados_eventos["cuarto_arbitro"])) if apartados_eventos["cuarto_arbitro"] else "No hay datos del cuarto árbitro."
 
         resumen[id] = {
             "arbitro": resumen_arbitro,
@@ -656,7 +661,7 @@ def generar_resumen_txt():
             "asistente_2": asistente_2,
             "cuarto_arbitro": cuarto_arbitro
         }   
-        break  # Procesar solo el primero
+        # break  # Procesar solo el primero
 
     return resumen
 
