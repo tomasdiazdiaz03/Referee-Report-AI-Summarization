@@ -33,7 +33,7 @@ def count_txts_pdfs_not_nulls():
     Contar los IDs de los informes que tienen solo texto, solo PDF o ambos y devolver una lista con cada tipo
     """
     # Cargar el dataset desde el archivo JSON
-    with open('./data/dataset/dataset_clean.json', 'r', encoding='utf-8') as file:
+    with open('./data/dataset/dataset_updated.json', 'r', encoding='utf-8') as file:
         dataset = json.load(file)
 
     # Inicializar listas para almacenar los IDs según las condiciones
@@ -468,6 +468,7 @@ def generar_frase_completa_asistente(datos):
 
 
 def generar_resumen_pdf():
+    # with open("../data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
     with open("./data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
     _, ids_solo_pdf_sections, ids_ambos = count_txts_pdfs_not_nulls()
@@ -604,7 +605,6 @@ def generar_resumen_txt():
     with open("./data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
 
-    from rule_phrase_system import count_txts_pdfs_not_nulls
     ids_solo_txt_events, _, _ = count_txts_pdfs_not_nulls()
 
     codigos_dict = cargar_codigos("./data/topics.json")

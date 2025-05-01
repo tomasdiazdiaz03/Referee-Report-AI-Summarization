@@ -42,3 +42,5 @@ es la mejor y ver si coincide con las métricas automáticas.
 Algunos resúmenes salen en inglés aunque especifique que use español, otros no salen con la estructura pedida.
 
 Para mejorar el prompt del modelo y que se generen los resúmenes correctamente, se pueden dividir los datos por secciones del árbitro, asistentes y cuarto árbitro, que se genere una salida por cada uno y juntarlas posteriormente. Es mucho más lento dar un solo resumen con todos los apartados que dividir los inputs por secciones.
+
+En métricas automáticas ganan los dos modelos Gemma con ligerísima ventaja para la versión ligera, mientras que en la comprobación manual, la versión pesada (12b) es claramente mejor.

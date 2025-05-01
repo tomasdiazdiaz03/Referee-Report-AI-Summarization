@@ -5,7 +5,9 @@ from rule_phrase_system import generar_resumen_pdf
 
 # Lista de modelos a probar en Ollama
 # MODELOS = ["mistral", "gemma3:4b", "llama3.1:8b", "deepseek-r1:7b"] # Primera prueba
-MODELOS = ["mistral", "gemma3:4b", "gemma3:12b"] # Segunda prueba
+# MODELOS = ["mistral", "gemma3:4b", "gemma3:12b"] # Segunda prueba
+MODELOS = ["gemma3:4b", "gemma3:12b"] # Prueba solo con Gemma
+
 
 # Diccionario para almacenar los resultados
 resultados = {}
@@ -53,15 +55,15 @@ for i, partido in enumerate(partidos, start=1):
         print(opcion)
 
     # Pedir al usuario que seleccione la mejor opción
-    eleccion = int(input("\nElige la mejor respuesta (1, 2 o 3): ")) - 1
+    eleccion = int(input("\nElige la mejor respuesta (1 o 2): ")) - 1
 
     # Guardar la respuesta elegida y el modelo correspondiente
     modelo_elegido = [m for m, r in respuestas.items() if r == opciones[eleccion]][0]
     resultados[partido] = (opciones[eleccion], modelo_elegido)
 
 # Mostrar resultados finales
-print("\n📊 **Resultados Finales**")
+print("\n**Resultados Finales**")
 for partido, (respuesta, modelo) in resultados.items():
     print(f"\n{partido}")
-    print(f"✅ Respuesta elegida: {respuesta[:100]}...")  # Solo los primeros 100 caracteres
-    print(f"📌 Generada por: {modelo}")
+    print(f"Respuesta elegida: {respuesta[:100]}...")  # Solo los primeros 100 caracteres
+    print(f"Generada por: {modelo}")
