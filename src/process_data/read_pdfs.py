@@ -138,8 +138,12 @@ def extract_penalty_incidences_from_pdf(pdf_path):
                         df.columns = df.iloc[0]  # Usar la primera fila como encabezado si hay tablas continuas
                         df = df[1:]  # Eliminar encabezado viejo
 
-                    # Agregar filas de la tabla a la lista acumuladora
-                    all_incidentes_rows.extend(df.values.tolist())
+                    # Aquí viene la comprobación de estructura:
+                    for row in df.values.tolist():
+                        if len(row) != 5:
+                            accumulating = False  # Detener acumulación
+                            break
+                        all_incidentes_rows.append(row)
 
     # Crear DataFrame final concatenado y eliminar filas con valores nulos
     if all_incidentes_rows:

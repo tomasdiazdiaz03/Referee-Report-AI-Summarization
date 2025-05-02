@@ -123,8 +123,7 @@ def eliminar_beneficio_duda(data):
         # Si es una lista, recorremos cada elemento
         for item in data:
             eliminar_beneficio_duda(item)
-
-print("Campos 'Beneficio/Duda' eliminados.")
+    print("Campos 'Beneficio/Duda' eliminados.")
 
 
 if __name__ == "__main__":
