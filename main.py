@@ -87,8 +87,9 @@ def procesar():
 def process_pdf(filepath):
     sections = extract_all_sections(filepath)
     match = {"pdf_sections": sections, "txt_events": None}
-    preprocess_match_data(match)
-    eliminar_beneficio_duda(match)
+    match = preprocess_match_data(match)
+    match = eliminar_beneficio_duda(match)
+    print(match)
     resumenes = generar_resumen_pdf(match)
     outputs = {rol: generar_outputs(MODELO, texto, PROMPTS[rol]) for rol, texto in resumenes.items()}
     return outputs
@@ -96,8 +97,8 @@ def process_pdf(filepath):
 def process_txt(filepath):
     events = extract_events_from_txt(filepath)
     match = {"pdf_sections": None, "txt_events": {"events": events}}
-    preprocess_match_data(match)
-    eliminar_beneficio_duda(match)
+    match = preprocess_match_data(match)
+    match = eliminar_beneficio_duda(match)
     resumenes = generar_resumen_txt(match)
     outputs = {rol: generar_outputs(MODELO, texto, PROMPTS[rol]) for rol, texto in resumenes.items()}
     return outputs

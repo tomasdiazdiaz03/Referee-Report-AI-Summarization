@@ -110,20 +110,30 @@ def preprocess_match_data(match):
 
 def eliminar_beneficio_duda(data):
     """
-    Recorre recursivamente un dataset JSON y elimina todos los campos "Beneficio/Duda".
+    Recorre recursivamente un dataset JSON y elimina cualquier objeto de lista
+    que tenga 'Opinion_evaluador' == 'Beneficio/Duda'.
     """
     if isinstance(data, dict):
-        # Si es un diccionario, eliminamos la clave "Beneficio/Duda" si existe
-        if "Beneficio/Duda" in data:
-            del data["Beneficio/Duda"]
-        # Recorremos los valores del diccionario
-        for key, value in data.items():
-            eliminar_beneficio_duda(value)
+        # Procesar recursivamente cada valor del diccionario
+        return {key: eliminar_beneficio_duda(value) for key, value in data.items()}
+
     elif isinstance(data, list):
-        # Si es una lista, recorremos cada elemento
+        # Filtrar elementos de la lista que no tengan Opinion_evaluador = Beneficio/Duda
+        nueva_lista = []
         for item in data:
-            eliminar_beneficio_duda(item)
-    print("Campos 'Beneficio/Duda' eliminados.")
+            # Si el elemento es dict y tiene Opinion_evaluador == Beneficio/Duda, lo saltamos
+            if isinstance(item, dict) and item.get('Opinion_evaluador') == 'Beneficio/Duda':
+                print(f"Eliminando: {item}")
+                continue
+            # Si no, procesamos recursivamente y lo añadimos
+            nueva_lista.append(eliminar_beneficio_duda(item))
+        return nueva_lista
+
+    else:
+        # Si es un valor simple, lo devolvemos tal cual
+        return data
+
+
 
 
 if __name__ == "__main__":
@@ -142,13 +152,17 @@ if __name__ == "__main__":
 
     # print("Preprocesamiento completado. Datos guardados en dataset_clean.json")
 
-    # Cargar el dataset JSON
-    with open("./data/dataset/dataset_clean.json", 'r', encoding='utf-8') as f:
-        dataset = json.load(f)
+    
+    
+    # # Cargar el dataset JSON
+    # with open("./data/dataset/dataset_clean.json", 'r', encoding='utf-8') as f:
+    #     dataset = json.load(f)
 
-    # Eliminar los campos "Beneficio/Duda"
-    eliminar_beneficio_duda(dataset)
+    # # Eliminar los campos "Beneficio/Duda"
+    # eliminar_beneficio_duda(dataset)
 
-    # Guardar el dataset modificado
-    with open("./data/dataset/dataset_updated.json", 'w', encoding='utf-8') as f:
-        json.dump(dataset, f, ensure_ascii=False, indent=4)
+    # # Guardar el dataset modificado
+    # with open("./data/dataset/dataset_updated.json", 'w', encoding='utf-8') as f:
+    #     json.dump(dataset, f, ensure_ascii=False, indent=4)
+
+    eliminar_beneficio_duda()
