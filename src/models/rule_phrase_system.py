@@ -467,7 +467,7 @@ def generar_frase_completa_asistente(datos):
 
 
 
-def generar_resumen_pdf():
+def generar_resumen_pdf_dataset():
     # with open("../data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
     with open("./data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
@@ -503,6 +503,29 @@ def generar_resumen_pdf():
         # break # Procesar solo el primero
 
     return inputs_finales
+
+
+def generar_resumen_pdf(match):
+    datos_pdf = match['pdf_sections']
+    resumen_arbitro = "\n".join([
+        generar_frase_condicion_fisica(datos_pdf),
+        generar_frase_actuacion_tecnica(datos_pdf),
+        generar_resumen_incidencias_penaltis(datos_pdf),
+        generar_frase_actuacion_disciplinaria(datos_pdf),
+        generar_resumen_incidencias_disciplinarias(datos_pdf),
+        generar_frase_manejo_partido(datos_pdf),
+        generar_frase_personalidad(datos_pdf),
+        generar_frase_trabajo_equipo(datos_pdf)
+    ])
+    asistente_1, asistente_2 = generar_frase_completa_asistente(datos_pdf)
+    cuarto_arbitro = generar_frase_cuarto_arbitro(datos_pdf)
+
+    return {
+        "arbitro": resumen_arbitro,
+        "asistente_1": asistente_1,
+        "asistente_2": asistente_2,
+        "cuarto_arbitro": cuarto_arbitro
+    }
 
 
 ##################################################
@@ -601,7 +624,7 @@ def evento_a_frase(evento, codigos_dict):
     return f"[{minuto}] {descripcion}. (Tópicos: {topicos_texto})"
 
 
-def generar_resumen_txt():
+def generar_resumen_txt_dataset():
     with open("./data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
 
@@ -666,6 +689,49 @@ def generar_resumen_txt():
     return resumen
 
 
+def generar_resumen_txt(match):
+    codigos_dict = cargar_codigos("./data/topics.json")
+    plantillas = {
+        "condicion_fisica": "Sobre la condición física del árbitro:\n{contenido}",
+        "actuacion_tecnica": "Sobre la actuación técnica del árbitro:\n{contenido}",
+        "incidencias_penaltis": "Sobre las incidencias de penaltis:\n{contenido}",
+        "incidencias_disciplinarias": "Sobre las incidencias disciplinarias:\n{contenido}",
+        "manejo_partido": "Sobre el manejo del partido:\n{contenido}",
+        "trabajo_equipo": "Sobre el trabajo en equipo:\n{contenido}",
+        "asistente_1": "Sobre el asistente 1:\n{contenido}",
+        "asistente_2": "Sobre el asistente 2:\n{contenido}",
+        "cuarto_arbitro": "Sobre el cuarto árbitro:\n{contenido}"
+    }
+
+    apartados_eventos = {k: [] for k in plantillas}
+    eventos = match["txt_events"]["events"]
+    for evento in eventos:
+        codigos = evento.get("codes", []) + evento.get("additional_codes", [])
+        apartado = clasificar_evento_por_apartado(codigos)
+        if apartado:
+            apartados_eventos[apartado].append(evento_a_frase(evento, codigos_dict))
+
+    resumen_arbitro = "\n".join([
+        plantillas[a].format(contenido="\n".join(apartados_eventos[a]))
+        for a in ["condicion_fisica", "actuacion_tecnica", "incidencias_penaltis",
+                  "incidencias_disciplinarias", "manejo_partido", "trabajo_equipo"]
+        if apartados_eventos[a]
+    ])
+    asistente_1 = plantillas["asistente_1"].format(contenido="\n".join(apartados_eventos["asistente_1"])) \
+        if apartados_eventos["asistente_1"] else "No hay datos del asistente 1."
+    asistente_2 = plantillas["asistente_2"].format(contenido="\n".join(apartados_eventos["asistente_2"])) \
+        if apartados_eventos["asistente_2"] else "No hay datos del asistente 2."
+    cuarto_arbitro = plantillas["cuarto_arbitro"].format(contenido="\n".join(apartados_eventos["cuarto_arbitro"])) \
+        if apartados_eventos["cuarto_arbitro"] else "No hay datos del cuarto árbitro."
+
+    return {
+        "arbitro": resumen_arbitro,
+        "asistente_1": asistente_1,
+        "asistente_2": asistente_2,
+        "cuarto_arbitro": cuarto_arbitro
+    }
+
+
 if __name__ == "__main__":
-    generar_resumen_pdf()
-    generar_resumen_txt()
+    generar_resumen_pdf_dataset()
+    generar_resumen_txt_dataset()

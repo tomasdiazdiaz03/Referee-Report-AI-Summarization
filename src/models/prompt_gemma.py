@@ -1,5 +1,5 @@
 import ollama
-from rule_phrase_system import generar_resumen_pdf, generar_resumen_txt
+from src.models.rule_phrase_system import generar_resumen_pdf_dataset, generar_resumen_txt_dataset
 import json
 from tqdm import tqdm
 from langdetect import detect
@@ -119,7 +119,7 @@ def main():
     resultados = []
 
     print("Generando resúmenes TXT...")
-    resumenes_txt = generar_resumen_txt()
+    resumenes_txt = generar_resumen_txt_dataset()
     for txt_id, secciones_txt in tqdm(resumenes_txt.items(), desc="Procesando TXT"):
         print(f"\nProcesando informe TXT ID {txt_id}...")
 
@@ -140,7 +140,7 @@ def main():
         resultados.append(resumen_txt)
 
     print("Generando resúmenes PDF...")
-    resumenes_pdf = generar_resumen_pdf()
+    resumenes_pdf = generar_resumen_pdf_dataset()
     for pdf_id, secciones_pdf in tqdm(resumenes_pdf.items(), desc="Procesando TXT"):
         print(f"\nProcesando informe PDF ID {pdf_id}...")
 

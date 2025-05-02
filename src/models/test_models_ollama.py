@@ -1,7 +1,7 @@
 import ollama
 import random
 from tqdm import tqdm
-from rule_phrase_system import generar_resumen_pdf
+from rule_phrase_system import generar_resumen_pdf_dataset
 
 # Lista de modelos a probar en Ollama
 # MODELOS = ["mistral", "gemma3:4b", "llama3.1:8b", "deepseek-r1:7b"] # Primera prueba
@@ -14,7 +14,7 @@ resultados = {}
 
 # Función para obtener los 15 primeros partidos (simulado)
 def cargar_partidos():
-    datos_partidos = generar_resumen_pdf()
+    datos_partidos = generar_resumen_pdf_dataset()
     ids = list(datos_partidos.keys())
     resumenes = list(datos_partidos.values())
     return [f"Partido {i+1} con id {ids[i]}: {resumenes[i]}" for i in range(5)]
