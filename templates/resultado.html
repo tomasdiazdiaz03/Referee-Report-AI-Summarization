@@ -36,6 +36,23 @@
         .volver:hover {
             background-color: #192a56;
         }
+        .reprocesar {
+            display: inline-block;
+            margin-top: 20px;
+            margin-left: 10px;
+            padding: 10px 15px;
+            background-color: #2a6d2c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .reprocesar:hover {
+            background-color: #122c13;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +78,18 @@
         <div>{{ resultado.cuarto_arbitro }}</div>
     </div>
 
-    <a class="volver" href="/">⬅ Volver</a>
+    <div class="button-container">
+        <a class="volver" href="/">⬅ Inicio</a>
+        <form action="/reprocess" method="post" style="display: inline;">
+            <button type="submit" class="reprocesar" id="reprocess-btn">↻ Volver a procesar</button>
+        </form>
+    </div>
 </body>
+<script>
+    document.querySelector('form').addEventListener('submit', function() {
+        var btn = document.getElementById('reprocess-btn');
+        btn.textContent = 'Procesando...';
+        btn.disabled = true;
+    });
+    </script> 
 </html>
