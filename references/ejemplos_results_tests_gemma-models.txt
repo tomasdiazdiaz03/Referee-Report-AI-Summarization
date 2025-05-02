@@ -17,7 +17,7 @@ El encuentro entre Ibiza y Málaga fue dirigido por un árbitro que demostró un
 En cuanto a las decisiones de fuera de juego, tanto el asistente 1 como el asistente 2 mostraron un alto grado de acierto en sus valoraciones, demostrando una correcta labor en la identificación de situaciones de "offside" (2 aciertos y 0 errores para el asistente 1 y 3 aciertos y 0 errores para el asistente 2), corroboradas por las evaluaciones del evaluador en todas las decisiones analizadas. La estructura del partido transcurrió sin mayores incidencias relevantes más allá de la mencionada equivocación del cuarto árbitro en la comunicación de un cambio.
 
 
-Elige la mejor respuesta (1, 2 o 3): 2
+Elige la mejor respuesta (1 o 2): 2
 
 **Partido 2**
 Generando respuestas: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:37<00:00, 18.76s/modelo] 
@@ -33,7 +33,7 @@ El equipo arbitral dirigió el encuentro entre Ibiza y Ponferradina demostrando 
 En cuanto a los asistentes, el primero acertó en todas sus decisiones sobre fuera de juego, mientras que el segundo tuvo un error en una de sus decisiones en el minuto 49:42. El trabajo del segundo asistente generó la única discrepancia relevante en la evaluación general del equipo arbitral.
 
 
-Elige la mejor respuesta (1, 2 o 3): 2
+Elige la mejor respuesta (1 o 2): 2
 
 **Partido 3**
 Generando respuestas: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:43<00:00, 21.68s/modelo] 
@@ -55,7 +55,7 @@ En cuanto a las decisiones sobre posibles penaltis, no se señaló ninguna infra
 La personalidad del árbitro se caracterizó por una interacción adecuada con los jugadores, transmitiendo seguridad y credibilidad, demostrando una buena autoridad cuando fue necesario.  La información disponible no proporciona detalles sobre el trabajo en equipo.
 
 
-Elige la mejor respuesta (1, 2 o 3): 2
+Elige la mejor respuesta (1 o 2): 2
 
 **Partido 4**
 Generando respuestas: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:40<00:00, 20.22s/modelo] 
@@ -72,7 +72,7 @@ El partido entre Levante y Sevilla fue dirigido por el árbitro principal, quien
 7 minutos de prolongación para compensar una asistencia médica de 3:30, 5 sustituciones y un gol. La actuación arbitral en la toma de decisiones de penalti fue precisa, sin errores evidentes en las 3 acciones analizadas. En cuanto a la disciplina, si bien no se dispone de información sobre las tarjetas, el árbitro mostró 1 tarjeta amarilla acertada y hubo 4 amarillas no mostradas.  La gestión de las asistencias médicas se completó con la gestión correcta de las funciones administrativas por parte del cuarto árbitro, y una correcta integración en el cuarteto arbitral. Finalmente, la labor de los asistentes en las decisiones de fuera de juego fue consistentemente acertada, demostrando una coordinación efectiva dentro del equipo arbitral.
 
 
-Elige la mejor respuesta (1, 2 o 3): 2
+Elige la mejor respuesta (1 o 2): 2
 
 **Partido 5**
 Generando respuestas: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:39<00:00, 19.92s/modelo] 
@@ -88,7 +88,7 @@ forma eficiente, siguiendo la estructura de eventos “Minuto – Breve descripc
 El partido entre Valencia y Villarreal fue dirigido por un árbitro que demostró una óptima condición física y técnica, con un enfoque táctico eficiente y cercanía al juego. Gestionó el tiempo añadido con criterio, sumando 2 minutos en la primera mitad y 8 en la segunda. La actuación en cuanto a penaltis fue acertada, sin errores en la señalización, y demostró buen juicio en las decisiones de "no penalto" en los minutos 45:06 y 53:18, así como al señalar un penalto en el minuto 74:44. En cuanto a la disciplina, mostró 6 amarillas acertadas y una errónea, sin expulsiones. Se registró un incidente menor en el minuto 80:06 con el jugador valencianista y el entrenador del Villarreal, que fue resuelto de manera ejemplar sin necesidad de sanciones. El asistente 1 también mantuvo una actuación acertada en las decisiones de fuera de juego. Por su parte, el asistente 2 también mantuvo una actuación acertada en las decisiones de fuera de juego. No se dispone de información sobre la actuación del cuarto árbitro. En general, el encuentro se desarrolló bajo un correcto control arbitral.
 
 
-Elige la mejor respuesta (1, 2 o 3): 2
+Elige la mejor respuesta (1 o 2): 2
 
 **Resultados Finales**
 
