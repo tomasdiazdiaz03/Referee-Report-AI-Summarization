@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, jsonify
 import os
 import uuid
 
@@ -55,41 +55,32 @@ Aquí tienes el contenido de los apartados:
 
 @app.route('/')
 def index():
-    return '''
-    <h2>Sube un archivo PDF o TXT</h2>
-    <form method="post" action="/process" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <input type="submit" value="Enviar">
-    </form>
-    '''
+    return render_template('index.html')
 
-@app.route('/process', methods=['POST'])
-def procesar():
+@app.route('/upload', methods=['POST'])
+def upload_file():
     file = request.files['file']
     if not file:
-        return "No se proporcionó ningún archivo", 400
-
+        return redirect(url_for('index'))
+    
     file_id = str(uuid.uuid4())
     filename = os.path.join(app.config['UPLOAD_FOLDER'], f"{file_id}_{file.filename}")
     file.save(filename)
 
     if file.filename.lower().endswith('.pdf'):
-        resultado = process_pdf(filename)
+        result = process_pdf(filename)
     elif file.filename.lower().endswith('.txt'):
-        resultado = process_txt(filename)
+        result = process_txt(filename)
     else:
-        return "Formato de archivo no soportado (usa PDF o TXT).", 400
+        return redirect(url_for('index'))
 
-    os.remove(filename)  # Limpieza del archivo subido
-
-    return render_template('resultado.html', resultado=resultado)
+    return render_template('resultado.html', resultado=result)
 
 def process_pdf(filepath):
     sections = extract_all_sections(filepath)
     match = {"pdf_sections": sections, "txt_events": None}
-    match = preprocess_match_data(match)
-    match = eliminar_beneficio_duda(match)
-    print(match)
+    preprocess_match_data(match)
+    eliminar_beneficio_duda(match)
     resumenes = generar_resumen_pdf(match)
     outputs = {rol: generar_outputs(MODELO, texto, PROMPTS[rol]) for rol, texto in resumenes.items()}
     return outputs
@@ -97,8 +88,8 @@ def process_pdf(filepath):
 def process_txt(filepath):
     events = extract_events_from_txt(filepath)
     match = {"pdf_sections": None, "txt_events": {"events": events}}
-    match = preprocess_match_data(match)
-    match = eliminar_beneficio_duda(match)
+    preprocess_match_data(match)
+    eliminar_beneficio_duda(match)
     resumenes = generar_resumen_txt(match)
     outputs = {rol: generar_outputs(MODELO, texto, PROMPTS[rol]) for rol, texto in resumenes.items()}
     return outputs
