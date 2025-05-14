@@ -1,7 +1,8 @@
+import os
 import json
 import pandas as pd
 from read_txts import extract_events_from_multiple_txts
-from read_pdfs import extract_sections_from_multiple_pdfs
+from read_pdfs import extract_sections_from_multiple_pdfs, extract_sections_from_multiple_pdfs_extra_dataset
 
 pdf_paths = {
     "Albacete_VillarrealB": "data/reports/Albacete Balompié SAD - Villarreal CF “B” SAD.pdf",
@@ -156,6 +157,31 @@ txt_files = {
     "Alcorcon_Burgos": "data/events/INF-S-23-24-J42-ALC-BUR.txt"
 }
 
+
+def obtener_rutas_pdfs(directorio):
+    """
+    Lee todos los archivos PDF de un directorio y guarda sus rutas en un diccionario.
+    La clave será un valor numérico consecutivo y el valor será la ruta del archivo.
+
+    Parámetros:
+    - directorio (str): Ruta del directorio donde buscar los archivos PDF.
+
+    Retorna:
+    - dict: Diccionario con claves numéricas y rutas de los archivos PDF como valores.
+    """
+    pdf_dict = {}
+    contador = 0
+
+    # Recorrer todos los archivos en el directorio
+    for archivo in os.listdir(directorio):
+        if archivo.endswith(".pdf"):  # Filtrar solo archivos PDF
+            ruta_completa = os.path.join(directorio, archivo)
+            pdf_dict[contador] = ruta_completa
+            contador += 1
+
+    return pdf_dict
+
+
 def unify_sets(pdf_paths, txt_files):
     matches_dict = {}
     id = 0
@@ -185,24 +211,52 @@ if __name__ == "__main__":
     #     json.dump(matches_dict, output, indent=4, ensure_ascii=False)
 
 
-    with open("data/dataset/info_matches.json", "r", encoding="utf-8") as f:
+    # with open("data/dataset/info_matches.json", "r", encoding="utf-8") as f:
+    #     matches_dict = json.load(f)
+    
+    # all_sections = extract_sections_from_multiple_pdfs(matches_dict)
+    # all_events = extract_events_from_multiple_txts(matches_dict)
+    
+    # dataset = {}
+    # for id, match_data in matches_dict.items():
+    #     pdf_sections = all_sections[id] if id in all_sections else None
+    #     txt_events = all_events[id] if id in all_events else None
+    #     dataset[id] = {
+    #         "match_info": match_data.get("match"), 
+    #         "pdf_sections": pdf_sections, 
+    #         "txt_events": txt_events
+    #     }
+        
+    
+    # # Save the new dataset as JSON
+    # with open("data/dataset/full_dataset.json", "w", encoding="utf-8") as output:
+    #     json.dump(dataset, output, indent=4, ensure_ascii=False)
+    # print("Nuevo dataset creado y guardado en data/dataset/full_dataset.json")
+
+
+    # directorio_pdfs = "./data/dataset/new/container ARB/"
+    # rutas_pdfs = obtener_rutas_pdfs(directorio_pdfs)
+
+    # # Guardar el resultado en un archivo JSON
+    # import json
+    # with open("data/dataset/new/info_pdfs.json", "w", encoding="utf-8") as output:
+    #     json.dump(rutas_pdfs, output, indent=4, ensure_ascii=False)
+
+    # print("Rutas de PDFs guardadas en data/dataset/info_pdfs.json")
+
+    with open("data/dataset/new/info_pdfs.json", "r", encoding="utf-8") as f:
         matches_dict = json.load(f)
     
-    all_sections = extract_sections_from_multiple_pdfs(matches_dict)
-    all_events = extract_events_from_multiple_txts(matches_dict)
-    
+    all_sections = extract_sections_from_multiple_pdfs_extra_dataset(matches_dict)
     dataset = {}
     for id, match_data in matches_dict.items():
         pdf_sections = all_sections[id] if id in all_sections else None
-        txt_events = all_events[id] if id in all_events else None
         dataset[id] = {
-            "match_info": match_data.get("match"), 
-            "pdf_sections": pdf_sections, 
-            "txt_events": txt_events
+            "match_info": match_data, 
+            "pdf_sections": pdf_sections
         }
-        
-    
+         
     # Save the new dataset as JSON
-    with open("data/dataset/full_dataset.json", "w", encoding="utf-8") as output:
+    with open("data/dataset/new/dataset_extra.json", "w", encoding="utf-8") as output:
         json.dump(dataset, output, indent=4, ensure_ascii=False)
-    print("Nuevo dataset creado y guardado en data/dataset/full_dataset.json")
+    print("Nuevo dataset creado y guardado en data/dataset/new/dataset_extra.json")

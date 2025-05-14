@@ -302,6 +302,52 @@ def extract_sections_from_multiple_pdfs(matches):
     return all_sections
 
 
+### Funciones para dataset extendido
+def extract_all_sections_extra_dataset(pdf_path):
+    """
+    Extrae todas las secciones de un informe dado en formato PDF.
+    """
+    sections = {
+        "condicion_fisica": extract_text_between_markers(pdf_path, 
+            r"COMENTARIOS ADICIONALES A LA CONDICIÓN FÍSICA Y POSICIONAMIENTO \(Si fuera necesario\):", 
+            r"2 - ACTUACIÓN TÉCNICA"),
+        "actuacion_tecnica": extract_text_between_markers(pdf_path, 
+            r"COMENTARIOS ADICIONALES A LA ACTUACIÓN TÉCNICA \(Si fuera necesario\):", 
+            r"3 - ACTUACIÓN DISCIPLINARIA"),
+        "incidencias_penaltis": extract_penalty_incidences_from_pdf(pdf_path),
+        "actuacion_disciplinaria": extract_text_between_markers(pdf_path, 
+            r"COMENTARIOS ADICIONALES A LA ACTUACIÓN DISCIPLINARIA \(Si fuera necesario\):", 
+            r"4 - MANEJO DEL PARTIDO"),
+        "incidencias_disciplinarias": extract_discipline_incidences_from_pdf(pdf_path),
+        "manejo_partido": extract_text_between_markers(pdf_path, 
+            r"ACCIONES RESEÑABLES DEL ÁREA DE MANEJO DE PARTIDO", 
+            r"5 - PERSONALIDAD"),
+        "personalidad": extract_text_between_markers(pdf_path, 
+            r"COMENTARIOS ADICIONALES A LA PERSONALIDAD \(Si fuera necesario\):", 
+            r"6 - TRABAJO EN EQUIPO"),
+        "trabajo_equipo": extract_text_between_markers(pdf_path, 
+            r"COMENTARIOS ADICIONALES SOBRE EL TRABAJO EN EQUIPO \(Si fuera necesario\):", 
+            r"Árbitro asistente 1: .*"),
+        "resumen_final": extract_text_between_markers(pdf_path, 
+            r"Resumen final", 
+            r"OTRAS INCIDENCIAS RESEÑABLES NO INCLUIDAS ANTERIORMENTE:")
+    }
+    return sections
+
+def extract_sections_from_multiple_pdfs_extra_dataset(matches):
+    """
+    Extrae las secciones de todos los informes PDF de una lista de partidos, en caso de que exista la ruta.
+    """
+    all_sections = {}
+    for id, pdf_path in tqdm(matches.items(), desc="Procesando informes PDF"):
+        try:
+            sections = extract_all_sections_extra_dataset(pdf_path)
+            all_sections[id] = sections
+        except Exception as e:
+            print(f"Error procesando {pdf_path}: {e}")
+    return all_sections
+
+
 if __name__ == "__main__":
     pdf_path = "data/reports/Levante UD SAD - Rayo Vallecano de Madrid SAD.pdf"
     # pdf_path = "data/reports/UD Ibiza SAD - SD Ponferradina SAD.pdf"

@@ -4,3 +4,6 @@ process/
 src/__pycache__/
 src/models/__pycache__/
 src/process_data/__pycache__/
+data/dataset/new/
+documentation/
+

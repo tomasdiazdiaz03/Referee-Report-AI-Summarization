@@ -141,7 +141,7 @@ def main():
 
     print("Generando resúmenes PDF...")
     resumenes_pdf = generar_resumen_pdf_dataset()
-    for pdf_id, secciones_pdf in tqdm(resumenes_pdf.items(), desc="Procesando TXT"):
+    for pdf_id, secciones_pdf in tqdm(resumenes_pdf.items(), desc="Procesando PDF"):
         print(f"\nProcesando informe PDF ID {pdf_id}...")
 
         resumen_pdf = {

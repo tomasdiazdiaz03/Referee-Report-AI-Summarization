@@ -28,12 +28,12 @@ plantilla_frase_cuarto_arbitro = "Sobre el cuarto árbitro, {cuarto_arbitro}"
 # Funciones de procesamiento de datos del dataset #
 ###################################################
 
-def count_txts_pdfs_not_nulls():
+def count_txts_pdfs_not_nulls(dataset_path="./data/dataset/dataset_updated.json"):
     """
     Contar los IDs de los informes que tienen solo texto, solo PDF o ambos y devolver una lista con cada tipo
     """
     # Cargar el dataset desde el archivo JSON
-    with open('./data/dataset/dataset_updated.json', 'r', encoding='utf-8') as file:
+    with open(dataset_path, 'r', encoding='utf-8') as file:
         dataset = json.load(file)
 
     # Inicializar listas para almacenar los IDs según las condiciones
@@ -467,11 +467,12 @@ def generar_frase_completa_asistente(datos):
 
 
 
-def generar_resumen_pdf_dataset():
+def generar_resumen_pdf_dataset(dataset_path):
+    with open(dataset_path, "r", encoding="utf-8") as f:
     # with open("../data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
-    with open("./data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
+    # with open("./data/dataset/dataset_updated.json", "r", encoding="utf-8") as f:
         datos = json.load(f)
-    _, ids_solo_pdf_sections, ids_ambos = count_txts_pdfs_not_nulls()
+    _, ids_solo_pdf_sections, ids_ambos = count_txts_pdfs_not_nulls(dataset_path)
     ids = sorted(set(ids_solo_pdf_sections).union(ids_ambos), key=int)
 
     inputs_finales = {}
@@ -525,6 +526,24 @@ def generar_resumen_pdf(match):
         "asistente_1": asistente_1,
         "asistente_2": asistente_2,
         "cuarto_arbitro": cuarto_arbitro
+    }
+
+
+def generar_resumen_pdf_dataset_extra(match):
+    datos_pdf = match['pdf_sections']
+    resumen_arbitro = "\n".join([
+        generar_frase_condicion_fisica(datos_pdf),
+        generar_frase_actuacion_tecnica(datos_pdf),
+        generar_resumen_incidencias_penaltis(datos_pdf),
+        generar_frase_actuacion_disciplinaria(datos_pdf),
+        generar_resumen_incidencias_disciplinarias(datos_pdf),
+        generar_frase_manejo_partido(datos_pdf),
+        generar_frase_personalidad(datos_pdf),
+        generar_frase_trabajo_equipo(datos_pdf)
+    ])
+
+    return {
+        "arbitro": resumen_arbitro
     }
 
 

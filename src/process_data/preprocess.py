@@ -108,6 +108,19 @@ def preprocess_match_data(match):
     return match
 
 
+## Versión de preprocesamiento actualizada para el nuevo dataset
+def preprocess_match_data_new(match):
+    """Aplica limpieza a todos los textos de un partido."""
+    if match["pdf_sections"] is not None:
+        for section in match["pdf_sections"]:
+            if isinstance(match["pdf_sections"][section], dict):  
+                for key in match["pdf_sections"][section]:  
+                    match["pdf_sections"][section][key] = normalize_text(match["pdf_sections"][section][key])
+            else:
+                match["pdf_sections"][section] = normalize_text(match["pdf_sections"][section])
+    return match
+
+
 def eliminar_beneficio_duda(data):
     """
     Recorre recursivamente un dataset JSON y elimina cualquier objeto de lista
@@ -165,4 +178,16 @@ if __name__ == "__main__":
     # with open("./data/dataset/dataset_updated.json", 'w', encoding='utf-8') as f:
     #     json.dump(dataset, f, ensure_ascii=False, indent=4)
 
-    eliminar_beneficio_duda()
+
+    # Cargar el dataset JSON
+    with open("./data/dataset/new/dataset_extra.json", 'r', encoding='utf-8') as f:
+        dataset = json.load(f)
+    processed_dataset = {}
+    for key, match in dataset.items():
+        processed_dataset[key] = preprocess_match_data_new(match)
+    
+    final_dataset = eliminar_beneficio_duda(processed_dataset)
+
+    # Guardar el dataset modificado
+    with open("./data/dataset/new/dataset_extra_clean.json", 'w', encoding='utf-8') as f:
+        json.dump(final_dataset, f, ensure_ascii=False, indent=4)

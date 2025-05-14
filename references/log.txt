@@ -44,3 +44,9 @@ Algunos resúmenes salen en inglés aunque especifique que use español, otros n
 Para mejorar el prompt del modelo y que se generen los resúmenes correctamente, se pueden dividir los datos por secciones del árbitro, asistentes y cuarto árbitro, que se genere una salida por cada uno y juntarlas posteriormente. Es mucho más lento dar un solo resumen con todos los apartados que dividir los inputs por secciones.
 
 En métricas automáticas ganan los dos modelos Gemma con ligerísima ventaja para la versión ligera, mientras que en la comprobación manual, la versión pesada (12b) es claramente mejor.
+
+Fuentes a mencionar de Ollama:
+- https://ollama.com/library
+- https://www.kdnuggets.com/ollama-tutorial-running-llms-locally-made-super-simple
+- https://github.com/ollama/ollama/blob/main/docs/troubleshooting.md#how-to-troubleshoot-issues
+- https://www.restack.io/p/ollama-keep-answer-model-loaded-cat-ai
