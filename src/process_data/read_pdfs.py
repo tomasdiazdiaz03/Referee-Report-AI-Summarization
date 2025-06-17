@@ -1,10 +1,9 @@
 import os
-import json
 import pdfplumber
 import re
 import pandas as pd
 from tqdm import tqdm
-from preprocess import preprocess_match_data_new
+from .preprocess import preprocess_match_data_new
 
 def extract_all_text_from_pdf(pdf_path):
     """
