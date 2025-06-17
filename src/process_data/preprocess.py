@@ -111,14 +111,49 @@ def preprocess_match_data(match):
 ## Versión de preprocesamiento actualizada para el nuevo dataset
 def preprocess_match_data_new(match):
     """Aplica limpieza a todos los textos de un partido."""
-    if match["pdf_sections"] is not None:
+    if isinstance(match, dict):
+        for section, content in match.items():
+            match[section] = normalize_text(content)
+        if section == "resumen_final":
+            match[section] = limpiar_encabezados(content)
+    elif match["pdf_sections"] is not None:
         for section in match["pdf_sections"]:
             if isinstance(match["pdf_sections"][section], dict):  
                 for key in match["pdf_sections"][section]:  
                     match["pdf_sections"][section][key] = normalize_text(match["pdf_sections"][section][key])
             else:
                 match["pdf_sections"][section] = normalize_text(match["pdf_sections"][section])
+            if section == "resumen_final":
+                match["pdf_sections"][section] = limpiar_encabezados(match["pdf_sections"][section])
     return match
+
+
+def limpiar_encabezados(texto):
+    """
+    Elimina encabezados genéricos de informes arbitrales, incluyendo:
+    - Líneas que empiezan con 'Árbitro' (asistente 1, 2, principal, etc.)
+    - Secciones como 'ASPECTOS MÁS DESTACADOS:' y 'RECOMENDACIONES DE MEJORA:'
+    
+    Args:
+        texto (str): Texto del informe arbitral crudo.
+    
+    Returns:
+        str: Texto limpio sin encabezados genéricos.
+    """
+    # Patrón para eliminar líneas de árbitro y secciones
+    patrones = [
+        r'^Árbitro\s*(?:asistente\s*[12]|principal|de\s*campo)*\n',
+        r'^ASPECTOS\s+M[ÁA]S\s+DESTACADOS:\s*\n',
+        r'^RECOMENDACIONES\s+DE\s+MEJORA:\s*\n'
+    ]
+    
+    for patron in patrones:
+        texto = re.sub(patron, '', texto, flags=re.IGNORECASE | re.MULTILINE)
+    
+    # Eliminar líneas vacías sobrantes
+    texto = '\n'.join([line for line in texto.split('\n') if line.strip() != ''])
+    
+    return texto
 
 
 def eliminar_beneficio_duda(data):
@@ -180,14 +215,17 @@ if __name__ == "__main__":
 
 
     # Cargar el dataset JSON
-    with open("./data/dataset/new/dataset_extra.json", 'r', encoding='utf-8') as f:
-        dataset = json.load(f)
-    processed_dataset = {}
-    for key, match in dataset.items():
-        processed_dataset[key] = preprocess_match_data_new(match)
+    # with open("./data/dataset/new/dataset_extra.json", 'r', encoding='utf-8') as f:
+    #     dataset = json.load(f)
+    # processed_dataset = {}
+    # for key, match in dataset.items():
+    #     processed_dataset[key] = preprocess_match_data_new(match)
     
-    final_dataset = eliminar_beneficio_duda(processed_dataset)
+    # final_dataset = eliminar_beneficio_duda(processed_dataset)
 
-    # Guardar el dataset modificado
-    with open("./data/dataset/new/dataset_extra_clean.json", 'w', encoding='utf-8') as f:
-        json.dump(final_dataset, f, ensure_ascii=False, indent=4)
+    # # Guardar el dataset modificado
+    # with open("./data/dataset/new/dataset_extra_clean.json", 'w', encoding='utf-8') as f:
+    #     json.dump(final_dataset, f, ensure_ascii=False, indent=4)
+    texto_ejemplo = """Árbitro asistente 1\nASPECTOS MÁS DESTACADOS:\n- Acierto pleno en acciones de fuera de juego.\n- Ejecución del protocolo recomendado en situaciones de saque de meta con presión alta.\n- Compromiso en la dirección del partido y colaboración en las sustituciones múltiples solicitadas.\n- Técnica de carrera y de bandera\nRECOMENDACIONES DE MEJORA:\n- Adaptarse al incidente de intercomunicadores\n- Señalización del fuera de juego con más diligencia en situaciones como la del 60:34"""
+    # texto_ejemplo = """Árbitro\nASPECTOS MÁS DESTACADOS:\nConcentración durante todo el partido, desarrollando su labor de forma serena, sin perjuicio de mostrarse autoritario cuando las circunstancias del\npartido lo exigía.\nSeguridad y firmeza en la toma de decisiones, controló el partido en todo momento\nCondición física\nRECOMENDACIONES DE MEJORA:\nEn ocasiones, tarda en sancionar (segundos) una infracción dando lugar a alguna reclamación, pareciendo que sanciona “a demanda” de los\njugadores.\nIntentar posicionarse cerca de donde se desarrolla el juego en situaciones de presión alta, para evitar que te sorprenda errores como el del\nportero local y que supuso el gol visitante al disputarle el balón limpiamente el delantero."""
+    print(limpiar_encabezados(texto_ejemplo))

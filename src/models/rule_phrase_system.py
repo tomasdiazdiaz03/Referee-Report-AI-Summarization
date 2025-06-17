@@ -529,7 +529,7 @@ def generar_resumen_pdf(match):
     }
 
 
-def generar_resumen_pdf_dataset_extra(match):
+def generar_resumen_ref_pdf_dataset_extra(match):
     datos_pdf = match['pdf_sections']
     resumen_arbitro = "\n".join([
         generar_frase_condicion_fisica(datos_pdf),
@@ -545,6 +545,17 @@ def generar_resumen_pdf_dataset_extra(match):
     return {
         "arbitro": resumen_arbitro
     }
+
+def generar_resumen_aa1_pdf_dataset_extra(match):
+    datos_pdf = match['pdf_sections']
+    asistente_1 = generar_frase_aa1(datos_pdf)
+    return {
+        "asistente_1": asistente_1
+    }
+
+def generar_frase_aa1(datos):
+    string_asistente_1 = generar_resumen_asistente(datos.get("asistente_1", {}), datos.get("asistente_1_comentarios", ""))
+    return plantilla_frase_asistente_1.format(asistente_1=string_asistente_1)
 
 
 ##################################################

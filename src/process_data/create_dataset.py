@@ -2,7 +2,7 @@ import os
 import json
 import pandas as pd
 from read_txts import extract_events_from_multiple_txts
-from read_pdfs import extract_sections_from_multiple_pdfs, extract_sections_from_multiple_pdfs_extra_dataset
+from read_pdfs import extract_sections_from_multiple_pdfs, extract_sections_ref_from_multiple_pdfs_extra_dataset, extract_sections_aa1_from_multiple_pdfs_extra_dataset
 
 pdf_paths = {
     "Albacete_VillarrealB": "data/reports/Albacete Balompié SAD - Villarreal CF “B” SAD.pdf",
@@ -158,7 +158,7 @@ txt_files = {
 }
 
 
-def obtener_rutas_pdfs(directorio):
+def obtener_rutas_pdfs(directorio, contador=0):
     """
     Lee todos los archivos PDF de un directorio y guarda sus rutas en un diccionario.
     La clave será un valor numérico consecutivo y el valor será la ruta del archivo.
@@ -170,7 +170,6 @@ def obtener_rutas_pdfs(directorio):
     - dict: Diccionario con claves numéricas y rutas de los archivos PDF como valores.
     """
     pdf_dict = {}
-    contador = 0
 
     # Recorrer todos los archivos en el directorio
     for archivo in os.listdir(directorio):
@@ -179,7 +178,7 @@ def obtener_rutas_pdfs(directorio):
             pdf_dict[contador] = ruta_completa
             contador += 1
 
-    return pdf_dict
+    return pdf_dict, contador
 
 
 def unify_sets(pdf_paths, txt_files):
@@ -234,29 +233,62 @@ if __name__ == "__main__":
     # print("Nuevo dataset creado y guardado en data/dataset/full_dataset.json")
 
 
-    # directorio_pdfs = "./data/dataset/new/container ARB/"
-    # rutas_pdfs = obtener_rutas_pdfs(directorio_pdfs)
+
+
+    # directorios_arb = ["./data/dataset/new/container ARB/", "./data/dataset/new/container aRBITRO-2022-2023/", "./data/dataset/new/container Arbitros 2023-2024/"]
+    # directorios_aa1 = ["./data/dataset/new/container AA1/", "./data/dataset/new/container AA1 2023-2024/", "./data/dataset/new/container aa1-2022-2023/"]
+    # # Diccionario final estructurado
+    # dataset_extendido = {
+    #     "ref_reports": {},
+    #     "aa1_reports": {}
+    # }
+
+    # contador = 0
+
+    # # Procesar directorios de árbitros principales
+    # for dir_arb in directorios_arb:
+    #     if os.path.exists(dir_arb):
+    #         pdf_dict, contador = obtener_rutas_pdfs(dir_arb, contador)
+    #         dataset_extendido["ref_reports"].update(pdf_dict)
+    #     else:
+    #         print(f"Advertencia: Directorio no encontrado - {dir_arb}")
+
+    # # Procesar directorios de asistentes (AA1)
+    # for dir_aa1 in directorios_aa1:
+    #     if os.path.exists(dir_aa1):
+    #         pdf_dict, contador = obtener_rutas_pdfs(dir_aa1, contador)
+    #         dataset_extendido["aa1_reports"].update(pdf_dict)
+    #     else:
+    #         print(f"Advertencia: Directorio no encontrado - {dir_aa1}")
 
     # # Guardar el resultado en un archivo JSON
-    # import json
-    # with open("data/dataset/new/info_pdfs.json", "w", encoding="utf-8") as output:
-    #     json.dump(rutas_pdfs, output, indent=4, ensure_ascii=False)
+    # os.makedirs("./data/dataset/new/", exist_ok=True)
+    # with open("./data/dataset/new/info_pdfs.json", "w", encoding="utf-8") as output:
+    #     json.dump(dataset_extendido, output, indent=4, ensure_ascii=False)
 
-    # print("Rutas de PDFs guardadas en data/dataset/info_pdfs.json")
+    # print("Proceso completado. Resultados guardados en: data/dataset/new/info_pdfs.json")
+
+
 
     with open("data/dataset/new/info_pdfs.json", "r", encoding="utf-8") as f:
         matches_dict = json.load(f)
-    
-    all_sections = extract_sections_from_multiple_pdfs_extra_dataset(matches_dict)
+    all_sections_ref = extract_sections_ref_from_multiple_pdfs_extra_dataset(matches_dict["ref_reports"])
+    all_sections_aa1 = extract_sections_aa1_from_multiple_pdfs_extra_dataset(matches_dict["aa1_reports"])
+    all_sections = {**all_sections_ref, **all_sections_aa1}
     dataset = {}
-    for id, match_data in matches_dict.items():
-        pdf_sections = all_sections[id] if id in all_sections else None
+    for id, match_data in matches_dict["ref_reports"].items():
+        pdf_sections = all_sections[id] if id in all_sections.keys() else None
         dataset[id] = {
             "match_info": match_data, 
             "pdf_sections": pdf_sections
         }
-         
+    for id, match_data in matches_dict["aa1_reports"].items():
+        pdf_sections = all_sections[id] if id in all_sections.keys() else None
+        dataset[id] = {
+            "match_info": match_data, 
+            "pdf_sections": pdf_sections
+        }
     # Save the new dataset as JSON
-    with open("data/dataset/new/dataset_extra.json", "w", encoding="utf-8") as output:
+    with open("data/dataset/new/dataset_extended.json", "w", encoding="utf-8") as output:
         json.dump(dataset, output, indent=4, ensure_ascii=False)
-    print("Nuevo dataset creado y guardado en data/dataset/new/dataset_extra.json")
+    print("Nuevo dataset creado y guardado en data/dataset/new/dataset_extended.json")

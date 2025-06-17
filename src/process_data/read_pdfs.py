@@ -4,6 +4,7 @@ import pdfplumber
 import re
 import pandas as pd
 from tqdm import tqdm
+from preprocess import preprocess_match_data_new
 
 def extract_all_text_from_pdf(pdf_path):
     """
@@ -303,7 +304,7 @@ def extract_sections_from_multiple_pdfs(matches):
 
 
 ### Funciones para dataset extendido
-def extract_all_sections_extra_dataset(pdf_path):
+def extract_all_sections_ref_extra_dataset(pdf_path):
     """
     Extrae todas las secciones de un informe dado en formato PDF.
     """
@@ -332,16 +333,44 @@ def extract_all_sections_extra_dataset(pdf_path):
             r"Resumen final", 
             r"OTRAS INCIDENCIAS RESEÑABLES NO INCLUIDAS ANTERIORMENTE:")
     }
-    return sections
+    return preprocess_match_data_new(sections)
 
-def extract_sections_from_multiple_pdfs_extra_dataset(matches):
+def extract_sections_ref_from_multiple_pdfs_extra_dataset(matches):
     """
     Extrae las secciones de todos los informes PDF de una lista de partidos, en caso de que exista la ruta.
     """
     all_sections = {}
     for id, pdf_path in tqdm(matches.items(), desc="Procesando informes PDF"):
         try:
-            sections = extract_all_sections_extra_dataset(pdf_path)
+            sections = extract_all_sections_ref_extra_dataset(pdf_path)
+            all_sections[id] = sections
+        except Exception as e:
+            print(f"Error procesando {pdf_path}: {e}")
+    return all_sections
+
+def extract_all_sections_aa1_extra_dataset(pdf_path):
+    """
+    Extrae todas las secciones de un informe dado en formato PDF.
+    """
+    sections = {
+        "asistente_1": extract_tablas_asistentes(True, pdf_path), # r"(Árbitro asistente 1:(.|\n)*COMENTARIOS ADICIONALES SOBRE EL ÁRBITRO ASISTENTE 1 \(Si fuera necesario\):)"),
+        "asistente_1_comentarios": extract_text_between_markers(pdf_path, 
+            r"COMENTARIOS ADICIONALES SOBRE EL ÁRBITRO ASISTENTE 1 \(Si fuera necesario\):", 
+            r"Resumen final*"),
+        "resumen_final": extract_text_between_markers(pdf_path, 
+            r"Resumen final", 
+            r"OTRAS INCIDENCIAS RESEÑABLES NO INCLUIDAS ANTERIORMENTE:")
+    }
+    return preprocess_match_data_new(sections)
+
+def extract_sections_aa1_from_multiple_pdfs_extra_dataset(matches):
+    """
+    Extrae las secciones de todos los informes PDF de una lista de partidos, en caso de que exista la ruta.
+    """
+    all_sections = {}
+    for id, pdf_path in tqdm(matches.items(), desc="Procesando informes PDF"):
+        try:
+            sections = extract_all_sections_aa1_extra_dataset(pdf_path)
             all_sections[id] = sections
         except Exception as e:
             print(f"Error procesando {pdf_path}: {e}")
@@ -349,11 +378,14 @@ def extract_sections_from_multiple_pdfs_extra_dataset(matches):
 
 
 if __name__ == "__main__":
-    pdf_path = "data/reports/Levante UD SAD - Rayo Vallecano de Madrid SAD.pdf"
+    # pdf_path = "data/dataset/new/container AA1/1.pdf"
+    # print(extract_all_sections_aa1_extra_dataset(pdf_path))
+    pdf_path = "data/dataset/new/container ARB/AD Ceuta FC - Club Atlético de Madrid _B_.pdf"
+    print(extract_all_text_from_pdf(pdf_path))
     # pdf_path = "data/reports/UD Ibiza SAD - SD Ponferradina SAD.pdf"
     # print(extract_all_text_from_pdf(pdf_path))
     # print(extract_discipline_incidences_from_pdf(pdf_path))
-    print(extract_penalty_incidences_from_pdf(pdf_path))
+    # print(extract_penalty_incidences_from_pdf(pdf_path))
     # extract_discipline_incidences_from_pdf(pdf_path)
     # Imprimir todas las secciones de data1 de forma legible
     # for section, content in data1.items():
