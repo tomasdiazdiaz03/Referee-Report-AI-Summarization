@@ -376,16 +376,65 @@ def extract_sections_aa1_from_multiple_pdfs_extra_dataset(matches):
     return all_sections
 
 
+# Multirol
+
+def tiene_datos(contenido):
+    if contenido is None:
+        return False
+    if isinstance(contenido, str):
+        return contenido.strip() != ""
+    if isinstance(contenido, dict):
+        return any(tiene_datos(v) for v in contenido.values())
+    if isinstance(contenido, list):
+        return any(tiene_datos(v) for v in contenido)
+    return bool(contenido)
+
+
+def identificar_roles_en_secciones(secciones_dict):
+    roles_definidos = {
+        "arbitro": [
+            "condicion_fisica", "actuacion_tecnica", "incidencias_penaltis",
+            "actuacion_disciplinaria", "incidencias_disciplinarias",
+            "manejo_partido", "personalidad", "trabajo_equipo"
+        ],
+        "asistente_1": ["asistente_1", "asistente_1_comentarios"],
+        "asistente_2": ["asistente_2", "asistente_2_comentarios"],
+        "cuarto_arbitro": ["cuarto_arbitro"]
+    }
+
+    roles_presentes = []
+
+    asistentes_detectados = []
+
+    for rol, secciones in roles_definidos.items():
+        for sec in secciones:
+            if sec in secciones_dict and tiene_datos(secciones_dict[sec]):
+                if rol.startswith("asistente"):
+                    asistentes_detectados.append(rol)
+                else:
+                    roles_presentes.append(rol)
+                break
+
+    # Lógica especial para asistentes
+    if "arbitro" in roles_presentes or "cuarto_arbitro" in roles_presentes:
+        # Mantener asistentes individualmente
+        roles_presentes.extend(asistentes_detectados)
+    else:
+        # Solo asistentes detectados → fusionar
+        if asistentes_detectados:
+            roles_presentes.append("asistente_1")
+
+    return roles_presentes
+
+
+
 if __name__ == "__main__":
     # pdf_path = "data/dataset/new/container AA1/1.pdf"
-    # print(extract_all_sections_aa1_extra_dataset(pdf_path))
-    pdf_path = "data/dataset/new/container ARB/AD Ceuta FC - Club Atlético de Madrid _B_.pdf"
-    print(extract_all_text_from_pdf(pdf_path))
-    # pdf_path = "data/reports/UD Ibiza SAD - SD Ponferradina SAD.pdf"
-    # print(extract_all_text_from_pdf(pdf_path))
-    # print(extract_discipline_incidences_from_pdf(pdf_path))
-    # print(extract_penalty_incidences_from_pdf(pdf_path))
-    # extract_discipline_incidences_from_pdf(pdf_path)
+    # pdf_path = "data/dataset/new/container ARB/AD Ceuta FC - Club Atlético de Madrid _B_.pdf"
+    pdf_path = "data/reports/Albacete Balompié SAD - Villarreal CF “B” SAD.pdf"
+    secciones = extract_all_sections(pdf_path)
+    roles_contenido = identificar_roles_en_secciones(secciones)
+    print(f"Roles identificados: {roles_contenido}")
     # Imprimir todas las secciones de data1 de forma legible
     # for section, content in data1.items():
     #     print(f"--- {section.upper()} ---")

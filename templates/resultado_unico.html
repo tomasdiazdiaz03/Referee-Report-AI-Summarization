@@ -12,79 +12,65 @@
         .card {
             background-color: white;
             padding: 20px;
-            margin-bottom: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto 20px auto;
         }
         h2 {
             color: #2f3640;
+            text-align: center;
         }
         .role {
             font-weight: bold;
             color: #273c75;
             margin-bottom: 10px;
+            font-size: 1.2em;
         }
-        .volver {
+        .volver, .reprocesar {
             display: inline-block;
-            margin-top: 20px;
+            margin: 10px;
             padding: 10px 15px;
-            background-color: #273c75;
             color: white;
             text-decoration: none;
             border-radius: 5px;
+        }
+        .volver {
+            background-color: #273c75;
         }
         .volver:hover {
             background-color: #192a56;
         }
         .reprocesar {
-            display: inline-block;
-            margin-top: 20px;
-            margin-left: 10px;
-            padding: 10px 15px;
             background-color: #2a6d2c;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
         }
         .reprocesar:hover {
             background-color: #122c13;
         }
         .button-container {
-            display: flex;
-            justify-content: center;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <h2>Resumen generado</h2>
 
-    {% if resultado.arbitro %}
     <div class="card">
-        <div class="role">Árbitro</div>
-        <div>{{ resultado.arbitro }}</div>
+        <div class="role">
+            {% if resultado.arbitro %}
+                Árbitro
+            {% elif resultado.asistente_1%}
+                Asistente
+            {% elif resultado.cuarto_arbitro %}
+                Cuarto árbitro
+            {% else %}
+                Rol no identificado
+            {% endif %}
+        </div>
+        <div>
+            {{ resultado.arbitro or resultado.asistente_1 or resultado.cuarto_arbitro }}
+        </div>
     </div>
-    {% endif %}
-
-    {% if resultado.asistente_1 %}
-    <div class="card">
-        <div class="role">Asistente 1</div>
-        <div>{{ resultado.asistente_1 }}</div>
-    </div>
-    {% endif %}
-
-    {% if resultado.asistente_2 %}
-    <div class="card">
-        <div class="role">Asistente 2</div>
-        <div>{{ resultado.asistente_2 }}</div>
-    </div>
-    {% endif %}
-
-    {% if resultado.cuarto_arbitro %}
-    <div class="card">
-        <div class="role">Cuarto árbitro</div>
-        <div>{{ resultado.cuarto_arbitro }}</div>
-    </div>
-    {% endif %}
 
     <div class="button-container">
         <a class="volver" href="/">⬅ Inicio</a>
@@ -99,5 +85,5 @@
         btn.textContent = 'Procesando...';
         btn.disabled = true;
     });
-    </script> 
+</script>
 </html>
