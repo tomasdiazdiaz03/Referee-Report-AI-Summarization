@@ -32,10 +32,10 @@ Con este proyecto:
 
 # Funcionamiento
 
-![alt text](https://imgur.com/a/LH18hjY)
+![Procesamiento]([https://imgur.com/a/LH18hjY](https://github.com/user-attachments/assets/7ae17f5e-5825-4d38-acce-fb2bc1306cf0))
 Esquema de procesamiento de los informes
 
-![alt text](https://github.com/tomasdiazdiaz03/Referee-Report-AI-Summarization/issues/4#issue-3389641685)
+![Web](https://github.com/user-attachments/assets/8e5e53c8-743a-49cd-beb0-4f88f4824633)
 Interfaz web que muestra cómo se procesa un informe
 
 # Objetivos prácticos
