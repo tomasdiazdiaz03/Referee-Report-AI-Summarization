@@ -1,42 +1,43 @@
-# TFM
-TFM sobre generación de informes de árbitros en Python
+# Generación de informes arbitrales con IA
 
-# Versión de Python utilizada
-**Python 3.12.9** --> He probado en el servidor con Python 3.13, pero esta puede generar problemas o incompatibilidades, especialmente con bibliotecas como sentencepiece, necesaria para los modelos.
-Es necesario realizar la descarga de la versión 3.12.9.
+Este proyecto consiste en mi ***Trabajo Final de Máster**. En él, he aplicado Inteligencia Artificial Generativa para ayudar a un grupo específico de personas a realizar tareas de revisión de arbitraje en el fútbol utilizando informes directamente obtenidos de la Real Federación Española de Fútbol.
 
-# Entorno virtual
-Una vez descargada la versión de Python, utilizarla para crear un entorno virtual con los siguientes comandos dentro del directorio TFM:
-python3.12 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+# ¿Qué hace este proyecto?
 
-He probado a hacerlo manualmente y he eliminado algunas dependencias propias de Windows para Python que provocaban incompatibilidades.
+- Lee informes arbitrales **oficiales** dados en formato PDF o TXT.
+- Procesa el informe y entiende la información mediante NLP y un LLM (Gemma3:12b)
+- Transmite la información a un LLM (Gemma3:12b)
+- Genera resúmenes de manera automática, personalizándolos para cada posible rol:
+    - Árbitro principal
+    - Asistentes
+    - Cuarto árbitro
+- He creado una interfaz web con Flask para subir los informes y recibir un resumen inmediato
+Así pasamos de un documento extenso y tedioso como los PDF, o críptico y difícil de leer como los TXT, a un resumen automático que nos transmite los puntos importantes del rol analizado.
 
-# Instalar Ollama
-En la máquina con el servidor Flask, he clonado el repositorio con los ficheros necesarios para el uso de la herramienta. Para utilizarla, solo hay que instalar Ollama en su versión 0.6.8, que es la que he utilizado para el TFM, aunque se puede probar con versiones más modernas.
-Si quieres instalar la versión más moderna de Ollama, puedes usar el siguiente comando:
-curl -fsSL https://ollama.com/install.sh | sh
+# ¿Qué ventajas presenta?
 
-O también puedes usar la instalación manual con:
-curl -L https://ollama.com/download/ollama-linux-amd64.tgz -o ollama-linux-amd64.tgz
-sudo tar -C /usr -xzf ollama-linux-amd64.tgz
+Como el arbitraje es una parte crítica en el deporte, y más aún en uno como el fútbol, es imprescindible que la evaluación del rendimiento de los que lo ejercen sea lo más objetiva, eficaz y clara posible.
+Con este proyecto:
+- Se ahorra tiempo de revisión de los informes
+- Se estandarizan los criterios de ambos formatos
+- Se facilita el análisis para los revisores y una presentación resumida para la federación
 
-Para instalar la versión específica, puedes usar este comando:
-curl -fsSL https://ollama.com/install.sh | OLLAMA_VERSION=0.6.8 sh
+# Tecnologías clave utilizadas
 
-Para actualizar Ollama, ejecuta el comando de instalación más moderna o manual.
-Una vez instalado, se abre un bash y usan los comandos:
-Ejecución: 
-ollama serve &
+- Python 3.12.9
+- Flask para la interfaz web
+- Ollama + Gemma3:12b para la generación de texto
+- PdfPlumber para el procesamiento de los informes PDF
+- Prompts diseñados a medida para cada rol arbitral
 
-Descarga del modelo:
-ollama pull gemma3:12b
+# Funcionamiento
 
-Si tienes alguna duda de cómo realizar la instalación para Linux, te adjunto la dirección del documento github que lo explica:
-https://github.com/ollama/ollama/blob/main/docs/linux.md
+![alt text](image.png)
+Esquema de procesamiento de los informes
 
-# Ejecución de la app
-Para ejecutar la app, simplemente realizar la ejecución del main.py y se lanzará la app Flask. Abre en el navegador la ruta que se indique en la terminal y puedes usarlo.
+![alt text](image-1.png)
+Interfaz web que muestra cómo se procesa un informe
 
-Nota: En mi máquina Windows, el tiempo que tarda en generarse el resumen es de entre 15-30 segundos. He realizado estos mismos pasos en otra máquina Ubuntu y el despliegue es correcto, pero tarda un par de minutos en generar los resúmenes. No he averiguado si se debe al uso de Ollama en otro sistema operativo, la lentitud de mi máquina Ubuntu o algún motivo claro, por lo que es posible que ocurra un retraso notable en la generación de resúmenes.
+# Objetivos prácticos
+
+Con este proyecto, pretendía demostrar mi capacidad para diseñar y desplegar un sistema E2E con IA, integrando un procesamiento de NLP junto a un LLM moderno. Además, se añadió una aplicación web con una aplicabilidad práctica para satisfacer las necesidades específicas de unos usuarios focalizados en el ambiente deportivo.
