@@ -32,7 +32,7 @@ Con este proyecto:
 
 # Funcionamiento
 
-![Procesamiento](https://imgur.com/a/LH18hjY](https://github.com/user-attachments/assets/7ae17f5e-5825-4d38-acce-fb2bc1306cf0))
+![Procesamiento](https://github.com/user-attachments/assets/7ae17f5e-5825-4d38-acce-fb2bc1306cf0)
 Esquema de procesamiento de los informes
 
 ![Web](https://github.com/user-attachments/assets/8e5e53c8-743a-49cd-beb0-4f88f4824633)
