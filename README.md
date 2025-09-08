@@ -1,6 +1,6 @@
 # Generación de informes arbitrales con IA
 
-Este proyecto consiste en mi ***Trabajo Final de Máster**. En él, he aplicado Inteligencia Artificial Generativa para ayudar a un grupo específico de personas a realizar tareas de revisión de arbitraje en el fútbol utilizando informes directamente obtenidos de la Real Federación Española de Fútbol.
+Este proyecto consiste en mi **Trabajo Final de Máster**. En él, he aplicado Inteligencia Artificial Generativa para ayudar a un grupo específico de personas a realizar tareas de revisión de arbitraje en el fútbol utilizando informes directamente obtenidos de la Real Federación Española de Fútbol.
 
 # ¿Qué hace este proyecto?
 
@@ -11,7 +11,8 @@ Este proyecto consiste en mi ***Trabajo Final de Máster**. En él, he aplicado 
     - Árbitro principal
     - Asistentes
     - Cuarto árbitro
-- He creado una interfaz web con Flask para subir los informes y recibir un resumen inmediato
+- Permite al usuario recibir un resumen inmediato a través de una interfaz web diseñada con Flask para subir los informes.
+
 Así pasamos de un documento extenso y tedioso como los PDF, o críptico y difícil de leer como los TXT, a un resumen automático que nos transmite los puntos importantes del rol analizado.
 
 # ¿Qué ventajas presenta?
@@ -40,4 +41,4 @@ Interfaz web que muestra cómo se procesa un informe
 
 # Objetivos prácticos
 
-Con este proyecto, pretendía demostrar mi capacidad para diseñar y desplegar un sistema E2E con IA, integrando un procesamiento de NLP junto a un LLM moderno. Además, se añadió una aplicación web con una aplicabilidad práctica para satisfacer las necesidades específicas de unos usuarios focalizados en el ambiente deportivo.
+Con este proyecto, quiero demostrar mi capacidad para diseñar y desplegar un sistema E2E con IA, integrando un procesamiento de NLP junto a un LLM moderno. Además, añadí una aplicación web práctica para satisfacer las necesidades específicas de unos usuarios focalizados en el ambiente deportivo.
